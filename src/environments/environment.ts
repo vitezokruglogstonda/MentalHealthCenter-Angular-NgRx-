@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  toolbar_center_text: "Your Mental Health",
+  toolbar_menu_button_tooltip_text: "Menu",
+  toolbar_menu_button_tooltip_show_delay: 500,
+  account_icon_basic_URL: "/assets/Icons/account_icon.png",
+  account_icon_tooltip_text: "Account",
+  toolbar_manu_tooltip_text: "Menu",
 };
 
 /*
@@ -14,3 +20,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+
