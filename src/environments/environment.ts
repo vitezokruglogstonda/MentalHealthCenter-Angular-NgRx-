@@ -10,6 +10,7 @@ export const environment = {
   account_icon_basic_URL: "/assets/Icons/account_icon.png",
   account_icon_tooltip_text: "Account",
   toolbar_manu_tooltip_text: "Menu",
+  sidenav_items_list: ["Home", "Help call!", "Tips", "About us"],
 };
 
 /*
@@ -21,3 +22,5 @@ export const environment = {
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
 
+//background
+//#adbadd

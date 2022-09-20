@@ -11,10 +11,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRippleModule} from '@angular/material/core';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { AccountIconComponent } from './components/account-icon/account-icon.component';
 import { accountReducer } from './store/account/account.reducer';
 import { AppState } from './store/app.state';
+import { sidenavItemsReducer } from './store/sidenav/sidenav.reducer';
 
 @NgModule({
   declarations: [
@@ -24,13 +28,19 @@ import { AppState } from './store/app.state';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot<AppState>({account_info: accountReducer}),
+    StoreModule.forRoot<AppState>({
+      accountInfo: accountReducer, 
+      sidenavInfo: sidenavItemsReducer
+    }),
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatRippleModule,
     MatTooltipModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

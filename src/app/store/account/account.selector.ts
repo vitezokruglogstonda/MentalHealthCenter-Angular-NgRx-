@@ -3,7 +3,7 @@ import { LoginStatus } from "src/app/models/account-info";
 import { AppState } from "../app.state";
 
 export const selectAccountInfo = createSelector(
-    (state: AppState) => state.account_info,
+    (state: AppState) => state.accountInfo,
     (account_info) => account_info
 ); 
 

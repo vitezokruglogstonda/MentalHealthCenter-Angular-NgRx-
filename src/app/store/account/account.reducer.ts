@@ -10,4 +10,4 @@ export const initialState: AccountInfo = {
 
 export const accountReducer = createReducer(
     initialState
-  );
+);

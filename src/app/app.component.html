@@ -1,5 +1,5 @@
 <mat-toolbar class="main-toolbar" color="primary" [class.mat-elevation-z8]="true">
-  <button mat-icon-button>
+  <button mat-icon-button (click)="snav.toggle()">
     <mat-icon 
       matTooltip={{menuButtonTooltipText}}
       [matTooltipShowDelay]="showDelay.value">menu</mat-icon>
@@ -7,3 +7,17 @@
   <h1>{{toolbarCenterText}}</h1>
   <app-account-icon></app-account-icon>
 </mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #snav mode="over" class="sidenav">
+
+    <mat-selection-list [multiple]="false" >
+      <mat-list-option class="sidenav-list-option" *ngFor="let item of sidenavItems">{{item}}
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content-container">CONTENT</mat-sidenav-content>
+</mat-sidenav-container>

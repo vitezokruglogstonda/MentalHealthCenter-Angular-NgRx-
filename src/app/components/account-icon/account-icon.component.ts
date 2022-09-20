@@ -15,10 +15,12 @@ export class AccountIconComponent implements OnInit {
   public iconPath : String;
   public tooltipText: String;
   public tooltipPosition: String;
+  public showCard: boolean;
   constructor(private store: Store<AppState>) {
     this.iconPath = "";
     this.tooltipText = "";
     this.tooltipPosition = "";
+    this.showCard = false;
   }
 
   ngOnInit(): void {
@@ -26,6 +28,16 @@ export class AccountIconComponent implements OnInit {
       this.iconPath = state.accountIcon;
       this.tooltipText = state.tooltipText;
     });
+  }
+
+  toggleCard(){
+    if(this.showCard === true){
+      this.showCard = false;
+    }
+    else
+    {
+      this.showCard = true;
+    }
   }
 
 }
