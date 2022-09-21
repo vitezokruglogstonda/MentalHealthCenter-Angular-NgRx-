@@ -14,16 +14,21 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 import { AccountIconComponent } from './components/account-icon/account-icon.component';
 import { accountReducer } from './store/account/account.reducer';
 import { AppState } from './store/app.state';
 import { sidenavItemsReducer } from './store/sidenav/sidenav.reducer';
+import { LoginCardComponent } from './components/login-card/login-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccountIconComponent
+    AccountIconComponent,
+    LoginCardComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,9 @@ import { sidenavItemsReducer } from './store/sidenav/sidenav.reducer';
     MatSidenavModule,
     MatListModule,
     MatDividerModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

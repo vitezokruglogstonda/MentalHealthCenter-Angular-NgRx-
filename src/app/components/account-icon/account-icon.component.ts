@@ -37,6 +37,8 @@ export class AccountIconComponent implements OnInit {
     else
     {
       this.showCard = true;
+      //ako je ulogovan da prikazuje login-card
+      //ako nije logout-card
     }
   }
 

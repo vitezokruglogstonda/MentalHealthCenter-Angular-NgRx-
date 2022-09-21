@@ -11,6 +11,7 @@ export const environment = {
   account_icon_tooltip_text: "Account",
   toolbar_manu_tooltip_text: "Menu",
   sidenav_items_list: ["Home", "Help call!", "Tips", "About us"],
+  example_email: "name@example.com",
 };
 
 /*

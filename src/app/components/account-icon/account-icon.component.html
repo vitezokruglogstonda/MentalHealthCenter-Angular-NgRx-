@@ -3,7 +3,8 @@
         mat-ripple 
         [matRippleCentered]=true 
         [matRippleUnbounded]=true 
-        matTooltip={{tooltipText}}>
+        matTooltip={{tooltipText}}
+        (click)=toogleCard()>
         <img src={{iconPath}} />
     </div>    
 </div>

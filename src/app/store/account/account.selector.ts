@@ -7,3 +7,7 @@ export const selectAccountInfo = createSelector(
     (account_info) => account_info
 ); 
 
+export const selectEmailExample = createSelector(
+    selectAccountInfo,
+    (state) => state.emailExample
+);
