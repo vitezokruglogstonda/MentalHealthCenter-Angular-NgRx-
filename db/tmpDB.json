@@ -1,0 +1,13 @@
+{
+    "users":[
+        {
+            "email": "kurac@kurac.rs",
+            "userName": "Mandrila",
+            "password": "123",
+            "JWT": "String",
+            "userType": "Patient",
+            "profilePicturePath": "/assets/UserData/user1.png"
+        }
+    ]
+}
+    

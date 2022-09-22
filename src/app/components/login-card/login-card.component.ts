@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { selectEmailExample } from 'src/app/store/account/account.selector';
+import { CardType } from 'src/app/models/app-info';
+import { selectEmailExample } from 'src/app/store/app/app.selector';
 import { AppState } from 'src/app/store/app.state';
 
 @Component({
@@ -32,6 +33,10 @@ export class LoginCardComponent implements OnInit {
     }
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  login(){
+    
   }
 
 }

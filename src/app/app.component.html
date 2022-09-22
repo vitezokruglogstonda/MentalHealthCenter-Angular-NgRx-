@@ -5,7 +5,7 @@
       [matTooltipShowDelay]="showDelay.value">menu</mat-icon>
   </button>
   <h1>{{toolbarCenterText}}</h1>
-  <app-account-icon></app-account-icon>
+  <app-account-icon (emitter)="updateCardComponent($event)"></app-account-icon>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
@@ -20,6 +20,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="content-container">
-    <app-login-card></app-login-card>
+    <app-login-card *ngIf="showCard_LogIn" ></app-login-card>
+    <app-account-info-card *ngIf="showCard_AccountInfo" ></app-account-info-card>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -19,23 +19,27 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 
 import { AccountIconComponent } from './components/account-icon/account-icon.component';
-import { accountReducer } from './store/account/account.reducer';
+import { appReducer } from './store/app/app.reducer';
 import { AppState } from './store/app.state';
 import { sidenavItemsReducer } from './store/sidenav/sidenav.reducer';
 import { LoginCardComponent } from './components/login-card/login-card.component';
+import { AccountInfoCardComponent } from './components/account-info-card/account-info-card.component';
+import { userReducer } from './store/user/user.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccountIconComponent,
-    LoginCardComponent
+    LoginCardComponent,
+    AccountInfoCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot<AppState>({
-      accountInfo: accountReducer, 
-      sidenavInfo: sidenavItemsReducer
+      appInfo: appReducer, 
+      sidenavInfo: sidenavItemsReducer,
+      userInfo: userReducer,
     }),
     BrowserAnimationsModule,
     MatToolbarModule,

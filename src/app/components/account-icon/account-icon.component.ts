@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { LoginStatus } from 'src/app/models/account-info';
-import { selectAccountInfo } from 'src/app/store/account/account.selector';
+import { CardType, LoginStatus } from 'src/app/models/app-info';
+import { selectAppInfo } from 'src/app/store/app/app.selector';
 import { AppState } from 'src/app/store/app.state';
+import { EventEmitter } from "@angular/core"
+import { outputAst } from '@angular/compiler';
 
 @Component({
   selector: 'app-account-icon',
@@ -15,31 +17,44 @@ export class AccountIconComponent implements OnInit {
   public iconPath : String;
   public tooltipText: String;
   public tooltipPosition: String;
-  public showCard: boolean;
+  private showCard: [boolean, CardType];  
+  @Output() emitter: EventEmitter<[boolean, CardType]>;
+
   constructor(private store: Store<AppState>) {
     this.iconPath = "";
     this.tooltipText = "";
     this.tooltipPosition = "";
-    this.showCard = false;
+    this.showCard = [false, CardType.LogIn];
+    this.emitter = new EventEmitter<[boolean, CardType]>();
   }
 
   ngOnInit(): void {
-    this.store.select(selectAccountInfo).subscribe((state) => {
-      this.iconPath = state.accountIcon;
+    this.store.select(selectAppInfo).subscribe((state) => {
+      this.iconPath = state.accountImagePath;
       this.tooltipText = state.tooltipText;
     });
   }
 
   toggleCard(){
-    if(this.showCard === true){
-      this.showCard = false;
+    if(this.showCard[0] === true){
+      this.showCard[0] = false;
+      this.emitter.emit(this.showCard);
     }
     else
     {
-      this.showCard = true;
-      //ako je ulogovan da prikazuje login-card
-      //ako nije logout-card
+      this.showCard[0] = true;
+      this.store.select(selectAppInfo).subscribe((state) => {
+        if(state.loginStatus === LoginStatus.Offline){
+          this.showCard[1] = CardType.LogIn;
+        }
+        else
+        {
+          this.showCard[1] = CardType.AccountInfo;
+        }
+        this.emitter.emit(this.showCard);
+      });
     }
   }
 
 }
+

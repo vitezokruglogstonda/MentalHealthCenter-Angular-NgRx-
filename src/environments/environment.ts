@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  app_title: 'MentalHealthCenter',
   toolbar_center_text: "Your Mental Health",
   toolbar_menu_button_tooltip_text: "Menu",
   toolbar_menu_button_tooltip_show_delay: 500,

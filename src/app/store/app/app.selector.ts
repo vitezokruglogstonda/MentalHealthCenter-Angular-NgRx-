@@ -1,13 +1,13 @@
 import { createSelector } from "@ngrx/store";
-import { LoginStatus } from "src/app/models/account-info";
+import { LoginStatus } from "src/app/models/app-info";
 import { AppState } from "../app.state";
 
-export const selectAccountInfo = createSelector(
-    (state: AppState) => state.accountInfo,
+export const selectAppInfo = createSelector(
+    (state: AppState) => state.appInfo,
     (account_info) => account_info
 ); 
 
 export const selectEmailExample = createSelector(
-    selectAccountInfo,
+    selectAppInfo,
     (state) => state.emailExample
 );
