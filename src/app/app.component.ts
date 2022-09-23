@@ -35,7 +35,7 @@ export class AppComponent {
   }
 
   updateCardComponent(ev: [boolean, CardType]){
-    console.log("EVENT: ", ev);
+    //console.log("EVENT: ", ev);
     if(!ev[0]){
       this.showCard_LogIn=false;
       this.showCard_AccountInfo=false;
