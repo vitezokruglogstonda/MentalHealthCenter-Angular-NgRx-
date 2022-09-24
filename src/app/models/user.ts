@@ -1,4 +1,5 @@
 export interface User{
+    id: number;
     email: String;
     userName: String;
     JWT: String;
@@ -11,5 +12,11 @@ export enum UserType{
     Admin,
     Therapist,
     Patient,
-    CallOperator
+    CallOperator,
+    Guest
+}
+
+export interface LoginDto{
+    email: String;
+    password: String;
 }

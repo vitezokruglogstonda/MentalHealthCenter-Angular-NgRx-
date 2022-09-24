@@ -19,6 +19,9 @@
             <mat-error *ngIf="passwordError">{{fieldError}}</mat-error>
         </mat-form-field>
         <br/>
+        <div *ngIf="loginError">
+            <p id="loginErrorLabel">Wrong email or password. Try again.</p>
+        </div>
         <button mat-raised-button class="submit-button" id="login-button" color="primary" (click)="login()">Log in</button>
     </div>
     <br/>

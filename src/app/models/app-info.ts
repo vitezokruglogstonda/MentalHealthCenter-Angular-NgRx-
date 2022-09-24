@@ -3,6 +3,7 @@ export interface AppInfo{
     accountImagePath: String;
     tooltipText: String;
     emailExample: String;
+    loginError: boolean;
 }
 
 export enum LoginStatus{

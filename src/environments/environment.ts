@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   app_title: 'MentalHealthCenter',
+  json_server_url: "http://localhost:3000/",
   toolbar_center_text: "Your Mental Health",
   toolbar_menu_button_tooltip_text: "Menu",
   toolbar_menu_button_tooltip_show_delay: 500,

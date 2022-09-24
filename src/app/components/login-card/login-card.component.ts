@@ -2,9 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { CardType } from 'src/app/models/app-info';
-import { selectEmailExample } from 'src/app/store/app/app.selector';
+import { selectEmailExample, selectLoginErrorStatus } from 'src/app/store/app/app.selector';
 import { AppState } from 'src/app/store/app.state';
 import { environment } from 'src/environments/environment';
+import { logIn } from 'src/app/store/user/user.action';
+import { LoginDto } from 'src/app/models/user';
 
 @Component({
   selector: 'app-login-card',
@@ -20,7 +22,8 @@ export class LoginCardComponent implements OnInit {
   public password: String;
   public passwordHide: boolean;
   public passwordError: boolean;
-  public fieldError: String;  
+  public fieldError: String;
+  public loginError: boolean;
 
   constructor(private store: Store<AppState>) { 
     this.email = "";
@@ -30,11 +33,15 @@ export class LoginCardComponent implements OnInit {
     this.passwordHide = true;
     this.passwordError = false;
     this.fieldError = environment.login_card_fieldError;
+    this.loginError = false;
   }
 
   ngOnInit(): void {
     this.store.select(selectEmailExample).subscribe((state) => {
       this.emailExample = state;
+    });
+    this.store.select(selectLoginErrorStatus).subscribe((state)=>{
+      this.loginError = state;
     });
   }
 
@@ -64,9 +71,12 @@ export class LoginCardComponent implements OnInit {
 
   login(){
     if(!(this.email.length===0) && !(this.password.length===0)){
-      
-      //obradi login (poziv akcije koja zove servis)
-      //prosledjujes im this.email i this.password
+      const dto: LoginDto = {
+        email: this.email,
+        password: this.password
+      };      
+      this.store.dispatch(logIn({loginDto: dto}));
+      //on 2 puta poziva akciju, zato izlazi error
     }
   }
 

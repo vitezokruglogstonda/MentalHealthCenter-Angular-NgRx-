@@ -1,9 +1,19 @@
 {
     "users":[
         {
+            "id": 1,
             "email": "kurac@kurac.rs",
             "userName": "Mandrila",
             "password": "123",
+            "JWT": "String",
+            "userType": "Patient",
+            "profilePicturePath": "src/assets/UserData/user1.png"
+        },
+        {
+            "id": 2,
+            "email": "a",
+            "userName": "Mandrila",
+            "password": "a",
             "JWT": "String",
             "userType": "Patient",
             "profilePicturePath": "/assets/UserData/user1.png"

@@ -7,6 +7,9 @@ import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import {StoreDevtoolsModule} from "@ngrx/store-devtools"
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -27,6 +30,7 @@ import { sidenavItemsReducer } from './store/sidenav/sidenav.reducer';
 import { LoginCardComponent } from './components/login-card/login-card.component';
 import { AccountInfoCardComponent } from './components/account-info-card/account-info-card.component';
 import { userReducer } from './store/user/user.reducer';
+import { UserEffects } from './store/user/user.effects';
 
 @NgModule({
   declarations: [
@@ -39,11 +43,17 @@ import { userReducer } from './store/user/user.reducer';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot<AppState>({
-      appInfo: appReducer, 
+      appInfo: appReducer,
       sidenavInfo: sidenavItemsReducer,
       userInfo: userReducer,
     }),
+    EffectsModule.forRoot([UserEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 20, 
+      autoPause: true
+    }),
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,

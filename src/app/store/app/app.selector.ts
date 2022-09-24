@@ -11,3 +11,8 @@ export const selectEmailExample = createSelector(
     selectAppInfo,
     (state) => state.emailExample
 );
+
+export const selectLoginErrorStatus = createSelector(
+    selectAppInfo,
+    (state) => state.loginError
+);
