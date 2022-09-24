@@ -2,6 +2,8 @@ import {createReducer, on} from "@ngrx/store"
 import { AppInfo, LoginStatus } from "src/app/models/app-info";
 import { environment } from "src/environments/environment";
 import * as Actions from "./app.action";
+import {signOut} from "../user/user.action";
+import { state } from "@angular/animations";
 
 export const initialState: AppInfo = {
     loginStatus: LoginStatus.Offline,
@@ -22,5 +24,8 @@ export const appReducer = createReducer(
     on(Actions.loginFail, (state) => ({
         ...state,
         loginError: true
+    })),
+    on(signOut, (state)=>({
+        ...initialState
     }))
 );

@@ -11,6 +11,11 @@ export class UserService{
 
     constructor(private http: HttpClient){}
 
+    // logIn(loginDto: LoginDto): Observable<User[]>{
+    //     let querry: String = `users/?email=${loginDto.email}&password=${loginDto.password}`;
+    //     return this.http.get<User[]>(environment.json_server_url+querry);
+    // }
+
     logIn(loginDto: LoginDto): Observable<User[]>{
         let querry: String = `users/?email=${loginDto.email}&password=${loginDto.password}`;
         return this.http.get<User[]>(environment.json_server_url+querry);

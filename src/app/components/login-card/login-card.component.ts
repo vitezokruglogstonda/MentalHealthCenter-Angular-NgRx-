@@ -69,7 +69,7 @@ export class LoginCardComponent implements OnInit {
     }
   }
 
-  login(){
+  logIn(){
     if(!(this.email.length===0) && !(this.password.length===0)){
       const dto: LoginDto = {
         email: this.email,

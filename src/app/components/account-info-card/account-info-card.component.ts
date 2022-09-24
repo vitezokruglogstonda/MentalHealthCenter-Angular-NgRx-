@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
+import { signOut } from 'src/app/store/user/user.action';
 import { selectUserInfo } from 'src/app/store/user/user.selector';
 
 @Component({
@@ -26,6 +27,14 @@ export class AccountInfoCardComponent implements OnInit {
       this.userName = state.userName;
       this.email = state.email;
     });
+  }
+
+  signOut(){
+    this.store.dispatch(signOut());
+    //bez online property-ja u objektu
+    //ne obraca se serveru
+    //akcija direktno triggeruje reducer koji brise obj iz store-a i menja stanje appInfo
+      //(2 reducera ga hvataju)
   }
 
 }

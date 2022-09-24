@@ -29,5 +29,8 @@ export const userReducer = createReducer(
     on(Actions.logIn, (state, {loginDto}) => ({...state})),
     on(Actions.logInSuccess, (state, {user}) => ({
         ...user,
+    })),
+    on(Actions.signOut, (state)=>({
+        ...initialState
     }))
 );
