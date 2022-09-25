@@ -1,1 +1,67 @@
-<p>register works!</p>
+<div class="main-container">
+    <h2>Registration</h2>
+    <mat-stepper class="stepper" orientation="vertical" [linear]="true" #stepper>
+
+        <mat-step>
+            <div class="step-form-container">
+                <ng-template matStepLabel>Enter your new account credentials</ng-template>
+                <div class="field-container">
+                    <mat-icon class="side-icon">account_circle</mat-icon>
+                    <mat-form-field class="form-field" appearance="fill">                        
+                        <mat-label>Email</mat-label>
+                        <input matInput [(ngModel)]="email" placeholder={{emailExample}} required>
+                    </mat-form-field>
+                </div>
+                <div class="field-container">
+                    <mat-icon class="side-icon">vpn_key</mat-icon>
+                    <mat-form-field class="form-field" appearance="fill">
+                        <mat-label>Password</mat-label>
+                        <input matInput [(ngModel)]="password" [type]="passwordHide ? 'password' : 'text'" required>
+                        <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
+                          <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>    
+                <div class="field-container">
+                    <mat-icon class="side-icon">vpn_key</mat-icon>
+                    <mat-form-field class="form-field" appearance="fill">
+                        <mat-label>Repeat password</mat-label>
+                        <input matInput [(ngModel)]="passwordRep" [type]="passwordHide ? 'password' : 'text'" required>
+                        <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
+                          <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>   
+            </div>
+            <br/>
+            <div>
+                <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+        </mat-step>
+
+        <mat-step>
+            <form>
+                <ng-template matStepLabel>Fill out your personal information</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                </mat-form-field>
+
+            </form>
+            <div>
+                <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
+                <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+
+    </mat-stepper>
+</div>

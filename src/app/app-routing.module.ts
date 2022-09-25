@@ -15,23 +15,6 @@ const routes: Routes = [
   }
 ];
 
-// const routes: Routes = [
-//   {
-//     path: "app",
-//     component: AppComponent,
-//     children: [
-//       {
-//         path: "home",
-//         component: HomePageComponent
-//       },
-//       {
-//         path: "register",
-//         component: RegisterComponent
-//       }
-//     ]
-//   }
-// ];
-
 export const routingComponents = [HomePageComponent, RegisterComponent];
 
 @NgModule({
