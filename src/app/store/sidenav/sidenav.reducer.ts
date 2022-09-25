@@ -8,4 +8,4 @@ export const initialState: SidenavInfo = {
 
 export const sidenavItemsReducer = createReducer(
     initialState
-  );
+);

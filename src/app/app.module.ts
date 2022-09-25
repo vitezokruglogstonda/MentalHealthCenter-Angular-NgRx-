@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,17 +31,19 @@ import { LoginCardComponent } from './components/login-card/login-card.component
 import { AccountInfoCardComponent } from './components/account-info-card/account-info-card.component';
 import { userReducer } from './store/user/user.reducer';
 import { UserEffects } from './store/user/user.effects';
+//import { RegisterComponent } from './components/register/register.component';
+//import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccountIconComponent,
     LoginCardComponent,
-    AccountInfoCardComponent
+    AccountInfoCardComponent,
+    routingComponents,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     StoreModule.forRoot<AppState>({
       appInfo: appReducer,
       sidenavInfo: sidenavItemsReducer,
@@ -52,6 +54,7 @@ import { UserEffects } from './store/user/user.effects';
       maxAge: 20, 
       autoPause: true
     }),
+    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,

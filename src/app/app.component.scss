@@ -25,6 +25,10 @@
     background-color: #c6cad6;
 }
 
+.app-title:hover{
+    cursor: pointer;
+}
+
 @media screen and (max-width: 600px){
     .sidenav-container{
         height: calc(100% - 56px);

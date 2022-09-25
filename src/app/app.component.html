@@ -4,7 +4,10 @@
       matTooltip={{menuButtonTooltipText}}
       [matTooltipShowDelay]="showDelay.value">menu</mat-icon>
   </button>
-  <h1>{{toolbarCenterText}}</h1>
+  <h1 class="app-title" 
+    routerLink="" 
+    matTooltip="Home page" 
+    [matTooltipShowDelay]="showDelay.value">{{toolbarCenterText}}</h1>
   <app-account-icon (emitter)="updateCardComponent($event)"></app-account-icon>
 </mat-toolbar>
 
@@ -12,7 +15,7 @@
   <mat-sidenav #snav mode="over" class="sidenav">
 
     <mat-selection-list [multiple]="false" >
-      <mat-list-option class="sidenav-list-option" *ngFor="let item of sidenavItems">{{item}}
+      <mat-list-option class="sidenav-list-option" *ngFor="let item of sidenavItems" routerLink="{{item.route}}">{{item.title}}
         <mat-divider></mat-divider>
       </mat-list-option>
     </mat-selection-list>
@@ -20,6 +23,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="content-container">
+    <router-outlet></router-outlet>
     <app-login-card *ngIf="showCard_LogIn" ></app-login-card>
     <app-account-info-card *ngIf="showCard_AccountInfo" ></app-account-info-card>
   </mat-sidenav-content>

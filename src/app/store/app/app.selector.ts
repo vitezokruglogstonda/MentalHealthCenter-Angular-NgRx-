@@ -16,3 +16,8 @@ export const selectLoginErrorStatus = createSelector(
     selectAppInfo,
     (state) => state.loginError
 );
+
+export const selectLoginStatus = createSelector(
+    selectAppInfo,
+    (state) => state.loginStatus
+);
