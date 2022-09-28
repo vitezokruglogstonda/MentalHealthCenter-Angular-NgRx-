@@ -7,7 +7,7 @@
                 <ng-template matStepLabel>Enter your new account credentials</ng-template>
                 <div class="field-container">
                     <mat-icon class="side-icon">account_circle</mat-icon>
-                    <mat-form-field class="form-field" appearance="fill">                        
+                    <mat-form-field class="form-field" appearance="fill">
                         <mat-label>Email</mat-label>
                         <input matInput [(ngModel)]="email" placeholder={{emailExample}} required>
                     </mat-form-field>
@@ -17,37 +17,77 @@
                     <mat-form-field class="form-field" appearance="fill">
                         <mat-label>Password</mat-label>
                         <input matInput [(ngModel)]="password" [type]="passwordHide ? 'password' : 'text'" required>
-                        <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
-                          <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide"
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
+                            <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
-                </div>    
+                </div>
                 <div class="field-container">
                     <mat-icon class="side-icon">vpn_key</mat-icon>
                     <mat-form-field class="form-field" appearance="fill">
                         <mat-label>Repeat password</mat-label>
                         <input matInput [(ngModel)]="passwordRep" [type]="passwordHide ? 'password' : 'text'" required>
-                        <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
-                          <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide"
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
+                            <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
-                </div>   
+                </div>
             </div>
-            <br/>
+            <br />
             <div>
                 <button mat-stroked-button color="primary" matStepperNext>Next</button>
             </div>
         </mat-step>
 
         <mat-step>
-            <form>
+            <div class="step-form-container shorter">
                 <ng-template matStepLabel>Fill out your personal information</ng-template>
-                <mat-form-field appearance="fill">
-                    <mat-label>Address</mat-label>
-                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-                </mat-form-field>
+                <div class="field-container">
+                    <mat-form-field class="form-field" appearance="fill">
+                        <mat-label>First Name</mat-label>
+                        <input matInput required>
+                    </mat-form-field>
+                </div>
+                <div class="field-container">
+                    <mat-form-field class="form-field" appearance="fill">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput required>
+                    </mat-form-field>
+                </div>
+                <div class="field-container">
+                    <mat-form-field class="form-field" appearance="fill">
+                        <mat-label>Birthdate</mat-label>
+                        <input matInput [matDatepicker]="birthDatePicker">
+                        <mat-hint>DD/MM/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #birthDatePicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="field-container">
+                    <mat-form-field class="form-field" appearance="fill">
+                        <mat-label>Gender</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let gender of genders" [value]="gender">
+                                {{gender}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div>
+                <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
+                <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+        </mat-step>
 
-            </form>
+        <mat-step>
+            <ng-template matStepLabel>Profile picture</ng-template>
+            <div class="step-form-container picture-step">
+                <img class="profile-picture" src="{{profilePicturePath}}" />
+                <button mat-raised-button color="primary" (click)="openUploadDialog()">Upload</button>
+            </div>
             <div>
                 <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
                 <button mat-stroked-button color="primary" matStepperNext>Next</button>

@@ -33,6 +33,9 @@ export const environment = {
   ],
   login_card_example_email: "name@example.com",
   login_card_fieldError: "This field is required!",
+  gender_list: ["Male", "Female"],
+  dialogOpenAnimationDuration: "500ms",
+  dialogWidth: "40%",
 };
 
 /*

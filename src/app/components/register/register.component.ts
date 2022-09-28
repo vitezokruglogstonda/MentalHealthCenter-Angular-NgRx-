@@ -1,10 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { UploadPictureDialogComponent } from '../upload-picture-dialog/upload-picture-dialog.component';
+
+export const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  },
+};
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
 export class RegisterComponent implements OnInit {
 
@@ -13,16 +31,37 @@ export class RegisterComponent implements OnInit {
   public password: String;
   public passwordHide: boolean;
   public passwordRep: String;
+  public genders: String[];
+  public profilePicturePath: String;
+  //public uploadedPicture: File | null;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.email = "";
     this.emailExample = environment.login_card_example_email;
     this.password = "";
     this.passwordHide = true;
     this.passwordRep = "";
+    this.genders = environment.gender_list;
+    this.profilePicturePath = environment.account_icon_basic_URL;
+    //this.uploadedPicture = null;
   }
 
   ngOnInit(): void {
+  }
+
+  // newPicture(ev: any){
+  //   console.log(ev);
+  //   if(this.uploadedPicture !== null){
+  //     this.uploadedPicture = null;
+  //   }
+  //   this.uploadedPicture = ev.target?.files[0];
+  // }
+
+  openUploadDialog(){
+    this.dialog.open(UploadPictureDialogComponent, {
+      width: environment.dialogWidth,
+      enterAnimationDuration: environment.dialogOpenAnimationDuration
+    });
   }
 
 }

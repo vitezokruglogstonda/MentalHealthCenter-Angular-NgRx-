@@ -22,10 +22,27 @@
     flex-direction: row;
 }
 
+.step-form-container.shorter{
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-basis: 30%;
+}
+
 .form-field{
     flex-grow: 1;
 }
 
 .side-icon{
     margin-top: 15px;
+    margin-right: 5px;
+}
+
+.picture-step{
+    align-items: center;
+}
+
+.profile-picture{
+    width: 30%;
+    height: 30%;
 }

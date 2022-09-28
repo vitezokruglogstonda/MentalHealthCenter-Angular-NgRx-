@@ -23,6 +23,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MomentDateModule } from '@angular/material-moment-adapter';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AccountIconComponent } from './components/account-icon/account-icon.component';
 import { appReducer } from './store/app/app.reducer';
@@ -32,6 +37,7 @@ import { LoginCardComponent } from './components/login-card/login-card.component
 import { AccountInfoCardComponent } from './components/account-info-card/account-info-card.component';
 import { userReducer } from './store/user/user.reducer';
 import { UserEffects } from './store/user/user.effects';
+import { UploadPictureDialogComponent } from './components/upload-picture-dialog/upload-picture-dialog.component';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -42,7 +48,9 @@ import { UserEffects } from './store/user/user.effects';
     LoginCardComponent,
     AccountInfoCardComponent,
     routingComponents,
+    UploadPictureDialogComponent,
   ],
+  entryComponents:[UploadPictureDialogComponent],
   imports: [
     BrowserModule,
     StoreModule.forRoot<AppState>({
@@ -72,8 +80,13 @@ import { UserEffects } from './store/user/user.effects';
     FormsModule,
     ReactiveFormsModule,
     MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MomentDateModule,
+    MatSelectModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

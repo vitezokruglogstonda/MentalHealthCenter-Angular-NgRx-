@@ -1,0 +1,11 @@
+<div class="dialog-container">
+    <h3>Chose your photo to upload</h3>
+    <div *ngIf="!uploaded">
+        <div class="field-container">
+            <input type="file" (change)="newPicture($event)">
+        </div>
+        <h5>OR</h5>
+        <div class="drag-drop" >Just drag and drop here</div>
+        
+    </div>
+</div>
