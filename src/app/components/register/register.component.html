@@ -84,8 +84,13 @@
 
         <mat-step>
             <ng-template matStepLabel>Profile picture</ng-template>
-            <div class="step-form-container picture-step">
-                <img class="profile-picture" src="{{profilePicturePath}}" />
+            <div (mouseover)="showBadge=true" (mouseleave)="showBadge=false" class="step-form-container picture-step">
+                <div class="profile-picture-div">
+                    <button mat-mini-fab *ngIf="showBadge&&userPictureExists" color="primary" class="badge" (click)="deletePhoto()">
+                        <mat-icon class="badge-icon">cancel</mat-icon>
+                    </button>
+                    <img class="profile-picture" src="{{profilePicturePath}}" />
+                </div>
                 <br />
                 <button mat-raised-button color="primary" (click)="openUploadDialog()">Upload</button>
             </div>

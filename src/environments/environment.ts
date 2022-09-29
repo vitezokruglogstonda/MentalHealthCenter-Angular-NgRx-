@@ -38,6 +38,8 @@ export const environment = {
     openAnimationDuration: "500ms",
     width: "60%",
     height: "40%",
+    errorMessage_fileType: "Wrong file type. Try something else.",
+    errorMessage_numberOfFiles: "You can upload just 1 file.",
   },
   dragAndDropSettings:{
     onDropClassName: "highlight",

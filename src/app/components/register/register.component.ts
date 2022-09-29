@@ -34,6 +34,8 @@ export class RegisterComponent implements OnInit {
   public genders: String[];
   public profilePicturePath: String;
   public uploadedPicture: File | null;
+  public userPictureExists: boolean;
+  public showBadge: boolean;
 
   constructor(public dialog: MatDialog, private elRef: ElementRef,) {
     this.email = "";
@@ -44,32 +46,36 @@ export class RegisterComponent implements OnInit {
     this.genders = environment.gender_list;
     this.profilePicturePath = environment.account_icon_basic_URL;
     this.uploadedPicture = null;
+    this.userPictureExists = false;
+    this.showBadge = false;
   }
 
   ngOnInit(): void {
   }
-
-  // newPicture(ev: any){
-  //   console.log(ev);
-  //   if(this.uploadedPicture !== null){
-  //     this.uploadedPicture = null;
-  //   }
-  //   this.uploadedPicture = ev.target?.files[0];
-  // }
-
-  openUploadDialog(){
+  
+  openUploadDialog() {
     this.dialog.open(UploadPictureDialogComponent, {
       width: environment.dialog_UploadPhoto_Settings.width,
       height: environment.dialog_UploadPhoto_Settings.height,
       enterAnimationDuration: environment.dialog_UploadPhoto_Settings.openAnimationDuration
     }).afterClosed().subscribe((result: File) => {
-      if(result){
+      if (result) {
         this.uploadedPicture = result;
         let imageTag: any = (<HTMLElement>this.elRef.nativeElement).querySelector(".profile-picture");
         imageTag.src = URL.createObjectURL(result);
+        this.userPictureExists = true;
       }
     });
-    
   }
+
+  deletePhoto() {
+    if (this.uploadedPicture !== null) {
+      this.uploadedPicture = null;
+      let imageTag: any = (<HTMLElement>this.elRef.nativeElement).querySelector(".profile-picture");
+      imageTag.src = this.profilePicturePath;
+      this.userPictureExists = false;
+    }
+  }
+
 
 }

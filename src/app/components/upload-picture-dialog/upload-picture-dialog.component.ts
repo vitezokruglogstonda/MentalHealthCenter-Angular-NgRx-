@@ -12,7 +12,6 @@ export class UploadPictureDialogComponent implements OnInit {
 
   public uploadedPicture: File | null;
   public dragDropArea: Element | null;
-  public uploadError: boolean;
 
   constructor(
     private elRef: ElementRef,
@@ -20,7 +19,6 @@ export class UploadPictureDialogComponent implements OnInit {
   ) {
     this.uploadedPicture = null;
     this.dragDropArea = null;
-    this.uploadError = false;
   }
 
   ngOnInit(): void {
@@ -42,7 +40,7 @@ export class UploadPictureDialogComponent implements OnInit {
       }, false);
     });
     this.dragDropArea?.addEventListener("drop", () => {
-      this.handleDrop(event, this.dialogRef, this.uploadError, this.uploadedPicture);
+      this.handleDrop(event, this.dialogRef, this.uploadedPicture, this.elRef);
     }, false);
 
   }
@@ -60,29 +58,34 @@ export class UploadPictureDialogComponent implements OnInit {
     e.target.classList.remove(environment.dragAndDropSettings.onDropClassName)
   }
 
-  handleDrop(e: any, dialogRef: MatDialogRef<UploadPictureDialogComponent>, uploadError: boolean, uploadedPicture: File | null) {
+  handleDrop(e: any, dialogRef: MatDialogRef<UploadPictureDialogComponent>, uploadedPicture: File | null, elRef: ElementRef) {
     //ne prihvata "Event" tip jer on "nema property dataTransfer"
     //isto ne prihvata "DropEvent" jer se ne poklapa sa argumentima u addEventListener f-ji
     //mora any
+    let errorMessageElement: Element | null = (<HTMLElement>elRef.nativeElement).querySelector(".upload-error");
     if (e.dataTransfer.files) {
       let files = e.dataTransfer.files;
       if (files.length > 1) {
-        uploadError = true;
+        if(errorMessageElement){
+          errorMessageElement.innerHTML = environment.dialog_UploadPhoto_Settings.errorMessage_numberOfFiles;
+        }
       } else {
-        uploadError = false;
         uploadedPicture = files.item(0);
-        dialogRef.close(uploadedPicture);
+        if(uploadedPicture?.type.startsWith("image")){
+          dialogRef.close(uploadedPicture);
+        }else{
+          if(errorMessageElement){
+            errorMessageElement.innerHTML = environment.dialog_UploadPhoto_Settings.errorMessage_fileType;
+          }
+        }
       }
     }
   }
 
   newPicture(ev: any) {
     if(ev.target?.files.length===1){
-      this.uploadError = false;
       this.uploadedPicture = ev.target?.files.item(0);
       this.dialogRef.close(this.uploadedPicture);
-    }else{
-      this.uploadError = true;
     }
   }
 
