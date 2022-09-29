@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
 }
 
 .drag-drop{
@@ -12,4 +13,10 @@
     border-width: 2px;
     border-color: gray;
     background-color: #c6cad6;
+    width: 80%;
+    height: 100%;
+}
+
+.highlight{
+    border-color: #446ccf;
 }
