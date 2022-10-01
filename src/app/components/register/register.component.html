@@ -14,7 +14,7 @@
                         <mat-label>Email</mat-label>
                         <input matInput [(ngModel)]="email" placeholder={{emailExample}} pattern="{{emailPattern}}" #emailInput="ngModel" [class.is-invalid]="emailInput.invalid && emailInput.touched" (change)="checkEmail($event)" required>
                         <mat-error *ngIf="emailInput.touched && emailInput.invalid">{{emailErrorMessage_Invalid}}</mat-error>
-                        <mat-error *ngIf="emailError">{{emailErrorMessage_Taken}}</mat-error>
+                        <mat-hint *ngIf="emailError" class="warning-message">{{emailErrorMessage_Taken}}</mat-hint>
                     </mat-form-field>
                 </div>
                 <br/>
