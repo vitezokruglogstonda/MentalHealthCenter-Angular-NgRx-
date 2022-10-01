@@ -3,6 +3,14 @@ import { environment } from 'src/environments/environment';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UploadPictureDialogComponent } from '../upload-picture-dialog/upload-picture-dialog.component';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { CustomDate, RegisterDto } from 'src/app/models/user';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
+import { checkEmail, register } from 'src/app/store/user/user.action';
+import { selectEmailTaken, selectLoginStatus, selectRegisterErrorStatus } from 'src/app/store/app/app.selector';
+import { Router } from '@angular/router';
+import { LoginStatus } from 'src/app/models/app-info';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -27,32 +35,68 @@ export const MY_DATE_FORMATS = {
 export class RegisterComponent implements OnInit {
 
   public email: String;
+  public emailError: boolean;
   public emailExample: String;
+  public emailPattern: String;
+  public emailErrorMessage_Invalid: String;
+  public emailErrorMessage_Taken: String;
   public password: String;
+  public passwordErrorMessage: String;
+  public passwordHint: String;
   public passwordHide: boolean;
   public passwordRep: String;
-  public genders: String[];
-  public profilePicturePath: String;
+  public passwordRepError: boolean;
+  public passwordRepErrorMessage: String;
+  public firstName: String;
+  public lastName: String;
+  public birthDate: CustomDate | null;
+  public userGender: String;
+  public gendersList: String[];
+  public defaultPicturePath: String;
   public uploadedPicture: File | null;
   public userPictureExists: boolean;
   public showBadge: boolean;
+  public registrationError: boolean;
+  public registrationErrorMessage: String;
 
-  constructor(public dialog: MatDialog, private elRef: ElementRef,) {
+  constructor(public dialog: MatDialog, private elRef: ElementRef, private store: Store<AppState>, private router: Router) {
     this.email = "";
+    this.emailError = false;
     this.emailExample = environment.login_card_example_email;
+    this.emailPattern = environment.email_pattern;
+    this.emailErrorMessage_Invalid = environment.email_errorMessage_Invalid;
+    this.emailErrorMessage_Taken = environment.email_errorMessage_Taken;
     this.password = "";
+    this.passwordErrorMessage = environment.password_errorMessage;
+    this.passwordHint = environment.password_hint;
     this.passwordHide = true;
     this.passwordRep = "";
-    this.genders = environment.gender_list;
-    this.profilePicturePath = environment.account_icon_basic_URL;
+    this.passwordRepError = false;
+    this.passwordRepErrorMessage = environment.password_rep_errorMessage;
+    this.firstName = "";
+    this.lastName = "";
+    this.birthDate = null;
+    this.userGender = "";
+    this.gendersList = environment.gender_list;
+    this.defaultPicturePath = environment.account_icon_basic_URL;
     this.uploadedPicture = null;
     this.userPictureExists = false;
     this.showBadge = false;
+    this.registrationError = false;
+    this.registrationErrorMessage = environment.registrationError_FormIssue;
+
+    this.store.select(selectEmailTaken).subscribe((state) => {
+      this.emailError = state;
+    });
+    this.store.select(selectRegisterErrorStatus).subscribe((state) => {
+      this.registrationError = state;
+      this.registrationErrorMessage = environment.registrationError_RequestIssue;
+    });
   }
 
   ngOnInit(): void {
   }
-  
+
   openUploadDialog() {
     this.dialog.open(UploadPictureDialogComponent, {
       width: environment.dialog_UploadPhoto_Settings.width,
@@ -72,10 +116,113 @@ export class RegisterComponent implements OnInit {
     if (this.uploadedPicture !== null) {
       this.uploadedPicture = null;
       let imageTag: any = (<HTMLElement>this.elRef.nativeElement).querySelector(".profile-picture");
-      imageTag.src = this.profilePicturePath;
+      imageTag.src = this.defaultPicturePath;
       this.userPictureExists = false;
+    }
+  }
+
+  newDate(ev: MatDatepickerInputEvent<Date>) {
+    // console.log(ev.value?.toString())
+
+
+    let rawStringDate: string | undefined = ev.value?.toString();
+    let rawStringDate_decomposed = rawStringDate?.split(" ", 4);
+    if (rawStringDate_decomposed) {
+      let _month: number;
+      switch (rawStringDate_decomposed[1]) {
+        case "Jan": {
+          _month = 1;
+          break;
+        }
+        case "Feb": {
+          _month = 2;
+          break;
+        }
+        case "Mar": {
+          _month = 3;
+          break;
+        }
+        case "Apr": {
+          _month = 4;
+          break;
+        }
+        case "May": {
+          _month = 5;
+          break;
+        }
+        case "Jun": {
+          _month = 6;
+          break;
+        }
+        case "Jul": {
+          _month = 7;
+          break;
+        }
+        case "Aug": {
+          _month = 8;
+          break;
+        }
+        case "Sep": {
+          _month = 9;
+          break;
+        }
+        case "Oct": {
+          _month = 10;
+          break;
+        }
+        case "Nov": {
+          _month = 11;
+          break;
+        }
+        case "Dec": {
+          _month = 12;
+          break;
+        }
+        default: {
+          _month = 0;
+          break;
+        }
+      }
+      this.birthDate = {
+        year: Number(rawStringDate_decomposed[3]),
+        month: _month,
+        day: Number(rawStringDate_decomposed[2])
+      }
+    }
+  }
+
+  checkEmail(e: any){
+    this.store.dispatch(checkEmail({mail: e.target.value}));
+  }
+
+  checkData(): boolean {
+
+    if (this.email === "" || this.password === "" || this.passwordRep === "" || this.password !== this.passwordRep || this.firstName === "" || this.lastName === "" || this.userGender === "" || this.birthDate === null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  registerNow() {
+    if (this.checkData()) {
+      this.registrationError = false;
+      let userData: RegisterDto = {
+        email: this.email,
+        password: this.password,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        birthDate: this.birthDate,
+        userGender: this.userGender,
+        profilePicture: this.uploadedPicture,
+      };
+      this.store.dispatch(register({registerDto: userData}));
+    } else {
+      this.registrationError = true;
+      this.registrationErrorMessage = environment.registrationError_FormIssue;
     }
   }
 
 
 }
+

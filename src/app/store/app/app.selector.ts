@@ -21,3 +21,13 @@ export const selectLoginStatus = createSelector(
     selectAppInfo,
     (state) => state.loginStatus
 );
+
+export const selectRegisterErrorStatus = createSelector(
+    selectAppInfo,
+    (state) => state.registerError
+);
+
+export const selectEmailTaken = createSelector(
+    selectAppInfo,
+    (state) => state.emailTaken
+);

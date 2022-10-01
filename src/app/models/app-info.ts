@@ -4,6 +4,8 @@ export interface AppInfo{
     tooltipText: String;
     emailExample: String;
     loginError: boolean;
+    registerError: boolean;
+    emailTaken: boolean;
 }
 
 export enum LoginStatus{

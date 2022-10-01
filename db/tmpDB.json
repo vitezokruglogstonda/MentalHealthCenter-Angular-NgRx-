@@ -1,23 +1,52 @@
 {
-    "users":[
-        {
-            "id": 1,
-            "email": "kurac@kurac.rs",
-            "userName": "Mandrila",
-            "password": "123",
-            "JWT": "String",
-            "userType": "Patient",
-            "profilePicturePath": "src/assets/UserData/user1.png"
-        },
-        {
-            "id": 2,
-            "email": "a",
-            "userName": "Mandrila",
-            "password": "a",
-            "JWT": "String",
-            "userType": "Patient",
-            "profilePicturePath": "/assets/UserData/user1.png"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "email": "kurac@kurac.rs",
+      "firstName": "Mandrila",
+      "lastName": "Antic",
+      "birthDate": {
+        "year": 1389,
+        "month": 6,
+        "day": 28
+      },
+      "gender": "Male",
+      "password": "123",
+      "JWT": "",
+      "userType": "Patient",
+      "profilePicturePath": "src/assets/UserData/user1.png"
+    },
+    {
+      "id": 2,
+      "email": "a",
+      "firstName": "Mandrila",
+      "lastName": "Antic",
+      "birthDate": {
+        "year": 1389,
+        "month": 6,
+        "day": 28
+      },
+      "gender": "Male",
+      "password": "a",
+      "JWT": "",
+      "userType": "Patient",
+      "profilePicturePath": "/assets/UserData/user1.png"
+    },
+    {
+      "id": 3,
+      "email": "andrija@gmail.com",
+      "firstName": "Andrija",
+      "lastName": "Djordjevic",
+      "birthDate": {
+        "year": 1997,
+        "month": 10,
+        "day": 2
+      },
+      "gender": "Male",
+      "JWT": "",
+      "userType": 2,
+      "profilePicturePath": "/assets/UserData/user1.png",
+      "password": "aaaaaa"
+    }
+  ]
 }
-    

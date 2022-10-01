@@ -24,7 +24,7 @@ export class AccountInfoCardComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(selectUserInfo).subscribe((state) => {
       this.accountImagePath = state.profilePicturePath;
-      this.userName = state.userName;
+      this.userName = `${state.firstName} ${state.lastName}`;
       this.email = state.email;
     });
   }

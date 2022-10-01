@@ -4,20 +4,17 @@ import { User, UserType } from "src/app/models/user";
 //import { logIn } from "./user.action";
 import * as Actions from "./user.action";
 
-// export const initialState: User = {
-//     id: 1,
-//     email: "kurac@kurac.rs",
-//     userName: "Mandrila",
-//     JWT: "String",
-//     userType: UserType.Patient,
-//     profilePicturePath: "/assets/UserData/user1.png",
-//     password: "123"
-// };
-
 export const initialState: User = {
     id: 0,
     email: "",
-    userName: "",
+    firstName: "",
+    lastName: "",
+    birthDate: {
+        year: 0,
+        month: 0,
+        day: 0
+    },
+    gender: "",
     JWT: "",
     userType: UserType.Guest,
     profilePicturePath: "",
@@ -32,5 +29,7 @@ export const userReducer = createReducer(
     })),
     on(Actions.signOut, (state)=>({
         ...initialState
-    }))
+    })),
+    on(Actions.register, (state, {registerDto}) => ({...state})),
+    on(Actions.checkEmail, (state, {mail}) => ({...state})),
 );

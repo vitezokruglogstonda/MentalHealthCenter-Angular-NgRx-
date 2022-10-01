@@ -68,3 +68,21 @@
     width: 100%;
     height: 100%;
 }
+
+.step-form-container-register{
+    display: flex;
+    flex-direction: row;
+}
+
+.register-button{
+    background-color: rgba(37, 155, 37, 0.568);
+}
+
+.warning-message{
+    color: rgba(236, 128, 40, 0.719);
+}
+
+.devider-line{
+    width: 100%;
+    margin-bottom: 1%;
+}

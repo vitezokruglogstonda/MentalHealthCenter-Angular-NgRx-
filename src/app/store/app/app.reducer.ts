@@ -10,7 +10,9 @@ export const initialState: AppInfo = {
     accountImagePath: environment.account_icon_basic_URL,
     tooltipText: environment.account_icon_tooltip_text,
     emailExample: environment.login_card_example_email,
-    loginError: false
+    loginError: false,
+    registerError: false,
+    emailTaken: false
 };
 
 export const appReducer = createReducer(
@@ -19,7 +21,8 @@ export const appReducer = createReducer(
         ...state,
         loginStatus: loginStatus,
         accountImagePath: imagePath,
-        loginError: false
+        loginError: false,
+        registerError: false,
     })),
     on(Actions.loginFail, (state) => ({
         ...state,
@@ -27,5 +30,13 @@ export const appReducer = createReducer(
     })),
     on(signOut, (state)=>({
         ...initialState
-    }))
+    })),
+    on(Actions.registerFail, (state)=>({
+        ...state,
+        registerError: true
+    })),
+    on(Actions.updateEmailError, (state, {status})=>({
+        ...state,
+        emailTaken: status
+    })),
 );
