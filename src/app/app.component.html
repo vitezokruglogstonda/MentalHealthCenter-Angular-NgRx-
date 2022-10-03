@@ -1,6 +1,6 @@
 <mat-toolbar class="main-toolbar" color="primary" [class.mat-elevation-z8]="true">
   <button mat-icon-button (click)="snav.toggle()">
-    <mat-icon 
+    <mat-icon class="menu-icon"
       matTooltip={{menuButtonTooltipText}}
       [matTooltipShowDelay]="showDelay.value">menu</mat-icon>
   </button>
@@ -15,7 +15,7 @@
   <mat-sidenav #snav mode="over" class="sidenav">
 
     <mat-selection-list [multiple]="false" >
-      <mat-list-option class="sidenav-list-option" *ngFor="let item of sidenavItems" routerLink="{{item.route}}">{{item.title}}
+      <mat-list-option class="sidenav-list-option" *ngFor="let item of sidenavItems" routerLink="{{item?.route}}">{{item?.title}}
         <mat-divider></mat-divider>
       </mat-list-option>
     </mat-selection-list>

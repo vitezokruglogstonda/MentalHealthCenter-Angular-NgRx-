@@ -8,6 +8,7 @@ import { CardType, LoginStatus } from './models/app-info';
 import { Router } from '@angular/router';
 import { selectLoginStatus } from './store/app/app.selector';
 import { SidenavListItem } from './models/sidenav-info';
+import { loadItemsOffline } from './store/sidenav/sidenav.action';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +21,7 @@ export class AppComponent {
   public toolbarCenterText = environment.toolbar_center_text;
   public menuButtonTooltipText = environment.toolbar_menu_button_tooltip_text;
   public showDelay = new FormControl(environment.toolbar_menu_button_tooltip_show_delay);
-  //public sidenavItems: Array<String>;
-  public sidenavItems: SidenavListItem[];
+  public sidenavItems: (SidenavListItem | undefined)[];
   public showCard_LogIn: boolean = false;
   public showCard_AccountInfo: boolean = false;
   public onlineStatus: LoginStatus;
@@ -33,11 +33,10 @@ export class AppComponent {
 
   ngOnInit(): void{
 
+    this.store.dispatch(loadItemsOffline());
+
     this.store.select(selectSidenavInfo).subscribe((state) => {
-      // state.itemsList.forEach((el: String)=>{        
-      //   this.sidenavItems.push(el);
-      // })
-      state.itemsList.forEach((el: SidenavListItem)=>{        
+      state.forEach((el: SidenavListItem | undefined)=>{        
         this.sidenavItems.push(el);
       })
     });
@@ -52,7 +51,6 @@ export class AppComponent {
   }
 
   updateCardComponent(ev: [boolean, CardType]){
-    //console.log("EVENT: ", ev);
     if(!ev[0]){
       this.showCard_LogIn=false;
       this.showCard_AccountInfo=false;

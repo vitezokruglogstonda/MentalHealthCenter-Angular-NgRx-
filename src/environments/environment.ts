@@ -13,24 +13,24 @@ export const environment = {
   account_icon_tooltip_text: "Account",
   toolbar_manu_tooltip_text: "Menu",
   //sidenav_items_list: ["Home", "Help call!", "Tips", "About us"],
-  sidenav_items_list: [
-    {
-      title: "Home",
-      route: ""
-    },
-    {
-      title: "Help call",
-      route: ""
-    },
-    {
-      title: "Tips",
-      route: ""
-    },
-    {
-      title: "About us",
-      route: ""
-    }
-  ],
+  // sidenav_items_list: [
+  //   {
+  //     title: "Home",
+  //     route: ""
+  //   },
+  //   {
+  //     title: "Help call",
+  //     route: ""
+  //   },
+  //   {
+  //     title: "Tips",
+  //     route: ""
+  //   },
+  //   {
+  //     title: "About us",
+  //     route: ""
+  //   }
+  // ],
   login_card_example_email: "name@example.com",
   login_card_fieldError: "This field is required!",
   email_pattern: "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$",

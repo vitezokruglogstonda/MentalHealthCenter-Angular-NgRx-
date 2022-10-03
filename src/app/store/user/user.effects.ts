@@ -69,8 +69,7 @@ export class UserEffects {
                 })
             )
         )
-    )
-);
+    ));
     
 
 }

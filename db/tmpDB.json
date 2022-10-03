@@ -1,8 +1,30 @@
 {
+  "sidenav_items_list": [
+    {
+      "id": 1,
+      "title": "Home",
+      "route": ""
+    },
+    {
+      "id": 2,
+      "title": "Help call",
+      "route": ""
+    },
+    {
+      "id": 3,
+      "title": "Tips",
+      "route": ""
+    },
+    {
+      "id": 4,
+      "title": "About us",
+      "route": ""
+    }
+  ],
   "users": [
     {
       "id": 1,
-      "email": "kurac@kurac.rs",
+      "email": "nesto@nesto.rs",
       "firstName": "Mandrila",
       "lastName": "Antic",
       "birthDate": {

@@ -122,9 +122,6 @@ export class RegisterComponent implements OnInit {
   }
 
   newDate(ev: MatDatepickerInputEvent<Date>) {
-    // console.log(ev.value?.toString())
-
-
     let rawStringDate: string | undefined = ev.value?.toString();
     let rawStringDate_decomposed = rawStringDate?.split(" ", 4);
     if (rawStringDate_decomposed) {

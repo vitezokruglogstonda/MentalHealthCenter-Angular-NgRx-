@@ -38,6 +38,7 @@ import { AccountInfoCardComponent } from './components/account-info-card/account
 import { userReducer } from './store/user/user.reducer';
 import { UserEffects } from './store/user/user.effects';
 import { UploadPictureDialogComponent } from './components/upload-picture-dialog/upload-picture-dialog.component';
+import { AppEffects } from './store/sidenav/sidenav.effects';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -58,7 +59,7 @@ import { UploadPictureDialogComponent } from './components/upload-picture-dialog
       sidenavInfo: sidenavItemsReducer,
       userInfo: userReducer,
     }),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects, AppEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 20, 
       autoPause: true
