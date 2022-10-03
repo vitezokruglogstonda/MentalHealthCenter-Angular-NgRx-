@@ -8,7 +8,7 @@
     routerLink="" 
     matTooltip="Home page" 
     [matTooltipShowDelay]="showDelay.value">{{toolbarCenterText}}</h1>
-  <app-account-icon (emitter)="updateCardComponent($event)"></app-account-icon>
+  <app-account-icon (emitter)="updateCardComponent($event)" [foreignEvent]="cardTriggeredEvent"></app-account-icon>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
@@ -24,7 +24,8 @@
 
   <mat-sidenav-content class="content-container">
     <router-outlet></router-outlet>
-    <app-login-card *ngIf="showCard_LogIn" ></app-login-card>
-    <app-account-info-card *ngIf="showCard_AccountInfo" ></app-account-info-card>
+    <app-login-card *ngIf="showCard_LogIn" (loginCardEmitter)="cardTriggeredHide()"></app-login-card>
+    <app-account-info-card *ngIf="showCard_AccountInfo" (loginCardEmitter)="cardTriggeredHide()"></app-account-info-card>
   </mat-sidenav-content>
+
 </mat-sidenav-container>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { CardType } from 'src/app/models/app-info';
@@ -24,8 +24,9 @@ export class LoginCardComponent implements OnInit {
   public passwordError: boolean;
   public fieldError: String;
   public loginError: boolean;
+  @Output() loginCardEmitter: EventEmitter<boolean>;
 
-  constructor(private store: Store<AppState>) { 
+  constructor(private store: Store<AppState>, private elRef: ElementRef) { 
     this.email = "";
     this.emailExample = "";
     this.emailError = false;
@@ -34,6 +35,7 @@ export class LoginCardComponent implements OnInit {
     this.passwordError = false;
     this.fieldError = environment.login_card_fieldError;
     this.loginError = false;
+    this.loginCardEmitter = new EventEmitter<boolean>();
   }
 
   ngOnInit(): void {
@@ -80,5 +82,15 @@ export class LoginCardComponent implements OnInit {
     }
   }
 
+  @HostListener('document:click', ['$event'])
+  hideCard(){
+    let card: any = (<HTMLElement>this.elRef.nativeElement).querySelector(".card-container");
+    let icon: any = (document).querySelector(".icon-container");
+    if(event && card && icon){
+      if(!card.contains(event.target) && !icon.contains(event.target)){
+        this.loginCardEmitter.emit(true);
+      }
+    }
+  }
 
 }

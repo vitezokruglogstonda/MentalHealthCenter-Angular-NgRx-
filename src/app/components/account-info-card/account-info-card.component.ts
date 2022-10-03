@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { signOut } from 'src/app/store/user/user.action';
@@ -14,11 +14,13 @@ export class AccountInfoCardComponent implements OnInit {
   public accountImagePath: String;
   public userName: String;
   public email: String;
+  @Output() loginCardEmitter: EventEmitter<boolean>;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private elRef: ElementRef) {
     this.accountImagePath = "";
     this.userName = "";
     this.email = "";
+    this.loginCardEmitter = new EventEmitter<boolean>();
   }
 
   ngOnInit(): void {
@@ -35,6 +37,17 @@ export class AccountInfoCardComponent implements OnInit {
     //ne obraca se serveru
     //akcija direktno triggeruje reducer koji brise obj iz store-a i menja stanje appInfo
       //(2 reducera ga hvataju)
+  }
+
+  @HostListener('document:click', ['$event'])
+  hideCard(){
+    let card: any = (<HTMLElement>this.elRef.nativeElement).querySelector(".card-container");
+    let icon: any = (document).querySelector(".icon-container");
+    if(event && card && icon){
+      if(!card.contains(event.target) && !icon.contains(event.target)){
+        this.loginCardEmitter.emit(true);
+      }
+    }
   }
 
 }

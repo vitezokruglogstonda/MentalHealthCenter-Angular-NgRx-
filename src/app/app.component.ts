@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { selectLoginStatus } from './store/app/app.selector';
 import { SidenavListItem } from './models/sidenav-info';
 import { loadItemsOffline } from './store/sidenav/sidenav.action';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -25,10 +26,12 @@ export class AppComponent {
   public showCard_LogIn: boolean = false;
   public showCard_AccountInfo: boolean = false;
   public onlineStatus: LoginStatus;
+  public cardTriggeredEvent: Subject<number>;
 
   constructor(private store: Store<AppState>, private router: Router){
     this.sidenavItems = [];
     this.onlineStatus = LoginStatus.Offline;
+    this.cardTriggeredEvent = new Subject<number>();
   }
 
   ngOnInit(): void{
@@ -65,5 +68,15 @@ export class AppComponent {
     }
   }
 
+  cardTriggeredHide(){
+    // console.log("desilo se");
+    // if(this.showCard_LogIn === true){
+    //   this.showCard_LogIn = false;
+    // }
+    // if(this.showCard_AccountInfo === true){
+    //   this.showCard_AccountInfo = false;
+    // }
+    this.cardTriggeredEvent.next(1);
+  }
 
 }

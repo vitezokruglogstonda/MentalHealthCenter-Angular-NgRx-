@@ -1,10 +1,11 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CardType, LoginStatus } from 'src/app/models/app-info';
 import { selectAppInfo } from 'src/app/store/app/app.selector';
 import { AppState } from 'src/app/store/app.state';
 import { EventEmitter } from "@angular/core"
 import { outputAst } from '@angular/compiler';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-account-icon',
@@ -19,6 +20,7 @@ export class AccountIconComponent implements OnInit {
   public tooltipPosition: String;
   private showCard: [boolean, CardType];  
   @Output() emitter: EventEmitter<[boolean, CardType]>;
+  @Input() foreignEvent: Subject<number> | null;
 
   constructor(private store: Store<AppState>) {
     this.iconPath = "";
@@ -26,6 +28,7 @@ export class AccountIconComponent implements OnInit {
     this.tooltipPosition = "";
     this.showCard = [false, CardType.LogIn];
     this.emitter = new EventEmitter<[boolean, CardType]>();
+    this.foreignEvent = null;
   }
 
   ngOnInit(): void {
@@ -33,6 +36,10 @@ export class AccountIconComponent implements OnInit {
       this.iconPath = state.accountImagePath;
       this.tooltipText = state.tooltipText;
     });
+
+    this.foreignEvent?.subscribe(()=>{
+      this.toggleCard();
+    })
   }
 
   toggleCard(){
