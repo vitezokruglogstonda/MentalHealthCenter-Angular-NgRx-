@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
@@ -5,7 +6,20 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
+  animations: [
+    trigger("title-fade-in", [
+      //state(),
+      transition("void => *", [
+        style({
+          opacity: 0
+        }),
+        animate(3000, style({
+          opacity: 0.85
+        }))
+      ])
+    ])
+  ]
 })
 export class HomePageComponent implements OnInit {
 
