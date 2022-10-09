@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from './store/app.state';
 import { selectSidenavInfo } from './store/sidenav/sidenav.selector';
@@ -28,24 +28,24 @@ export class AppComponent {
   public onlineStatus: LoginStatus;
   public cardTriggeredEvent: Subject<number>;
 
-  constructor(private store: Store<AppState>, private router: Router){
+  constructor(private store: Store<AppState>, private router: Router) {
     this.sidenavItems = [];
     this.onlineStatus = LoginStatus.Offline;
     this.cardTriggeredEvent = new Subject<number>();
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
 
     this.store.dispatch(loadItemsOffline());
 
     this.store.select(selectSidenavInfo).subscribe((state) => {
-      state.forEach((el: SidenavListItem | undefined)=>{        
+      state.forEach((el: SidenavListItem | undefined) => {
         this.sidenavItems.push(el);
       })
     });
-    
-    this.store.select(selectLoginStatus).subscribe((state)=>{
-      if(this.onlineStatus !== state){
+
+    this.store.select(selectLoginStatus).subscribe((state) => {
+      if (this.onlineStatus !== state) {
         this.onlineStatus = state;
         this.router.navigate([""]);
       }
@@ -53,29 +53,22 @@ export class AppComponent {
 
   }
 
-  updateCardComponent(ev: [boolean, CardType]){
-    if(!ev[0]){
-      this.showCard_LogIn=false;
-      this.showCard_AccountInfo=false;
+  updateCardComponent(ev: [boolean, CardType]) {
+    if (!ev[0]) {
+      this.showCard_LogIn = false;
+      this.showCard_AccountInfo = false;
     }
-    else if(ev[1] === CardType.LogIn){
-      this.showCard_LogIn=true;
-      this.showCard_AccountInfo=false;
+    else if (ev[1] === CardType.LogIn) {
+      this.showCard_LogIn = true;
+      this.showCard_AccountInfo = false;
     }
-    else{
-      this.showCard_LogIn=false;
-      this.showCard_AccountInfo=true;
+    else {
+      this.showCard_LogIn = false;
+      this.showCard_AccountInfo = true;
     }
   }
 
-  cardTriggeredHide(){
-    // console.log("desilo se");
-    // if(this.showCard_LogIn === true){
-    //   this.showCard_LogIn = false;
-    // }
-    // if(this.showCard_AccountInfo === true){
-    //   this.showCard_AccountInfo = false;
-    // }
+  cardTriggeredHide() {
     this.cardTriggeredEvent.next(1);
   }
 

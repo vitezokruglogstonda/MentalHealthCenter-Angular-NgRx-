@@ -54,7 +54,9 @@ export const environment = {
     eventList_preventDefaults: ['dragenter', 'dragover', 'dragleave', 'drop'],
     eventList_highlight: ['dragenter', 'dragover'],
     eventList_unhighlight: ['dragleave', 'drop'],
-  }
+  },
+  video_url_homePage: "/assets/Videos/homepagevideo.mp4",
+  video_title_homePage: "Welcome to the place where we solve problems together",
 };
 
 /*

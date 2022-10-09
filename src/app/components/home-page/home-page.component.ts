@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home-page',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  public videoPath: String;
+  public videoTitle: String;
+
+  constructor(private sanitizer: DomSanitizer) { 
+    //this.videoPath = this.sanitizer.bypassSecurityTrustResourceUrl(environment.video_url_homePage+`?autoplay=1&controls=0&loop=0&mute=1`);
+    this.videoPath = environment.video_url_homePage;
+    this.videoTitle = environment.video_title_homePage;
+  }
 
   ngOnInit(): void {
   }
