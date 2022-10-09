@@ -35,7 +35,6 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-
     this.store.dispatch(loadItemsOffline());
 
     this.store.select(selectSidenavInfo).subscribe((state) => {
@@ -81,6 +80,11 @@ export class AppComponent {
         toolbar?.classList.remove("main-toolbar-transparent");
       }
     });
+  }
+
+  unsubscribe(){
+    const toolbar = document.querySelector(".main-toolbar");
+    toolbar?.classList.remove("main-toolbar-transparent");
   }
 
 }

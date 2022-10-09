@@ -37,6 +37,7 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.scrollEmitter.emit(this.scroll_TopOfPage);
   }
 
   onScroll(ev: Event){
