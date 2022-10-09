@@ -1,4 +1,4 @@
-<mat-toolbar class="main-toolbar" color="primary" [class.mat-elevation-z8]="true">
+<mat-toolbar class="main-toolbar main-toolbar-transparent" color="primary" [class.mat-elevation-z8]="true">
   <button mat-icon-button (click)="snav.toggle()">
     <mat-icon class="menu-icon"
       matTooltip={{menuButtonTooltipText}}
@@ -23,7 +23,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="content-container">
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="subscribeToChildEmmiter($event)"></router-outlet>
     <app-login-card *ngIf="showCard_LogIn" (loginCardEmitter)="cardTriggeredHide()"></app-login-card>
     <app-account-info-card *ngIf="showCard_AccountInfo" (loginCardEmitter)="cardTriggeredHide()"></app-account-info-card>
   </mat-sidenav-content>

@@ -1,4 +1,4 @@
-<div class="home-page-container">
+<div class="home-page-container" (scroll)="onScroll($event)">
     <div class="video-container" [class.mat-elevation-z8]="true">
         <video autoplay muted loop>
             <source src="{{videoPath}}" type="video/mp4">

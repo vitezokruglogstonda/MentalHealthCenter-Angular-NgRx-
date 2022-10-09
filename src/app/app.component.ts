@@ -72,4 +72,15 @@ export class AppComponent {
     this.cardTriggeredEvent.next(1);
   }
 
+  subscribeToChildEmmiter(childRef: any){
+    childRef.scrollEmitter.subscribe((topOfPage: boolean) => {
+      const toolbar = document.querySelector(".main-toolbar");
+      if(topOfPage){
+        toolbar?.classList.add("main-toolbar-transparent");
+      }else{
+        toolbar?.classList.remove("main-toolbar-transparent");
+      }
+    });
+  }
+
 }
