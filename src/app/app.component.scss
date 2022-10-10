@@ -31,6 +31,12 @@
 
 .app-title{
     font-family: 'Helvetica', Sans-serif;
+    font-weight: bold;
+    padding: 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-left: none;
+    border-right: none;
 }
 
 .app-title:hover {
