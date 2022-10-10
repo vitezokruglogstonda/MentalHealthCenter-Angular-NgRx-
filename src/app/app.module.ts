@@ -39,6 +39,7 @@ import { userReducer } from './store/user/user.reducer';
 import { UserEffects } from './store/user/user.effects';
 import { UploadPictureDialogComponent } from './components/upload-picture-dialog/upload-picture-dialog.component';
 import { AppEffects } from './store/sidenav/sidenav.effects';
+import { FooterComponentComponent } from './components/footer-component/footer-component.component';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -50,6 +51,7 @@ import { AppEffects } from './store/sidenav/sidenav.effects';
     AccountInfoCardComponent,
     routingComponents,
     UploadPictureDialogComponent,
+    FooterComponentComponent,
   ],
   entryComponents:[UploadPictureDialogComponent],
   imports: [
