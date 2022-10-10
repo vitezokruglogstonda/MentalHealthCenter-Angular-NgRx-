@@ -1,6 +1,6 @@
 <div class="home-page-container" (scroll)="onScroll($event)">
     <div class="video-container" [class.mat-elevation-z8]="true">
-        <video autoplay muted loop>
+        <video autoplay muted loop oncanplay="this.play()" onloadedmetadata="this.muted = true">
             <source src="{{videoPath}}" type="video/mp4">
         </video>
         <div class="video-container-title" @title-fade-in>
