@@ -6,6 +6,10 @@
     overflow:overlay;
 }
 
+app-footer-component{
+    width: 100%;
+}
+
 .video-container {
     display: flex;
     flex-direction: column;
@@ -69,5 +73,88 @@
 }
 
 .home-page-content {
+    display: flex;
     background-color: #c6cad6;
+    flex-direction: column;
+    align-items: center;
 }
+
+.intro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.intro *{
+    font-family: "Times New Roman", Times, serif;
+}
+
+.intro h1{
+    font-size: 350%;
+    color: #446ccf;
+}
+
+.intro h3{
+    font-size: 150%;
+    color: gray;
+    font-style: italic;
+}
+
+.divider-line{
+    width: 80%;
+}
+
+.experience{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 80%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.experience-section{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.experience-text{
+    
+}
+
+.apostrophe-image{
+    opacity: 0.3;
+    fill: #446ccf;
+    position: relative;
+    top:0;
+    left: -15px;
+    width: 30px;
+    height: 30px;
+}
+
+.experience-text p{
+    text-align: justify;
+    position: relative;
+    top: -20px;
+    left: 0;
+    margin-bottom: -20px;
+}
+
+.experience-user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user-name{
+    padding-top: 15px;
+}
+
+

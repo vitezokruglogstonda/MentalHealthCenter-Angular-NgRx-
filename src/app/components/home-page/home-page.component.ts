@@ -18,6 +18,24 @@ import { environment } from 'src/environments/environment';
           opacity: 0.85
         }))
       ])
+    ]),
+    trigger("experience-left", [
+      transition("void => *", [
+        style({
+          opacity: 0,
+          transform: "translateX(-100px)"
+        }),
+        animate(2000)
+      ])
+    ]),
+    trigger("experience-right", [
+      transition("void => *", [
+        style({
+          opacity: 0,
+          transform: "translateX(100px)"
+        }),
+        animate(2000)
+      ])
     ])
   ]
 })
@@ -25,13 +43,17 @@ export class HomePageComponent implements OnInit {
 
   public videoPath: String;
   public videoTitle: String;
+  public introMainText: String;
+  public introSubtext: String;
   public scroll_TopOfPage: boolean;
   @Output() scrollEmitter: EventEmitter<boolean>;
 
   constructor(private sanitizer: DomSanitizer) { 
     //this.videoPath = this.sanitizer.bypassSecurityTrustResourceUrl(environment.video_url_homePage+`?autoplay=1&controls=0&loop=0&mute=1`);
-    this.videoPath = environment.video_url_homePage;
-    this.videoTitle = environment.video_title_homePage;
+    this.videoPath = environment.home_page.video_url_homePage;
+    this.videoTitle = environment.home_page.video_title_homePage;
+    this.introMainText = environment.home_page.intro_main_text;
+    this.introSubtext = environment.home_page.intro_subtext;
     this.scroll_TopOfPage = true;
     this.scrollEmitter = new EventEmitter<boolean>();
   }

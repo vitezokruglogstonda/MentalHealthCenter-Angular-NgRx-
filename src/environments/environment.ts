@@ -56,8 +56,12 @@ export const environment = {
     eventList_highlight: ['dragenter', 'dragover'],
     eventList_unhighlight: ['dragleave', 'drop'],
   },
-  video_url_homePage: "/assets/Videos/homepagevideo.mp4",
-  video_title_homePage: "Welcome to the place where we solve problems together",
+  home_page: {
+    video_url_homePage: "/assets/Videos/homepagevideo.mp4",
+    video_title_homePage: "Welcome to the place where we solve problems together",
+    intro_main_text: "We nurture mental health",
+    intro_subtext: "Build a better version of yourself with the help of our professionals"
+  },
 };
 
 /*
