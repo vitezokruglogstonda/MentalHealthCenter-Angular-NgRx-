@@ -12,7 +12,8 @@ export const initialState: AppInfo = {
     emailExample: environment.login_card_example_email,
     loginError: false,
     registerError: false,
-    emailTaken: false
+    emailTaken: false,
+    quotes: [],
 };
 
 export const appReducer = createReducer(
@@ -38,5 +39,10 @@ export const appReducer = createReducer(
     on(Actions.updateEmailError, (state, {status})=>({
         ...state,
         emailTaken: status
+    })),
+    on(Actions.fetchQuotes, (state)=>({...state})),
+    on(Actions.fetchQuotesSuccess, (state, {quotes})=>({
+        ...state,
+        quotes: quotes
     })),
 );

@@ -38,8 +38,9 @@ import { AccountInfoCardComponent } from './components/account-info-card/account
 import { userReducer } from './store/user/user.reducer';
 import { UserEffects } from './store/user/user.effects';
 import { UploadPictureDialogComponent } from './components/upload-picture-dialog/upload-picture-dialog.component';
-import { AppEffects } from './store/sidenav/sidenav.effects';
+import { SidenavEffects } from './store/sidenav/sidenav.effects';
 import { FooterComponentComponent } from './components/footer-component/footer-component.component';
+import { AppEffects } from './store/app/app.effects';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -61,7 +62,7 @@ import { FooterComponentComponent } from './components/footer-component/footer-c
       sidenavInfo: sidenavItemsReducer,
       userInfo: userReducer,
     }),
-    EffectsModule.forRoot([UserEffects, AppEffects]),
+    EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 20, 
       autoPause: true

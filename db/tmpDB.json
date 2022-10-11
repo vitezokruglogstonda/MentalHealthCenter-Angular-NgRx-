@@ -21,6 +21,18 @@
       "route": ""
     }
   ],
+  "userQuotes": [
+    {
+      "userName": "Neki lik tamo",
+      "quoteText": "Jako sam bio depresivan znaci hteo sam da se ubijem ono nemas pojma brate kako je to bilo.. auh..... tebra.... Znaci ova firma mi je pomogla ono, majke mi. Hvala im",
+      "profilePicture": "../assets/Icons/account_icon.png"
+    },
+    {
+      "userName": "Neka likusa tamo",
+      "quoteText": "Jako sam bio depresivan znaci hteo sam da se ubijem ono nemas pojma brate kako je to bilo.. auh..... tebra.... Znaci ova firma mi je pomogla ono, majke mi. Hvala im",
+      "profilePicture": "../assets/UserData/user1.png"
+    }
+  ],
   "users": [
     {
       "id": 1,

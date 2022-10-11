@@ -15,43 +15,43 @@
         </div>
         <mat-divider class="divider-line"></mat-divider>
         <div class="experience">
-            <div class="experience-section" [@experience-left]="xpAppear ? 'shown-left' : 'hidden-left'">
+            <div *ngIf="quotes.length != 0" id="user-1" class="experience-section" [@experience-left]="xpAppear ? 'shown-left' : 'hidden-left'">
                 <div class="experience-text">
                     <svg class="apostrophe-image">
                         <path
                             d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"
                             data-v-2fd759f4=""></path>
                     </svg>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra interdum magna, id
-                        dapibus magna dignissim et. Curabitur quis aliquet lorem, eget venenatis felis. Sed sed libero
-                        metus. Nullam sed lorem vel sem lobortis vestibulum. Praesent id neque eget est molestie
-                        imperdiet.
-                    </p>
+                    <p>{{quotes[0].quoteText}}</p>
                 </div>
                 <div class="experience-user">
-                    <app-account-icon id="user-1"></app-account-icon>
-                    <p class="user-name">Lik</p>
+                    <img src={{quotes[0].profilePicture}} />
+                    <p class="user-name">{{quotes[0].userName}}</p>
+                    <!-- <img src="/assets/UserData/user1.png" />
+                    <p class="user-name">Lik</p> -->
                 </div>
             </div>
             <mat-divider [vertical]="true"></mat-divider>
-            <div class="experience-section" [@experience-right]="xpAppear ? 'shown-right' : 'hidden-right'">
+            <div *ngIf="quotes.length != 0" id="user-2" class="experience-section" [@experience-right]="xpAppear ? 'shown-right' : 'hidden-right'">
                 <div class="experience-text">
                     <svg class="apostrophe-image">
                         <path
                             d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"
                             data-v-2fd759f4=""></path>
                     </svg>
-                    <p>
+                    <p>{{quotes[1].quoteText}}</p>
+                    <!-- <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra interdum magna, id
                         dapibus magna dignissim et. Curabitur quis aliquet lorem, eget venenatis felis. Sed sed libero
                         metus. Nullam sed lorem vel sem lobortis vestibulum. Praesent id neque eget est molestie
                         imperdiet.
-                    </p>
+                    </p> -->
                 </div>
                 <div class="experience-user">
-                    <app-account-icon id="user-2"></app-account-icon>
-                    <p class="user-name">Lik</p>
+                    <img src={{quotes[1].profilePicture}} />
+                    <p class="user-name">{{quotes[1].userName}}</p>
+                    <!-- <app-account-icon></app-account-icon>
+                    <p class="user-name">Lik</p> -->
                 </div>
             </div>
         </div>

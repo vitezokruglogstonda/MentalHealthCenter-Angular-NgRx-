@@ -2,23 +2,23 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { switchMap } from "rxjs";
-import { SidenavListItem } from "src/app/models/sidenav-info";
+import { Quote } from "src/app/models/home-page-quotes";
 import { AppService } from "src/app/services/app.service";
 import { AppState } from "../app.state";
-import * as SidenavActions from "../sidenav/sidenav.action";
+import * as AppActions from "./app.action";
 
 @Injectable()
-export class SidenavEffects {
+export class AppEffects {
     constructor(private actions$: Actions, private appService: AppService, private store: Store<AppState>) { }
 
-    loadItemsOffline = createEffect(() =>
+    fatchQuotes = createEffect(() =>
         this.actions$.pipe(
-            ofType(SidenavActions.loadItemsOffline),
+            ofType(AppActions.fetchQuotes),
             switchMap((action) =>
-                this.appService.getSidenavItems_offline().pipe(
-                    switchMap((items: SidenavListItem[]) => {
+                this.appService.getUserQuotes().pipe(
+                    switchMap((quotes: Quote[]) => {
                         return [
-                            SidenavActions.loadItemsOfflineSuccess({ items: items })
+                            AppActions.fetchQuotesSuccess({ quotes: quotes })
                         ];
                     })
                 )

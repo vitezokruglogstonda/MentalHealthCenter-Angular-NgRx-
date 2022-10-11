@@ -1,6 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
+import { Quote } from 'src/app/models/home-page-quotes';
+import { AppState } from 'src/app/store/app.state';
+import { fetchQuotes } from 'src/app/store/app/app.action';
+import { selectQuotes } from 'src/app/store/app/app.selector';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -69,10 +74,10 @@ export class HomePageComponent implements OnInit {
   public introSubtext: String;
   public scroll_TopOfPage: boolean;
   @Output() scrollEmitter: EventEmitter<boolean>;
-
   public xpAppear: boolean;
+  public quotes: Quote[];
 
-  constructor(private sanitizer: DomSanitizer) { 
+  constructor(private sanitizer: DomSanitizer, private store: Store<AppState>) { 
     //this.videoPath = this.sanitizer.bypassSecurityTrustResourceUrl(environment.video_url_homePage+`?autoplay=1&controls=0&loop=0&mute=1`);
     this.videoPath = environment.home_page.video_url_homePage;
     this.videoTitle = environment.home_page.video_title_homePage;
@@ -80,12 +85,19 @@ export class HomePageComponent implements OnInit {
     this.introSubtext = environment.home_page.intro_subtext;
     this.scroll_TopOfPage = true;
     this.scrollEmitter = new EventEmitter<boolean>();
-
     this.xpAppear = false;
+    this.quotes = [];
   }
 
   ngOnInit(): void {
     this.scrollEmitter.emit(this.scroll_TopOfPage);
+    this.store.select(selectQuotes).subscribe((state) => {
+      if(state.length === 0){
+        this.store.dispatch(fetchQuotes());
+      }
+      this.quotes = state;
+    });
+    
   }
 
   onScroll(ev: Event){
@@ -106,7 +118,8 @@ export class HomePageComponent implements OnInit {
         }
       }
     }
-
   }
+
+
 
 }

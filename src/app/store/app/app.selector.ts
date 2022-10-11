@@ -31,3 +31,8 @@ export const selectEmailTaken = createSelector(
     selectAppInfo,
     (state) => state.emailTaken
 );
+
+export const selectQuotes = createSelector(
+    selectAppInfo,
+    (state) => state.quotes
+);

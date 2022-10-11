@@ -1,3 +1,5 @@
+import { Quote } from "./home-page-quotes";
+
 export interface AppInfo{
     loginStatus: LoginStatus;
     accountImagePath: String;
@@ -6,6 +8,7 @@ export interface AppInfo{
     loginError: boolean;
     registerError: boolean;
     emailTaken: boolean;
+    quotes: Quote[];
 }
 
 export enum LoginStatus{
