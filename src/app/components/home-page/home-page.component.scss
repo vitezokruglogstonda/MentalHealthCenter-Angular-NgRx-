@@ -3,7 +3,9 @@
     width: 100%;
     height: 100%;
     flex-direction: column;
-    overflow:overlay;
+    overflow:overlay;    
+    scroll-snap-type: y proximity; //mandatory
+    overflow-x: hidden;
 }
 
 app-footer-component{
@@ -18,6 +20,8 @@ app-footer-component{
     height: 40%;
     padding-top: 21%;
     padding-bottom: 25%;
+
+    scroll-snap-align: start;
 }
 
 .video-container video {
@@ -83,8 +87,9 @@ app-footer-component{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    padding-top: 100px;
     margin-bottom: 100px;
+    scroll-snap-align: start;
 }
 
 .intro *{
@@ -145,6 +150,8 @@ app-footer-component{
     top: -20px;
     left: 0;
     margin-bottom: -20px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
 }
 
 .experience-user{
@@ -155,6 +162,9 @@ app-footer-component{
 
 .user-name{
     padding-top: 15px;
+    color: gray;
+    font-family: "Helvetica", Sans-serif;
+    font-size: 20px;
 }
 
 

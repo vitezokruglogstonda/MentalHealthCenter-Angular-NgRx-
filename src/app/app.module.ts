@@ -90,6 +90,6 @@ import { FooterComponentComponent } from './components/footer-component/footer-c
     MatDialogModule,
   ],
   providers: [MatDatepickerModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

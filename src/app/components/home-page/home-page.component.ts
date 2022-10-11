@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 
@@ -20,22 +20,44 @@ import { environment } from 'src/environments/environment';
       ])
     ]),
     trigger("experience-left", [
-      transition("void => *", [
-        style({
-          opacity: 0,
-          transform: "translateX(-100px)"
-        }),
-        animate(2000)
-      ])
+      state("hidden-left", style({
+        opacity: 0,
+        transform: "translateX(-100px)"
+      })),
+      state("shown-left", style({
+        opacity: 1,
+        transform: "translateX(0px)"
+      })),
+      transition("hidden-left => shown-left", 
+        animate("2s 0s ease")
+      )
+      // transition("void => *", [
+      //   style({
+      //     opacity: 0,
+      //     transform: "translateX(-100px)"
+      //   }),
+      //   animate("2s 0s ease")
+      // ])
     ]),
     trigger("experience-right", [
-      transition("void => *", [
-        style({
-          opacity: 0,
-          transform: "translateX(100px)"
-        }),
-        animate(2000)
-      ])
+      state("hidden-right", style({
+        opacity: 0,
+        transform: "translateX(100px)"
+      })),
+      state("shown-right", style({
+        opacity: 1,
+        transform: "translateX(0px)"
+      })),
+      transition("hidden-right => shown-right", 
+        animate("2s 0s ease")
+      )
+      // transition("void => *", [
+      //   style({
+      //     opacity: 0,
+      //     transform: "translateX(100px)"
+      //   }),
+      //   animate("2s 0s ease")
+      // ])
     ])
   ]
 })
@@ -48,6 +70,8 @@ export class HomePageComponent implements OnInit {
   public scroll_TopOfPage: boolean;
   @Output() scrollEmitter: EventEmitter<boolean>;
 
+  public xpAppear: boolean;
+
   constructor(private sanitizer: DomSanitizer) { 
     //this.videoPath = this.sanitizer.bypassSecurityTrustResourceUrl(environment.video_url_homePage+`?autoplay=1&controls=0&loop=0&mute=1`);
     this.videoPath = environment.home_page.video_url_homePage;
@@ -56,6 +80,8 @@ export class HomePageComponent implements OnInit {
     this.introSubtext = environment.home_page.intro_subtext;
     this.scroll_TopOfPage = true;
     this.scrollEmitter = new EventEmitter<boolean>();
+
+    this.xpAppear = false;
   }
 
   ngOnInit(): void {
@@ -71,7 +97,16 @@ export class HomePageComponent implements OnInit {
       this.scroll_TopOfPage = true;
       this.scrollEmitter.emit(this.scroll_TopOfPage);
     }
-  }
+    if(!this.xpAppear){
+      const experience_section : Element | null = document.querySelector(".experience-section");
+      const rect : DOMRect | undefined = experience_section?.getBoundingClientRect();
+      if(rect){
+        if(rect.top < window.innerHeight){
+          this.xpAppear = true;
+        }
+      }
+    }
 
+  }
 
 }
