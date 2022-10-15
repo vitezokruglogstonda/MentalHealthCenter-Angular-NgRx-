@@ -62,16 +62,11 @@ export const environment = {
     intro_main_text: "We nurture mental health",
     intro_subtext: "Build a better version of yourself with the help of our professionals"
   },
+  seek_help: {
+    guest_name_error_text: "Enter your name please",
+    phone_number_length: 10,
+    guest_phone_number_error_text_empty: "You must provide your phone number if you wish of us to help you.",
+    guest_phone_number_error_text_incomplete: "It looks like your number is not long enough. Try again.",
+    text: "If you need to talk to someone, enter your name and phone number here, and our experts will call you right away."
+  }
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
-
-//background
-//#adbadd

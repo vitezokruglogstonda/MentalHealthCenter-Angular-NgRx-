@@ -15,7 +15,8 @@
         </div>
         <mat-divider class="divider-line"></mat-divider>
         <div class="experience">
-            <div *ngIf="quotes.length != 0" id="user-1" class="experience-section" [@experience-left]="xpAppear ? 'shown-left' : 'hidden-left'">
+            <div *ngIf="quotes.length != 0" id="user-1" class="experience-section"
+                [@experience-left]="xpAppear ? 'shown-left' : 'hidden-left'">
                 <div class="experience-text">
                     <svg class="apostrophe-image">
                         <path
@@ -27,12 +28,11 @@
                 <div class="experience-user">
                     <img src={{quotes[0].profilePicture}} />
                     <p class="user-name">{{quotes[0].userName}}</p>
-                    <!-- <img src="/assets/UserData/user1.png" />
-                    <p class="user-name">Lik</p> -->
                 </div>
             </div>
             <mat-divider [vertical]="true"></mat-divider>
-            <div *ngIf="quotes.length != 0" id="user-2" class="experience-section" [@experience-right]="xpAppear ? 'shown-right' : 'hidden-right'">
+            <div *ngIf="quotes.length != 0" id="user-2" class="experience-section"
+                [@experience-right]="xpAppear ? 'shown-right' : 'hidden-right'">
                 <div class="experience-text">
                     <svg class="apostrophe-image">
                         <path
@@ -40,23 +40,19 @@
                             data-v-2fd759f4=""></path>
                     </svg>
                     <p>{{quotes[1].quoteText}}</p>
-                    <!-- <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra interdum magna, id
-                        dapibus magna dignissim et. Curabitur quis aliquet lorem, eget venenatis felis. Sed sed libero
-                        metus. Nullam sed lorem vel sem lobortis vestibulum. Praesent id neque eget est molestie
-                        imperdiet.
-                    </p> -->
                 </div>
                 <div class="experience-user">
                     <img src={{quotes[1].profilePicture}} />
                     <p class="user-name">{{quotes[1].userName}}</p>
-                    <!-- <app-account-icon></app-account-icon>
-                    <p class="user-name">Lik</p> -->
                 </div>
             </div>
         </div>
         <mat-divider class="divider-line"></mat-divider>
-        
+
+        <!-- <app-seek-help class="seek-help-card" (emmiter)="submited()" [@seek-help-enter]="helpCardAppear ? 'shown-card' : 'hidden-card'"  [@seek-help-enter]="helpCardDissappear ? 'card-dissapear' : 'shown-card'"></app-seek-help> -->
+        <app-seek-help *ngIf="!helpRequested" class="seek-help-card" (emmiter)="submited()" [@seek-help-enter]="triggerCardAnimation()"></app-seek-help>
+
+
         <app-footer-component></app-footer-component>
     </div>
 

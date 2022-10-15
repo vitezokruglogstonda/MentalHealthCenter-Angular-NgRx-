@@ -41,6 +41,7 @@ import { UploadPictureDialogComponent } from './components/upload-picture-dialog
 import { SidenavEffects } from './store/sidenav/sidenav.effects';
 import { FooterComponentComponent } from './components/footer-component/footer-component.component';
 import { AppEffects } from './store/app/app.effects';
+import { SeekHelpComponent } from './components/seek-help/seek-help.component';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -53,6 +54,7 @@ import { AppEffects } from './store/app/app.effects';
     routingComponents,
     UploadPictureDialogComponent,
     FooterComponentComponent,
+    SeekHelpComponent,
   ],
   entryComponents:[UploadPictureDialogComponent],
   imports: [
