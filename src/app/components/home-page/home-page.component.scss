@@ -6,6 +6,7 @@
     overflow:overlay;    
     scroll-snap-type: y proximity; //mandatory
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 app-footer-component{
@@ -59,6 +60,32 @@ app-footer-component{
     // -moz-transform: scale(1, 3);
     // -o-transform: scale(1, 3);
     transform-origin: 0% 30%;
+}
+
+.video-container-scroll-down-arrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    margin: auto;
+    bottom: 20px;
+
+    width: 10%;
+    height: 10%;
+}
+
+.video-container-scroll-down-arrow p{
+    text-align: center;
+    color: #c6cad6;
+    font-size: 10px;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+}
+
+.video-container-scroll-down-arrow svg{
+    width: 15%;
+    height: 15%;
 }
 
 ::-webkit-scrollbar {
@@ -130,9 +157,9 @@ app-footer-component{
     margin-bottom: 10px;
 }
 
-.experience-text{
+// .experience-text{
     
-}
+// }
 
 .apostrophe-image{
     opacity: 0.3;
@@ -181,4 +208,27 @@ app-footer-component{
     margin-top: 40px;
 }
 
+.scroll-to-top-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #446ccf;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    opacity: 0.7;
+}
 
+.fontawesomesvg{
+    width: 60%;
+    height: 60%;
+    fill: #c6cad6;
+}
+
+.scroll-to-top-button:hover{
+    opacity: 1;
+}

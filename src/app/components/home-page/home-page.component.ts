@@ -88,6 +88,31 @@ import { environment } from 'src/environments/environment';
         }))
       )
     ]),
+    trigger("scroll-to-top-button-animation", [
+      state("hidden-button", style({
+        opacity: 0
+      })),
+      state("shown-button", style({
+        opacity: 0.7
+      })),
+      state("hover-button", style({
+        opacity: 1
+      })),
+      transition("hidden-button => shown-button", animate("0.2s 0s ease")),
+      transition("shown-button => hidden-button", animate("0.2s 0s ease")),
+      transition("shown-button => hover-button", animate("0.2s 0s ease")),
+      transition("hover-button => shown-button", animate("0.2s 0s ease")),
+    ]),
+    trigger("scroll-down-arrow", [
+      state("hidden-arrow", style({
+        opacity: 0
+      })),
+      state("shown-arrow", style({
+        opacity: 1
+      })),
+      transition("hidden-arrow => shown-arrow", animate("0.2s 0s ease")),
+      transition("shown-arrow => hidden-arrow", animate("0.2s 0s ease")),
+    ])
   ]
 })
 export class HomePageComponent implements OnInit {
@@ -103,6 +128,7 @@ export class HomePageComponent implements OnInit {
   public helpCardAppear: boolean;
   //public helpCardDissappear: boolean;
   public helpRequested: boolean;
+  public scrollToTopButton_State: String;
 
   constructor(private sanitizer: DomSanitizer, private store: Store<AppState>) {
     //this.videoPath = this.sanitizer.bypassSecurityTrustResourceUrl(environment.video_url_homePage+`?autoplay=1&controls=0&loop=0&mute=1`);
@@ -117,6 +143,7 @@ export class HomePageComponent implements OnInit {
     this.helpCardAppear = false;
     //this.helpCardDissappear = false;
     this.helpRequested = false;
+    this.scrollToTopButton_State = "shown-button";
   }
 
   ngOnInit(): void {
@@ -127,6 +154,10 @@ export class HomePageComponent implements OnInit {
       }
       this.quotes = state;
     });
+
+    let scrollToTopButton = document.querySelector(".scroll-to-top-button");
+    scrollToTopButton?.addEventListener("mouseover", () => {this.scrollToTopButton_State = "hover-button"});
+    scrollToTopButton?.addEventListener("mouseleave", () => {this.scrollToTopButton_State = "shown-button"});
   }
 
   onScroll(ev: Event) {
@@ -174,5 +205,22 @@ export class HomePageComponent implements OnInit {
     this.helpRequested = true;
   }
 
+  triggerScrollToTopButtonAnimation(){
+    if(this.scroll_TopOfPage){
+      return "hidden-button";
+    }else{
+      return this.scrollToTopButton_State;
+      //return "shown-button";
+    }
+  }
+
+  scrollToTop(){
+    document.querySelector(".home-page-container")?.scrollTo(0, 0);
+  }
+
+  scrollArrowClick(){
+    // document.querySelector(".home-page-container")?.scrollTo(0, 0);
+    document.querySelector(".intro")?.scrollIntoView();
+  }
 
 }
