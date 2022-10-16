@@ -1,5 +1,5 @@
 import {createReducer, on} from "@ngrx/store"
-import { AppInfo, LoginStatus } from "src/app/models/app-info";
+import { AppInfo, HelpCallStatus, LoginStatus } from "src/app/models/app-info";
 import { environment } from "src/environments/environment";
 import * as Actions from "./app.action";
 import {signOut} from "../user/user.action";
@@ -14,6 +14,7 @@ export const initialState: AppInfo = {
     registerError: false,
     emailTaken: false,
     quotes: [],
+    helpCallStatus: HelpCallStatus.NotRequested,
 };
 
 export const appReducer = createReducer(
@@ -45,4 +46,11 @@ export const appReducer = createReducer(
         ...state,
         quotes: quotes
     })),
+    on(Actions.helpCallRequest, (state, {request_name, request_number})=> ({
+        ...state,
+    })),
+    on(Actions.helpCallResponse, (state, {helpCallStatus})=> ({
+        ...state,
+        helpCallStatus: helpCallStatus
+    }))
 );

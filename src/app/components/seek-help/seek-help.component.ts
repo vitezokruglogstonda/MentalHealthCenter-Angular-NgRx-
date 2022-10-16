@@ -1,4 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Form, FormControl } from '@angular/forms';
+import { select, Store } from '@ngrx/store';
+import { HelpCallStatus } from 'src/app/models/app-info';
+import { AppState } from 'src/app/store/app.state';
+import { helpCallRequest } from 'src/app/store/app/app.action';
+import { selectHelpCallStatus } from 'src/app/store/app/app.selector';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -9,22 +15,18 @@ import { environment } from 'src/environments/environment';
 export class SeekHelpComponent implements OnInit {
 
   public cardText: String;
-  public guestName: String;
-  public guestNameError: boolean;
+  public guestName: FormControl;
   public guestNameErrorText: String;
-  public guestPhoneNumber: String;
-  public guestPhoneNumberError: boolean;
+  public guestPhoneNumber: FormControl;
   public guestPhoneNumberErrorText: String;
   public phoneNumberLength: number;
   @Output() emmiter: EventEmitter<boolean>;
 
-  constructor() {
+  constructor(private store: Store<AppState>) {
     this.cardText = environment.seek_help.text;
-    this.guestName = "";
-    this.guestNameError = false;
+    this.guestName = new FormControl('');
     this.guestNameErrorText = environment.seek_help.guest_name_error_text;
-    this.guestPhoneNumber = "";
-    this.guestPhoneNumberError = false;
+    this.guestPhoneNumber = new FormControl('');
     this.guestPhoneNumberErrorText = environment.seek_help.guest_phone_number_error_text_empty;
     this.phoneNumberLength = environment.seek_help.phone_number_length;
     this.emmiter = new EventEmitter<boolean>();
@@ -34,10 +36,10 @@ export class SeekHelpComponent implements OnInit {
   }
 
   checkGuestName() {
-    if (this.guestName.length === 0) {
-      this.guestNameError = true;
+    if (this.guestName.value?.length === 0) {
+      this.guestName.markAsTouched();
     } else {
-      this.guestNameError = false;
+      this.guestName.markAsUntouched();
     }
   }
 
@@ -49,21 +51,48 @@ export class SeekHelpComponent implements OnInit {
     return false;
   }
 
-  checkPhoneNumber(){
-    if(this.guestPhoneNumber.length === 0){
-      this.guestPhoneNumberError = true;
+  checkPhoneNumber() {
+    if (this.guestPhoneNumber.value.length === 0) {
       this.guestPhoneNumberErrorText = environment.seek_help.guest_phone_number_error_text_empty;
-    }else if(this.guestPhoneNumber.length < this.phoneNumberLength){
-      this.guestPhoneNumberError = true;
+      this.guestPhoneNumber.markAsDirty();
+    } else if (this.guestPhoneNumber.value.length < this.phoneNumberLength) {
       this.guestPhoneNumberErrorText = environment.seek_help.guest_phone_number_error_text_incomplete;
-    }else{
-      this.guestPhoneNumberError = false;
+      this.guestPhoneNumber.markAsDirty();
+    } else {
       this.guestPhoneNumberErrorText = environment.seek_help.guest_phone_number_error_text_empty;
+      this.guestPhoneNumber.markAsUntouched();
     }
   }
 
-  submit(){
-    this.emmiter.emit(true);
+  submit() {
+    if (this.guestName.value === "") {
+      this.guestName.markAsTouched();
+    }
+    if (this.guestPhoneNumber.value === "") {
+      this.guestPhoneNumberErrorText = environment.seek_help.guest_phone_number_error_text_empty;
+      this.guestPhoneNumber.markAsTouched();
+    } 
+    if(this.guestName.value !== "" && this.guestPhoneNumber.value !== "") {
+      if (this.guestName.value && this.guestPhoneNumber.value) {
+        this.guestName.markAsUntouched();
+        this.store.dispatch(helpCallRequest({
+          request_name: this.guestName.value,
+          request_number: this.guestPhoneNumber.value
+        }));
+        this.store.select(selectHelpCallStatus).subscribe((state) => {
+          if (state === HelpCallStatus.Requested) {
+            this.guestPhoneNumberErrorText = environment.seek_help.guest_phone_number_error_text_empty;
+            this.guestPhoneNumber.markAsUntouched();
+            this.emmiter.emit(true);
+          } else if (state === HelpCallStatus.Pending) {
+            this.guestPhoneNumberErrorText = environment.seek_help.guest_phone_number_error_text_exists;
+            this.guestPhoneNumber.markAsTouched();
+            this.guestPhoneNumber.setErrors({"incorrect": true})
+            console.log(this.guestPhoneNumber)
+          }
+        });
+      }
+    }
   }
 
 }

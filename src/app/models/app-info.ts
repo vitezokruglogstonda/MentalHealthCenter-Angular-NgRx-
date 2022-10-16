@@ -1,6 +1,6 @@
-import { Quote } from "./home-page-quotes";
+import { Quote } from "./home-page-objects";
 
-export interface AppInfo{
+export interface AppInfo {
     loginStatus: LoginStatus;
     accountImagePath: String;
     tooltipText: String;
@@ -9,15 +9,21 @@ export interface AppInfo{
     registerError: boolean;
     emailTaken: boolean;
     quotes: Quote[];
+    helpCallStatus: HelpCallStatus;
 }
 
-export enum LoginStatus{
+export enum LoginStatus {
     Offline,
     Online
 }
 
-export enum CardType{
+export enum CardType {
     LogIn,
     AccountInfo
-  }
-  
+}
+
+export enum HelpCallStatus{
+    NotRequested,
+    Pending,
+    Requested
+}

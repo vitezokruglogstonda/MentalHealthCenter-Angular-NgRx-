@@ -2,10 +2,11 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { Quote } from 'src/app/models/home-page-quotes';
+import { HelpCallStatus } from 'src/app/models/app-info';
+import { Quote } from 'src/app/models/home-page-objects';
 import { AppState } from 'src/app/store/app.state';
 import { fetchQuotes } from 'src/app/store/app/app.action';
-import { selectQuotes } from 'src/app/store/app/app.selector';
+import { selectHelpCallStatus, selectQuotes } from 'src/app/store/app/app.selector';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -126,7 +127,6 @@ export class HomePageComponent implements OnInit {
       }
       this.quotes = state;
     });
-
   }
 
   onScroll(ev: Event) {

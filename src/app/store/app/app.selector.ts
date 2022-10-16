@@ -36,3 +36,8 @@ export const selectQuotes = createSelector(
     selectAppInfo,
     (state) => state.quotes
 );
+
+export const selectHelpCallStatus = createSelector(
+    selectAppInfo,
+    (state) => state.helpCallStatus
+);

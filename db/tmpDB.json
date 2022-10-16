@@ -33,6 +33,14 @@
       "profilePicture": "../assets/UserData/user1.png"
     }
   ],
+  "helpCalls": [
+    {
+      "id": 1,
+      "guestName": "Lik",
+      "guestPhoneNumber": "0649807810",
+      "processed": false
+    }
+  ],
   "users": [
     {
       "id": 1,
