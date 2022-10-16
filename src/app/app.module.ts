@@ -28,6 +28,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MomentDateModule } from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AccountIconComponent } from './components/account-icon/account-icon.component';
 import { appReducer } from './store/app/app.reducer';
@@ -91,6 +92,7 @@ import { SeekHelpComponent } from './components/seek-help/seek-help.component';
     MomentDateModule,
     MatSelectModule,
     MatDialogModule,
+    MatSnackBarModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],

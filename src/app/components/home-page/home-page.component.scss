@@ -75,6 +75,10 @@ app-footer-component{
     height: 10%;
 }
 
+.video-container-scroll-down-arrow:hover{
+    cursor: pointer;
+}
+
 .video-container-scroll-down-arrow p{
     text-align: center;
     color: #c6cad6;
@@ -155,6 +159,13 @@ app-footer-component{
     width: 30%;
     margin-top: 20px;
     margin-bottom: 10px;
+    // padding-top: 20px;
+    // padding-bottom: 20px;
+    // padding-left: 40px;
+    // padding-right: 40px;
+    // background-color: rgb(189, 185, 185);
+    // border-radius: 10px;
+    // box-shadow: 0px 0px 3px black;
 }
 
 // .experience-text{

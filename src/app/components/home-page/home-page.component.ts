@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { HelpCallStatus } from 'src/app/models/app-info';
@@ -130,7 +131,7 @@ export class HomePageComponent implements OnInit {
   public helpRequested: boolean;
   public scrollToTopButton_State: String;
 
-  constructor(private sanitizer: DomSanitizer, private store: Store<AppState>) {
+  constructor(private sanitizer: DomSanitizer, private store: Store<AppState>, private snackBar: MatSnackBar) {
     //this.videoPath = this.sanitizer.bypassSecurityTrustResourceUrl(environment.video_url_homePage+`?autoplay=1&controls=0&loop=0&mute=1`);
     this.videoPath = environment.home_page.video_url_homePage;
     this.videoTitle = environment.home_page.video_title_homePage;
@@ -203,6 +204,13 @@ export class HomePageComponent implements OnInit {
     this.helpCardAppear = false;
     //this.helpCardDissappear = true;
     this.helpRequested = true;
+
+    let horizontalPosition: MatSnackBarHorizontalPosition = environment.seek_help.snackbar_horisontal_position as MatSnackBarHorizontalPosition;
+    let verticalPosition: MatSnackBarVerticalPosition = environment.seek_help.snackbar_vertical_position as MatSnackBarVerticalPosition;
+    this.snackBar.open(environment.seek_help.snackbar_text, environment.seek_help.snackbar_button_text, {
+      horizontalPosition: horizontalPosition,
+      verticalPosition: verticalPosition,
+    });
   }
 
   triggerScrollToTopButtonAnimation(){

@@ -68,6 +68,10 @@ export const environment = {
     guest_phone_number_error_text_empty: "You must provide your phone number if you wish of us to help you.",
     guest_phone_number_error_text_incomplete: "It looks like your number is not long enough. Try again.",
     guest_phone_number_error_text_exists: "It appears that you have already requested a phone call. Wait for our experts to call you.",
-    text: "If you need to talk to someone, enter your name and phone number here, and our experts will call you right away."
+    text: "If you need to talk to someone, enter your name and phone number here, and our experts will call you right away.",
+    snackbar_text: "You're request for call has been sent. Our experts will contact you as soon as possible.",
+    snackbar_button_text: "OK",
+    snackbar_horisontal_position: "start",
+    snackbar_vertical_position: 'bottom',
   }
 };

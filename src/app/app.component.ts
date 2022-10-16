@@ -10,6 +10,7 @@ import { selectLoginStatus } from './store/app/app.selector';
 import { SidenavListItem } from './models/sidenav-info';
 import { loadItemsOffline } from './store/sidenav/sidenav.action';
 import { Subject } from 'rxjs';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
