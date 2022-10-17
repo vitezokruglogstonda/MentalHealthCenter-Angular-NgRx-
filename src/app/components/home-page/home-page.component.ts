@@ -157,34 +157,36 @@ export class HomePageComponent implements OnInit {
     });
 
     let scrollToTopButton = document.querySelector(".scroll-to-top-button");
-    scrollToTopButton?.addEventListener("mouseover", () => {this.scrollToTopButton_State = "hover-button"});
-    scrollToTopButton?.addEventListener("mouseleave", () => {this.scrollToTopButton_State = "shown-button"});
+    scrollToTopButton?.addEventListener("mouseover", () => { this.scrollToTopButton_State = "hover-button" });
+    scrollToTopButton?.addEventListener("mouseleave", () => { this.scrollToTopButton_State = "shown-button" });
   }
 
   onScroll(ev: Event) {
-    let scrollValue: any = document.querySelector(".home-page-container")?.scrollTop;
-    if (this.scroll_TopOfPage === true && scrollValue > 0) {
-      this.scroll_TopOfPage = false;
-      this.scrollEmitter.emit(this.scroll_TopOfPage);
-    } else if (this.scroll_TopOfPage === false && scrollValue === 0) {
-      this.scroll_TopOfPage = true;
-      this.scrollEmitter.emit(this.scroll_TopOfPage);
-    }
-    if (!this.xpAppear) {
-      const experience_section: Element | null = document.querySelector(".experience-section");
-      const xpRect: DOMRect | undefined = experience_section?.getBoundingClientRect();
-      if (xpRect) {
-        if (xpRect.top < window.innerHeight) {
-          this.xpAppear = true;
+    let scrollValue: number | undefined = document.querySelector(".home-page-container")?.scrollTop;
+    if (scrollValue != undefined) {
+      if (this.scroll_TopOfPage === true && scrollValue > 0) {
+        this.scroll_TopOfPage = false;
+        this.scrollEmitter.emit(this.scroll_TopOfPage);
+      } else if (this.scroll_TopOfPage === false && scrollValue === 0) {
+        this.scroll_TopOfPage = true;
+        this.scrollEmitter.emit(this.scroll_TopOfPage);
+      }
+      if (!this.xpAppear) {
+        const experience_section: Element | null = document.querySelector(".experience-section");
+        const xpRect: DOMRect | undefined = experience_section?.getBoundingClientRect();
+        if (xpRect) {
+          if (xpRect.top < window.innerHeight) {
+            this.xpAppear = true;
+          }
         }
       }
-    }
-    if (!this.helpCardAppear) {
-      const heplCard: Element | null = document.querySelector(".seek-help-card");
-      const cardRect: DOMRect | undefined = heplCard?.getBoundingClientRect();
-      if (cardRect) {
-        if (cardRect.top < window.innerHeight) {
-          this.helpCardAppear = true;
+      if (!this.helpCardAppear) {
+        const heplCard: Element | null = document.querySelector(".seek-help-card");
+        const cardRect: DOMRect | undefined = heplCard?.getBoundingClientRect();
+        if (cardRect) {
+          if (cardRect.top < window.innerHeight) {
+            this.helpCardAppear = true;
+          }
         }
       }
     }
@@ -193,7 +195,7 @@ export class HomePageComponent implements OnInit {
   triggerCardAnimation() {
     if (this.helpCardAppear) {
       return "shown-card";
-    } 
+    }
     // else if (this.helpCardDissappear) {
     //   return "card-dissapear";
     // }
@@ -213,20 +215,20 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  triggerScrollToTopButtonAnimation(){
-    if(this.scroll_TopOfPage){
+  triggerScrollToTopButtonAnimation() {
+    if (this.scroll_TopOfPage) {
       return "hidden-button";
-    }else{
+    } else {
       return this.scrollToTopButton_State;
       //return "shown-button";
     }
   }
 
-  scrollToTop(){
+  scrollToTop() {
     document.querySelector(".home-page-container")?.scrollTo(0, 0);
   }
 
-  scrollArrowClick(){
+  scrollArrowClick() {
     // document.querySelector(".home-page-container")?.scrollTo(0, 0);
     document.querySelector(".intro")?.scrollIntoView();
   }

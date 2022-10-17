@@ -6,9 +6,13 @@
         <div class="video-container-title" @title-fade-in>
             <p>{{videoTitle}}</p>
         </div>
-        <div [@scroll-down-arrow]="this.scroll_TopOfPage ? 'shown-arrow' : 'hidden-arrow'" class="video-container-scroll-down-arrow" (click)="scrollArrowClick()">
+        <div [@scroll-down-arrow]="this.scroll_TopOfPage ? 'shown-arrow' : 'hidden-arrow'"
+            class="video-container-scroll-down-arrow" (click)="scrollArrowClick()">
             <p>Scroll down</p>
-            <svg class='fontawesomesvg' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+            <svg class='fontawesomesvg' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                    d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+            </svg>
         </div>
     </div>
 
@@ -54,7 +58,8 @@
         <mat-divider class="divider-line"></mat-divider>
 
         <!-- <app-seek-help class="seek-help-card" (emmiter)="submited()" [@seek-help-enter]="helpCardAppear ? 'shown-card' : 'hidden-card'"  [@seek-help-enter]="helpCardDissappear ? 'card-dissapear' : 'shown-card'"></app-seek-help> -->
-        <app-seek-help *ngIf="!helpRequested" class="seek-help-card" (emmiter)="submited()" [@seek-help-enter]="triggerCardAnimation()"></app-seek-help>
+        <app-seek-help *ngIf="!helpRequested" class="seek-help-card" (emmiter)="submited()"
+            [@seek-help-enter]="triggerCardAnimation()"></app-seek-help>
 
 
         <app-footer-component></app-footer-component>
@@ -63,9 +68,10 @@
 </div>
 
 <!-- <div [@scroll-to-top-button-animation]="scroll_TopOfPage ? 'hidden-button' : 'shown-button'" class="scroll-to-top-button" (click)="scrollToTop()"> -->
-<div [@scroll-to-top-button-animation]="triggerScrollToTopButtonAnimation()" class="scroll-to-top-button" (click)="scrollToTop()">
+<div [@scroll-to-top-button-animation]="triggerScrollToTopButtonAnimation()" class="scroll-to-top-button"
+    (click)="scrollToTop()" mat-ripple [matRippleCentered]=true [matRippleUnbounded]=true>
     <svg class='fontawesomesvg' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"/>
+        <path
+            d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
     </svg>
 </div>
-

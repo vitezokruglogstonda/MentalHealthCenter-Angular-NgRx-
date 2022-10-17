@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UploadPictureDialogComponent implements OnInit {
 
-  public uploadedPicture: File | null;
+  public uploadedPicture: File | null | undefined;
   public dragDropArea: Element | null;
 
   constructor(
@@ -40,7 +40,7 @@ export class UploadPictureDialogComponent implements OnInit {
       }, false);
     });
     this.dragDropArea?.addEventListener("drop", () => {
-      this.handleDrop(event, this.dialogRef, this.uploadedPicture, this.elRef);
+      this.handleDrop(event as DragEvent, this.dialogRef, this.uploadedPicture, this.elRef);
     }, false);
 
   }
@@ -50,42 +50,47 @@ export class UploadPictureDialogComponent implements OnInit {
     e.stopPropagation();
   }
 
-  highlight(e: any) {
-    e.target.classList.add(environment.dragAndDropSettings.onDropClassName)
+  highlight(e: Event | undefined) {
+    if(e){
+      (<HTMLElement> e.target).classList.add(environment.dragAndDropSettings.onDropClassName);
+    }
   }
 
-  unhighlight(e: any) {
-    e.target.classList.remove(environment.dragAndDropSettings.onDropClassName)
+  unhighlight(e: Event | undefined) {
+    if(e){
+      (<HTMLElement>e.target).classList.remove(environment.dragAndDropSettings.onDropClassName);
+    }
   }
 
-  handleDrop(e: any, dialogRef: MatDialogRef<UploadPictureDialogComponent>, uploadedPicture: File | null, elRef: ElementRef) {
-    //ne prihvata "Event" tip jer on "nema property dataTransfer"
-    //isto ne prihvata "DropEvent" jer se ne poklapa sa argumentima u addEventListener f-ji
-    //mora any
+  handleDrop(e: DragEvent  | undefined, dialogRef: MatDialogRef<UploadPictureDialogComponent>, uploadedPicture: File | null | undefined, elRef: ElementRef) {
     let errorMessageElement: Element | null = (<HTMLElement>elRef.nativeElement).querySelector(".upload-error");
-    if (e.dataTransfer.files) {
-      let files = e.dataTransfer.files;
-      if (files.length > 1) {
-        if(errorMessageElement){
-          errorMessageElement.innerHTML = environment.dialog_UploadPhoto_Settings.errorMessage_numberOfFiles;
-        }
-      } else {
-        uploadedPicture = files.item(0);
-        if(uploadedPicture?.type.startsWith("image")){
-          dialogRef.close(uploadedPicture);
-        }else{
+    if(e != undefined){
+      if ((e.dataTransfer as DataTransfer).files) {
+        let files = (e.dataTransfer as DataTransfer).files;
+        if (files.length > 1) {
           if(errorMessageElement){
-            errorMessageElement.innerHTML = environment.dialog_UploadPhoto_Settings.errorMessage_fileType;
+            errorMessageElement.innerHTML = environment.dialog_UploadPhoto_Settings.errorMessage_numberOfFiles;
+          }
+        } else {
+          uploadedPicture = files.item(0);
+          if(uploadedPicture?.type.startsWith("image")){
+            dialogRef.close(uploadedPicture);
+          }else{
+            if(errorMessageElement){
+              errorMessageElement.innerHTML = environment.dialog_UploadPhoto_Settings.errorMessage_fileType;
+            }
           }
         }
       }
     }
   }
 
-  newPicture(ev: any) {
-    if(ev.target?.files.length===1){
-      this.uploadedPicture = ev.target?.files.item(0);
-      this.dialogRef.close(this.uploadedPicture);
+  newPicture(ev: Event | null) {
+    if(ev){
+      if((ev.target as HTMLInputElement)?.files?.length===1){
+        this.uploadedPicture = (ev.target as HTMLInputElement)?.files?.item(0);
+        this.dialogRef.close(this.uploadedPicture);
+      }
     }
   }
 

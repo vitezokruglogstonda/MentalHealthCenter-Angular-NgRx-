@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -11,6 +11,7 @@ import { SidenavListItem } from './models/sidenav-info';
 import { loadItemsOffline } from './store/sidenav/sidenav.action';
 import { Subject } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 @Component({
   selector: 'app-root',
@@ -72,15 +73,17 @@ export class AppComponent {
     this.cardTriggeredEvent.next(1);
   }
 
-  subscribeToChildEmmiter(childRef: any){
-    childRef.scrollEmitter.subscribe((topOfPage: boolean) => {
-      const toolbar = document.querySelector(".main-toolbar");
-      if(topOfPage){
-        toolbar?.classList.add("main-toolbar-transparent");
-      }else{
-        toolbar?.classList.remove("main-toolbar-transparent");
-      }
-    });
+  subscribeToChildEmmiter(childRef: HomePageComponent){
+    if(childRef.scrollEmitter){
+      childRef.scrollEmitter.subscribe((topOfPage: boolean) => {
+        const toolbar = document.querySelector(".main-toolbar");
+        if(topOfPage){
+          toolbar?.classList.add("main-toolbar-transparent");
+        }else{
+          toolbar?.classList.remove("main-toolbar-transparent");
+        }
+      });
+    }
   }
 
   unsubscribe(){

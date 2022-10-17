@@ -41,10 +41,10 @@ export class AccountInfoCardComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   hideCard(){
-    let card: any = (<HTMLElement>this.elRef.nativeElement).querySelector(".card-container");
-    let icon: any = (document).querySelector(".icon-container");
+    let card: HTMLElement | null = (<HTMLElement>this.elRef.nativeElement).querySelector(".card-container");
+    let icon: HTMLElement | null = (document).querySelector(".icon-container");
     if(event && card && icon){
-      if(!card.contains(event.target) && !icon.contains(event.target)){
+      if(!card.contains(event.target as Node | null) && !icon.contains(event.target as Node | null)){
         this.loginCardEmitter.emit(true);
       }
     }

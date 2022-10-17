@@ -105,9 +105,11 @@ export class RegisterComponent implements OnInit {
     }).afterClosed().subscribe((result: File) => {
       if (result) {
         this.uploadedPicture = result;
-        let imageTag: any = (<HTMLElement>this.elRef.nativeElement).querySelector(".profile-picture");
-        imageTag.src = URL.createObjectURL(result);
-        this.userPictureExists = true;
+        let imageTag: HTMLImageElement | null = (<HTMLElement>this.elRef.nativeElement).querySelector(".profile-picture");
+        if(imageTag){
+          imageTag.src = URL.createObjectURL(result);
+          this.userPictureExists = true;
+        }
       }
     });
   }
@@ -115,9 +117,11 @@ export class RegisterComponent implements OnInit {
   deletePhoto() {
     if (this.uploadedPicture !== null) {
       this.uploadedPicture = null;
-      let imageTag: any = (<HTMLElement>this.elRef.nativeElement).querySelector(".profile-picture");
-      imageTag.src = this.defaultPicturePath;
-      this.userPictureExists = false;
+      let imageTag: HTMLImageElement | null = (<HTMLElement>this.elRef.nativeElement).querySelector(".profile-picture");
+      if(imageTag){
+        imageTag.src = this.defaultPicturePath as string;
+        this.userPictureExists = false;
+      }
     }
   }
 
@@ -188,8 +192,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  checkEmail(e: any){
-    this.store.dispatch(checkEmail({mail: e.target.value}));
+  checkEmail(e: Event){
+    this.store.dispatch(checkEmail({mail: (<HTMLInputElement> e.target).value}));
   }
 
   checkData(): boolean {
