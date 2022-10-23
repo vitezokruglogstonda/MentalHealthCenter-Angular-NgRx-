@@ -7,18 +7,13 @@
     },
     {
       "id": 2,
-      "title": "Help call",
-      "route": ""
+      "title": "Register",
+      "route": "register"
     },
     {
       "id": 3,
-      "title": "Tips",
-      "route": ""
-    },
-    {
-      "id": 4,
-      "title": "About us",
-      "route": ""
+      "title": "Operator Dashboard",
+      "route": "operator-dashboard"
     }
   ],
   "userQuotes": [
@@ -36,14 +31,20 @@
   "helpCalls": [
     {
       "id": 1,
-      "guestName": "Lik",
+      "guestName": "Lik 1",
       "guestPhoneNumber": "0649807810",
       "processed": false
     },
     {
       "id": 2,
-      "guestName": "hjgvhgv",
+      "guestName": "Lik 2",
       "guestPhoneNumber": "5555555555",
+      "processed": false
+    },
+    {
+      "id": 3,
+      "guestName": "Lik 3",
+      "guestPhoneNumber": "0948513545",
       "processed": false
     }
   ],

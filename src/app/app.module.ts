@@ -29,6 +29,7 @@ import { MomentDateModule } from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { AccountIconComponent } from './components/account-icon/account-icon.component';
 import { appReducer } from './store/app/app.reducer';
@@ -43,6 +44,9 @@ import { SidenavEffects } from './store/sidenav/sidenav.effects';
 import { FooterComponentComponent } from './components/footer-component/footer-component.component';
 import { AppEffects } from './store/app/app.effects';
 import { SeekHelpComponent } from './components/seek-help/seek-help.component';
+import { OperatorDashboardComponent } from './components/operator-dashboard/operator-dashboard.component';
+import { helpCallRequestsReducer } from './store/operator-dashboard/operator-dashboard.reducer';
+import { OperatorEffects } from './store/operator-dashboard/operator-dashboard.effects';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -56,6 +60,7 @@ import { SeekHelpComponent } from './components/seek-help/seek-help.component';
     UploadPictureDialogComponent,
     FooterComponentComponent,
     SeekHelpComponent,
+    OperatorDashboardComponent,
   ],
   entryComponents:[UploadPictureDialogComponent],
   imports: [
@@ -64,8 +69,9 @@ import { SeekHelpComponent } from './components/seek-help/seek-help.component';
       appInfo: appReducer,
       sidenavInfo: sidenavItemsReducer,
       userInfo: userReducer,
+      helpCallRequestList: helpCallRequestsReducer,
     }),
-    EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects]),
+    EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 20, 
       autoPause: true
@@ -93,6 +99,7 @@ import { SeekHelpComponent } from './components/seek-help/seek-help.component';
     MatSelectModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatExpansionModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],

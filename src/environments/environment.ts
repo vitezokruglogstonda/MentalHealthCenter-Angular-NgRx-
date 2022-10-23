@@ -73,5 +73,8 @@ export const environment = {
     snackbar_button_text: "OK",
     snackbar_horisontal_position: "start",
     snackbar_vertical_position: 'bottom',
+  },
+  operator_dashboard: {
+    request_list_animation_duration: 1
   }
 };
