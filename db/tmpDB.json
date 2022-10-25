@@ -1,0 +1,101 @@
+{
+  "sidenav_items_list": [
+    {
+      "id": 1,
+      "title": "Home",
+      "route": ""
+    },
+    {
+      "id": 2,
+      "title": "Register",
+      "route": "register"
+    },
+    {
+      "id": 3,
+      "title": "Operator Dashboard",
+      "route": "operator-dashboard"
+    }
+  ],
+  "userQuotes": [
+    {
+      "userName": "Neki lik tamo",
+      "quoteText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra interdum magna, id dapibus magna dignissim et. Curabitur quis aliquet lorem, eget venenatis felis. Sed sed libero metus. Nullam sed lorem vel sem lobortis vestibulum. Praesent id neque eget est molestie imperdiet.",
+      "profilePicture": "../assets/Icons/account_icon.png"
+    },
+    {
+      "userName": "Neka likusa tamo",
+      "quoteText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra interdum magna, id dapibus magna dignissim et. Curabitur quis aliquet lorem, eget venenatis felis. Sed sed libero metus. Nullam sed lorem vel sem lobortis vestibulum. Praesent id neque eget est molestie imperdiet.",
+      "profilePicture": "../assets/UserData/user1.png"
+    }
+  ],
+  "helpCalls": [
+    {
+      "id": 1,
+      "guestName": "Lik 1",
+      "guestPhoneNumber": "0649807810",
+      "processed": false
+    },
+    {
+      "id": 2,
+      "guestName": "Lik 2",
+      "guestPhoneNumber": "5555555555",
+      "processed": false
+    },
+    {
+      "id": 3,
+      "guestName": "Lik 3",
+      "guestPhoneNumber": "0948513545",
+      "processed": false
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "nesto@nesto.rs",
+      "firstName": "Mandrila",
+      "lastName": "Antic",
+      "birthDate": {
+        "year": 1389,
+        "month": 6,
+        "day": 28
+      },
+      "gender": "Male",
+      "password": "123",
+      "JWT": "",
+      "userType": "Patient",
+      "profilePicturePath": "src/assets/UserData/user1.png"
+    },
+    {
+      "id": 2,
+      "email": "a",
+      "firstName": "Mandrila",
+      "lastName": "Antic",
+      "birthDate": {
+        "year": 1389,
+        "month": 6,
+        "day": 28
+      },
+      "gender": "Male",
+      "password": "a",
+      "JWT": "",
+      "userType": "Patient",
+      "profilePicturePath": "/assets/UserData/user1.png"
+    },
+    {
+      "id": 3,
+      "email": "andrija@gmail.com",
+      "firstName": "Andrija",
+      "lastName": "Djordjevic",
+      "birthDate": {
+        "year": 1997,
+        "month": 10,
+        "day": 2
+      },
+      "gender": "Male",
+      "JWT": "",
+      "userType": 2,
+      "profilePicturePath": "/assets/UserData/user1.png",
+      "password": "aaaaaa"
+    }
+  ]
+}
