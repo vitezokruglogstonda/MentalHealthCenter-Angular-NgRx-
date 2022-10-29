@@ -43,9 +43,8 @@ export class OperatorDashboardComponent implements OnInit {
         this.helpCalls.push(el);
         this.listItems.push(true);
       })
-
-      console.log("Lista: ", this.helpCalls)
     });
+
   }
 
   callDone(ev: Event){

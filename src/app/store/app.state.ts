@@ -1,6 +1,8 @@
+import { TherapistComponent } from "../components/therapist/therapist.component";
 import { AppInfo } from "../models/app-info";
 import { HelpCallListState } from "../models/help-call-dto";
 import { SidenavInfoState } from "../models/sidenav-info";
+import { TherapistsPatientListState } from "../models/therapist";
 import { User } from "../models/user";
 
 
@@ -9,5 +11,6 @@ export interface AppState {
     sidenavInfo: SidenavInfoState;
     userInfo: User;
     helpCallRequestList: HelpCallListState;
+    therapistsPatientList: TherapistsPatientListState;
 }
 

@@ -34,10 +34,12 @@ export class UserService {
                 lastName: registerDto.lastName,
                 birthDate: registerDto.birthDate,
                 gender: registerDto.userGender,
+                phoneNumber: registerDto.phoneNumber,
                 JWT: "",
                 userType: UserType.Patient,
-                profilePicturePath: "/assets/UserData/user1.png",
-                password: registerDto.password
+                profilePicturePath: environment.account_icon_basic_URL,
+                password: registerDto.password,
+                therapistID: null
             }
         }
         let registerQuerry: String = `users`;

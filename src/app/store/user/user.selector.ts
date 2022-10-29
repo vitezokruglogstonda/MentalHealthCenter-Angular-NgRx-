@@ -6,4 +6,9 @@ export const selectUserInfo = createSelector(
     (userInfo) => userInfo
 ); 
 
+export const selectUserId = createSelector(
+    selectUserInfo,
+    (userInfo) => userInfo.id
+);
+
 

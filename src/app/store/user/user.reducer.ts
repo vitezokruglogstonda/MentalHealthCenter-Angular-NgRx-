@@ -15,10 +15,12 @@ export const initialState: User = {
         day: 0
     },
     gender: "",
+    phoneNumber: "",
     JWT: "",
     userType: UserType.Guest,
     profilePicturePath: "",
-    password: ""
+    password: "",
+    therapistID: null,
 };
 
 export const userReducer = createReducer(

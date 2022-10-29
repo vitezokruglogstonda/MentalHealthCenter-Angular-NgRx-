@@ -1,0 +1,66 @@
+.therapist-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.therapist-container h2{
+    margin-top: 5%;
+}
+
+.devider-line{
+    width: 70%;
+    margin-bottom: 2%;
+}
+
+.tabs{
+    width: 70%;
+}
+
+.patient-section{
+    width: 70%;
+    margin-top: 5%;
+    padding-top: 5%;
+}
+
+.patient-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.patient-list-item{
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20x;
+}
+
+.patient-name{
+    font-size: larger;
+    font-weight: 400;
+    padding-top: 10px;
+}
+
+.image-container{
+    border-radius: 50%;
+    background-color: #c6cad6;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.patient-picture{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.patient-info{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

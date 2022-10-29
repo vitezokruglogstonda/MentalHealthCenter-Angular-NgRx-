@@ -30,6 +30,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { AccountIconComponent } from './components/account-icon/account-icon.component';
 import { appReducer } from './store/app/app.reducer';
@@ -47,6 +48,9 @@ import { SeekHelpComponent } from './components/seek-help/seek-help.component';
 import { OperatorDashboardComponent } from './components/operator-dashboard/operator-dashboard.component';
 import { helpCallRequestsReducer } from './store/operator-dashboard/operator-dashboard.reducer';
 import { OperatorEffects } from './store/operator-dashboard/operator-dashboard.effects';
+import { TherapistComponent } from './components/therapist/therapist.component';
+import { therapistReducer } from './store/therapist/therapist.reducer';
+import { TherapistEffects } from './store/therapist/therapist.effects';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -61,6 +65,7 @@ import { OperatorEffects } from './store/operator-dashboard/operator-dashboard.e
     FooterComponentComponent,
     SeekHelpComponent,
     OperatorDashboardComponent,
+    TherapistComponent,
   ],
   entryComponents:[UploadPictureDialogComponent],
   imports: [
@@ -70,8 +75,9 @@ import { OperatorEffects } from './store/operator-dashboard/operator-dashboard.e
       sidenavInfo: sidenavItemsReducer,
       userInfo: userReducer,
       helpCallRequestList: helpCallRequestsReducer,
+      therapistsPatientList: therapistReducer,
     }),
-    EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects]),
+    EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects, TherapistEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 20, 
       autoPause: true
@@ -100,6 +106,7 @@ import { OperatorEffects } from './store/operator-dashboard/operator-dashboard.e
     MatDialogModule,
     MatSnackBarModule,
     MatExpansionModule,
+    MatTabsModule,
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],

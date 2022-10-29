@@ -8,8 +8,10 @@ export interface User {
     gender: String;
     JWT: String;
     userType: UserType;
+    phoneNumber: String;
     profilePicturePath: String;
     password: String;
+    therapistID: number | null;
 }
 
 export enum UserType {
@@ -32,6 +34,7 @@ export interface RegisterDto {
     lastName: String;
     birthDate: CustomDate | null;
     userGender: String;
+    phoneNumber: String;
     profilePicture: File | null;
 }
 

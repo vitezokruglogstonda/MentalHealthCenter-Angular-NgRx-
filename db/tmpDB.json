@@ -14,6 +14,11 @@
       "id": 3,
       "title": "Operator Dashboard",
       "route": "operator-dashboard"
+    },
+    {
+      "id": 4,
+      "title": "Therapist page",
+      "route": "therapist"
     }
   ],
   "userQuotes": [
@@ -60,10 +65,12 @@
         "day": 28
       },
       "gender": "Male",
+      "phoneNumber": "0948513545",
       "password": "123",
       "JWT": "",
-      "userType": "Patient",
-      "profilePicturePath": "src/assets/UserData/user1.png"
+      "userType": 2,
+      "profilePicturePath": "/assets/UserData/user1.png",
+      "therapistID": 4
     },
     {
       "id": 2,
@@ -76,10 +83,12 @@
         "day": 28
       },
       "gender": "Male",
+      "phoneNumber": "0948513545",
       "password": "a",
       "JWT": "",
-      "userType": "Patient",
-      "profilePicturePath": "/assets/UserData/user1.png"
+      "userType": 2,
+      "profilePicturePath": "/assets/UserData/user1.png",
+      "therapistID": 4
     },
     {
       "id": 3,
@@ -92,10 +101,48 @@
         "day": 2
       },
       "gender": "Male",
+      "phoneNumber": "0948513545",
       "JWT": "",
       "userType": 2,
       "profilePicturePath": "/assets/UserData/user1.png",
-      "password": "aaaaaa"
+      "password": "aaaaaa",
+      "therapistID": null
+    },
+    {
+      "id": 4,
+      "email": "rajko@r.com",
+      "firstName": "asdasd",
+      "lastName": "wae2e",
+      "birthDate": {
+        "year": 2022,
+        "month": 10,
+        "day": 13
+      },
+      "gender": "Female",
+      "phoneNumber": "2132131241",
+      "JWT": "",
+      "userType": 1,
+      "profilePicturePath": "/assets/UserData/user1.png",
+      "password": "budala",
+      "therapistID": null
+    },
+    {
+      "id": 5,
+      "email": "majko@m.com",
+      "firstName": "sad",
+      "lastName": "weqq",
+      "birthDate": {
+        "year": 2022,
+        "month": 10,
+        "day": 19
+      },
+      "gender": "Male",
+      "phoneNumber": "3142342342",
+      "JWT": "",
+      "userType": 2,
+      "profilePicturePath": "/assets/Icons/account_icon.png",
+      "password": "sadsad",
+      "therapistID": 4
     }
   ]
 }

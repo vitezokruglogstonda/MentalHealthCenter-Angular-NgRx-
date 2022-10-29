@@ -1,0 +1,31 @@
+<div class="therapist-container">
+    <h2>Therapist book</h2>
+    <mat-divider class="devider-line"></mat-divider>
+
+    <mat-tab-group mat-align-tabs="center" class = "tabs">
+        <mat-tab label="Patients">
+            <mat-accordion class="patient-section">
+                <div *ngFor="let patient of patientList" class="patient-list">
+                    <mat-expansion-panel *ngIf="patient" class="patient-list-item">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <div class="image-container">
+                                    <img class="patient-picture" src={{patient.profilePicturePath}} />
+                                </div>
+                                <p class="patient-name">{{patient.firstName}} {{patient.lastName}}</p>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="patient-info">
+                            <p>Age: {{calculateAge(patient.birthDate)}}</p>
+                            <p>Phone number: {{patient.phoneNumber}}</p>
+                            <p>Gender: {{patient.gender}}</p>
+                        </div>
+                    </mat-expansion-panel>
+                </div>
+            </mat-accordion>
+        </mat-tab>
+        <mat-tab label="Schedule">
+            
+        </mat-tab>
+    </mat-tab-group>
+</div>

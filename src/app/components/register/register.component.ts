@@ -51,6 +51,8 @@ export class RegisterComponent implements OnInit {
   public lastName: String;
   public birthDate: CustomDate | null;
   public userGender: String;
+  public phoneNumber: String;
+  public phoneNumberLength: number;
   public gendersList: String[];
   public defaultPicturePath: String;
   public uploadedPicture: File | null;
@@ -77,6 +79,8 @@ export class RegisterComponent implements OnInit {
     this.lastName = "";
     this.birthDate = null;
     this.userGender = "";
+    this.phoneNumber = "";
+    this.phoneNumberLength = environment.seek_help.phone_number_length;
     this.gendersList = environment.gender_list;
     this.defaultPicturePath = environment.account_icon_basic_URL;
     this.uploadedPicture = null;
@@ -198,11 +202,19 @@ export class RegisterComponent implements OnInit {
 
   checkData(): boolean {
 
-    if (this.email === "" || this.password === "" || this.passwordRep === "" || this.password !== this.passwordRep || this.firstName === "" || this.lastName === "" || this.userGender === "" || this.birthDate === null) {
+    if (this.email === "" || this.password === "" || this.passwordRep === "" || this.password !== this.passwordRep || this.firstName === "" || this.lastName === "" || this.userGender === "" || this.phoneNumber === "" || this.phoneNumber.length < this.phoneNumberLength || this.birthDate === null) {
       return false;
     } else {
       return true;
     }
+  }
+
+  checkChar(ev: KeyboardEvent) {
+    let asciiVal = ev.key.charCodeAt(0);
+    if (asciiVal >= 48 && asciiVal <= 57) {
+      return true;
+    }
+    return false;
   }
 
   registerNow() {
@@ -215,6 +227,7 @@ export class RegisterComponent implements OnInit {
         lastName: this.lastName,
         birthDate: this.birthDate,
         userGender: this.userGender,
+        phoneNumber: this.phoneNumber,
         profilePicture: this.uploadedPicture,
       };
       this.store.dispatch(register({registerDto: userData}));

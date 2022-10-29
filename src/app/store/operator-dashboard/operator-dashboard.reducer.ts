@@ -18,5 +18,5 @@ export const helpCallRequestsReducer = createReducer(
     }),
     on(OpDashboardActions.finishRequest, (state, {requestId}) => {
         return helpCallListAdapter.removeOne(requestId, state);
-    }),
+    })
 );
