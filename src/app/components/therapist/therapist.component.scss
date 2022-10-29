@@ -19,9 +19,13 @@
 }
 
 .patient-section{
-    width: 70%;
-    margin-top: 5%;
-    padding-top: 5%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
+    //padding-top: 5%;
 }
 
 .patient-list{

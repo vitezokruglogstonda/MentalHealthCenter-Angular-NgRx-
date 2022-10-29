@@ -39,7 +39,7 @@ export class TherapistComponent implements OnInit {
     let currentDate: Date = new Date();
     let splitedDate: String[] =  currentDate.toLocaleDateString().split("/");
     patientAge = Number(splitedDate[2]) - birthDate.year;
-    if(Number(splitedDate[0]) > birthDate.month || (Number(splitedDate[0]) === birthDate.month && Number(splitedDate[1]) > birthDate.day)){
+    if(Number(splitedDate[0]) < birthDate.month || (Number(splitedDate[0]) === birthDate.month && Number(splitedDate[1]) < birthDate.day)){
       patientAge--;
     }
     if(patientAge < 0)
