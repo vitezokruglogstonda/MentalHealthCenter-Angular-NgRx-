@@ -64,19 +64,19 @@
         <mat-step>
             <div class="step-form-container shorter">
                 <ng-template matStepLabel>Fill out your personal information</ng-template>
-                <div class="field-container">
+                <div class="field-container info-field">
                     <mat-form-field class="form-field" appearance="fill">
                         <mat-label>First Name</mat-label>
                         <input matInput [(ngModel)]="firstName" required>
                     </mat-form-field>
                 </div>
-                <div class="field-container">
+                <div class="field-container info-field">
                     <mat-form-field class="form-field" appearance="fill">
                         <mat-label>Last Name</mat-label>
                         <input matInput [(ngModel)]="lastName" required>
                     </mat-form-field>
                 </div>
-                <div class="field-container">
+                <div class="field-container info-field">
                     <mat-form-field class="form-field" appearance="fill">
                         <mat-label>Birthdate</mat-label>
                         <input matInput [matDatepicker]="birthDatePicker" (dateChange)="newDate($event)" required>
@@ -85,7 +85,7 @@
                         <mat-datepicker #birthDatePicker></mat-datepicker>
                     </mat-form-field>
                 </div>
-                <div class="field-container">
+                <div class="field-container info-field">
                     <mat-form-field class="form-field" appearance="fill">
                         <mat-label>Gender</mat-label>
                         <mat-select [(ngModel)]="userGender" required>
@@ -141,3 +141,4 @@
 
     </mat-stepper>
 </div>
+<app-footer-component class="footer"></app-footer-component>

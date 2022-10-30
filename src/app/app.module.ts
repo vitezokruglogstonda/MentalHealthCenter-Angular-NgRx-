@@ -25,7 +25,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import { MomentDateModule } from '@angular/material-moment-adapter';
+import { MatMomentDateModule, MomentDateModule } from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -51,6 +51,7 @@ import { OperatorEffects } from './store/operator-dashboard/operator-dashboard.e
 import { TherapistComponent } from './components/therapist/therapist.component';
 import { therapistReducer } from './store/therapist/therapist.reducer';
 import { TherapistEffects } from './store/therapist/therapist.effects';
+import { ScheduleCardComponent } from './components/schedule-card/schedule-card.component';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -66,6 +67,7 @@ import { TherapistEffects } from './store/therapist/therapist.effects';
     SeekHelpComponent,
     OperatorDashboardComponent,
     TherapistComponent,
+    ScheduleCardComponent,
   ],
   entryComponents:[UploadPictureDialogComponent],
   imports: [
@@ -107,6 +109,8 @@ import { TherapistEffects } from './store/therapist/therapist.effects';
     MatSnackBarModule,
     MatExpansionModule,
     MatTabsModule,
+    MatMomentDateModule,
+    //MatNativeDateModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent],

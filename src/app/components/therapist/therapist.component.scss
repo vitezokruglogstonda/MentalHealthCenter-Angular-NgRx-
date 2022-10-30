@@ -68,3 +68,79 @@
     flex-direction: column;
     flex-wrap: wrap;
 }
+
+.schedule-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    //height: 700px;
+}
+
+.upcoming{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.calendar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.calendar-card{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 25px;
+    height: 100%;
+}
+
+.calendar{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 0 40%;
+    max-width: 40%;
+    //width: 40%;
+    // width: 50%;
+    // height: 400px;
+}
+
+.footer1{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.footer2{
+    position: relative;
+}
+
+@media screen and (max-width: 900px) {
+    .calendar-card{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 25px;
+        height: 100%;
+    }
+    .calendar{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1 0 100%;
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+}

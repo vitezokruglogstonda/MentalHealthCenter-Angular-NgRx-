@@ -2,7 +2,8 @@
     <h2>Therapist book</h2>
     <mat-divider class="devider-line"></mat-divider>
 
-    <mat-tab-group mat-align-tabs="center" class = "tabs">
+    <mat-tab-group mat-align-tabs="center" class="tabs" [selectedIndex]="selected.value"
+    (selectedIndexChange)="tabChange($event)">
         <mat-tab label="Patients">
             <mat-accordion class="patient-section">
                 <div *ngFor="let patient of patientList" class="patient-list">
@@ -25,7 +26,19 @@
             </mat-accordion>
         </mat-tab>
         <mat-tab label="Schedule">
-            
+            <div class="schedule-container">
+                <div class="upcoming">
+                    <app-schedule-card></app-schedule-card>
+                </div>
+                <div class="calendar-container">
+                    <mat-card class="calendar-card">
+                        <mat-calendar class="calendar"></mat-calendar>
+                        <mat-divider [vertical]="true"></mat-divider>
+                        <app-schedule-card></app-schedule-card>
+                    </mat-card>
+                </div>
+            </div>
         </mat-tab>
     </mat-tab-group>
 </div>
+<app-footer-component class="footer1"></app-footer-component>

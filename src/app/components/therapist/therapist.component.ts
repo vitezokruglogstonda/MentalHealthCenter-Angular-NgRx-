@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatCalendar } from '@angular/material/datepicker';
 import { Store } from '@ngrx/store';
 import { TherapistsPatientListItem } from 'src/app/models/therapist';
 import { CustomDate } from 'src/app/models/user';
@@ -16,6 +18,7 @@ export class TherapistComponent implements OnInit {
 
   public therapistId: number | null;
   public patientList: (TherapistsPatientListItem | undefined)[];
+  public selected = new FormControl(0);
 
   constructor(private store: Store<AppState>) { 
     this.therapistId = null;
@@ -32,6 +35,19 @@ export class TherapistComponent implements OnInit {
         this.patientList.push(el);
       })
     });
+    // this.calendar.selectedChange.subscribe(x => {
+    //   console.log(x);
+    // });
+  }
+
+  tabChange(index: number){
+    this.selected.setValue(index);
+    let footer = document.querySelector(".footer1");
+    if(index === 0){
+      footer?.classList.remove("footer2");
+    }else if(index === 1){
+      footer?.classList.add("footer2");
+    }
   }
 
   calculateAge(birthDate : CustomDate): String{
@@ -46,5 +62,7 @@ export class TherapistComponent implements OnInit {
       patientAge = 0;
     return patientAge.toString();
   }
+
+
 
 }
