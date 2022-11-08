@@ -19,10 +19,12 @@ export class TherapistComponent implements OnInit {
   public therapistId: number | null;
   public patientList: (TherapistsPatientListItem | undefined)[];
   public selected = new FormControl(0);
+  public selectedDate: Date | null;
 
   constructor(private store: Store<AppState>) { 
     this.therapistId = null;
     this.patientList = [];
+    this.selectedDate = new Date();
   }
 
   ngOnInit(): void {

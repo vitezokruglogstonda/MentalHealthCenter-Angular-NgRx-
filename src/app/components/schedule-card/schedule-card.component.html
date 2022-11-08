@@ -1,12 +1,12 @@
 <mat-card class="schedule-card">
     <div class="header">
-        <h2>{{date}}</h2>
+        <h3>{{dateString}} {{therapistId}}</h3>
     </div>
     <mat-divider class="devider-line"></mat-divider>
     <div class="schedule-list">
-        <div *ngFor="let appointment in appointments" class="appointment">
-            <p></p>
-            <div></div>
+        <div *ngFor="let appointment of appointments" class="appointment">
+            <p>{{appointment[0]}}</p>
+            <div>{{appointment[2]}}</div>
         </div>
     </div>
 </mat-card>

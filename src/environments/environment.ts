@@ -76,5 +76,6 @@ export const environment = {
   },
   operator_dashboard: {
     request_list_animation_duration: 1
-  }
+  },
+  day_schadule: ["10 - 11 :", "11 - 12 :", "13 - 14 :", "14 - 15 :", "16 - 17 :", "17 - 18 :", "19 - 20 :"],
 };

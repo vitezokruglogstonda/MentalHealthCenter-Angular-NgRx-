@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { switchMap } from "rxjs";
-import { TherapistsPatientListItem } from "src/app/models/therapist";
+import { TherapistsPatientListItem, TherapistsScheduleListItem } from "src/app/models/therapist";
 import { TherapistService } from "src/app/services/therapist.service";
 import { AppState } from "../app.state";
 import * as TherapistActions from "./therapist.action";
@@ -26,5 +26,17 @@ export class TherapistEffects{
         )
     );
 
+    loadScheduleForDate = createEffect(() => 
+        this.actions$.pipe(
+            ofType(TherapistActions.loadTherapistsScheduleForDate),
+            switchMap((action) =>
+                this.therapistService.getSchedule(action.therapistId, action.date).pipe(
+                    switchMap((appointments: TherapistsScheduleListItem[]) => {
+                        return [TherapistActions.loadTherapistsScheduleForDateSuccess({appointmentList: appointments})];
+                    })
+                )
+            )
+        )
+    );
 
 }

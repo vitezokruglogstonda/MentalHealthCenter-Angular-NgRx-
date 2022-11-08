@@ -49,7 +49,7 @@ import { OperatorDashboardComponent } from './components/operator-dashboard/oper
 import { helpCallRequestsReducer } from './store/operator-dashboard/operator-dashboard.reducer';
 import { OperatorEffects } from './store/operator-dashboard/operator-dashboard.effects';
 import { TherapistComponent } from './components/therapist/therapist.component';
-import { therapistReducer } from './store/therapist/therapist.reducer';
+import { therapistPatientListReducer, therapistScheduleListReducer } from './store/therapist/therapist.reducer';
 import { TherapistEffects } from './store/therapist/therapist.effects';
 import { ScheduleCardComponent } from './components/schedule-card/schedule-card.component';
 //import { RegisterComponent } from './components/register/register.component';
@@ -77,7 +77,8 @@ import { ScheduleCardComponent } from './components/schedule-card/schedule-card.
       sidenavInfo: sidenavItemsReducer,
       userInfo: userReducer,
       helpCallRequestList: helpCallRequestsReducer,
-      therapistsPatientList: therapistReducer,
+      therapistsPatientList: therapistPatientListReducer,
+      therapistsScheduleList: therapistScheduleListReducer,
     }),
     EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects, TherapistEffects]),
     StoreDevtoolsModule.instrument({

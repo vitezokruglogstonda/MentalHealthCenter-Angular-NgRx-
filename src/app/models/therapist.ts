@@ -15,3 +15,15 @@ export interface TherapistsPatientListItem{
 export interface TherapistsPatientListState extends EntityState<TherapistsPatientListItem>{
 
 }
+
+export interface TherapistsScheduleListItem{
+    id: number;
+    therapistID: number,
+    date: String,
+    appointmentNumber: number,
+    patientId: number
+}
+
+export interface TherapistsScheduleListState extends EntityState<TherapistsScheduleListItem>{
+
+}

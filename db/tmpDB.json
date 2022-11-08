@@ -144,5 +144,14 @@
       "password": "sadsad",
       "therapistID": 4
     }
+  ],
+  "scadule": [
+    {
+      "id": 1,
+      "therapistId": 4,
+      "date": "06.11.2022.",
+      "appointmentNumber": 2,
+      "patientId": 1
+    }
   ]
 }
