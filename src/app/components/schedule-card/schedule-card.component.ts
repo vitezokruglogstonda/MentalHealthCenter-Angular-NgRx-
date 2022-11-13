@@ -51,63 +51,64 @@ export class ScheduleCardComponent implements OnInit {
   }
 
   fillSchedule(){
-    this.dateString = this.convertDate(this.date as Date);
-    this.store.select(selectTherapistsScheduleListByDate(this.dateString)).pipe(take(1)).subscribe((state) => {
-      if(state.length !== 0){
-        this.dispatched = true;
-        this.appointmentsLabel.forEach((label, i) => {
-          let schaduleItem: TherapistsScheduleListItem | undefined = state.find(item => 
-            item?.appointmentNumber === i
-          );
-          if(schaduleItem !== undefined){
-            this.store.select(selectTherapistsPatient(schaduleItem?.patientId as number))
-              .pipe(
-                take(1)
-              )
-              .subscribe( (patient) => {
-                this.appointments[i] = [schaduleItem as TherapistsScheduleListItem, patient as TherapistsPatientListItem];
-              })
-              .unsubscribe();
-          }
-          else{
-            this.appointments[i] = null;
-          }
-        });
-      }
-      else if(!this.dispatched){
-        this.store.dispatch(loadTherapistsScheduleForDate({therapistId: (this.therapistId as number), date: this.dateString}))
-        this.dispatched = true;
-      }
-    }).unsubscribe();
-
-    environment.day_schadule.forEach((label, i) => {
-      this.appointments[i] = null;
-    });
-
-    this.store.select(selectTherapistsScheduleListByDate(this.dateString)).subscribe((state) => {
-      if(state.length !== 0){
-        this.dispatched = true;
-        this.appointmentsLabel.forEach((label, i) => {
-          let schaduleItem: TherapistsScheduleListItem | undefined = state.find(item => 
-            item?.appointmentNumber === i
-          );
-          if(schaduleItem !== undefined){
-            this.store.select(selectTherapistsPatient(schaduleItem?.patientId as number))
-              .pipe(
-                take(1)
-              )
-              .subscribe( (patient) => {
-                this.appointments[i] = [schaduleItem as TherapistsScheduleListItem, patient as TherapistsPatientListItem];
-              })
-              .unsubscribe();
-          }
-          else{
-            this.appointments[i] = null;
-          }
-        });
-      }
-    });
-
+    if(this.date){
+      this.dateString = this.convertDate(this.date as Date);
+      this.store.select(selectTherapistsScheduleListByDate(this.dateString)).pipe(take(1)).subscribe((state) => {
+        if(state.length !== 0){
+          this.dispatched = true;
+          this.appointmentsLabel.forEach((label, i) => {
+            let schaduleItem: TherapistsScheduleListItem | undefined = state.find(item => 
+              item?.appointmentNumber === i
+            );
+            if(schaduleItem !== undefined){
+              this.store.select(selectTherapistsPatient(schaduleItem?.patientId as number))
+                .pipe(
+                  take(1)
+                )
+                .subscribe( (patient) => {
+                  this.appointments[i] = [schaduleItem as TherapistsScheduleListItem, patient as TherapistsPatientListItem];
+                })
+                .unsubscribe();
+            }
+            else{
+              this.appointments[i] = null;
+            }
+          });
+        }
+        else if(!this.dispatched){
+          this.store.dispatch(loadTherapistsScheduleForDate({therapistId: (this.therapistId as number), date: this.dateString}))
+          this.dispatched = true;
+        }
+      }).unsubscribe();
+  
+      environment.day_schadule.forEach((label, i) => {
+        this.appointments[i] = null;
+      });
+  
+      this.store.select(selectTherapistsScheduleListByDate(this.dateString)).subscribe((state) => {
+        if(state.length !== 0){
+          this.dispatched = true;
+          this.appointmentsLabel.forEach((label, i) => {
+            let schaduleItem: TherapistsScheduleListItem | undefined = state.find(item => 
+              item?.appointmentNumber === i
+            );
+            if(schaduleItem !== undefined){
+              this.store.select(selectTherapistsPatient(schaduleItem?.patientId as number))
+                .pipe(
+                  take(1)
+                )
+                .subscribe( (patient) => {
+                  this.appointments[i] = [schaduleItem as TherapistsScheduleListItem, patient as TherapistsPatientListItem];
+                })
+                .unsubscribe();
+            }
+            else{
+              this.appointments[i] = null;
+            }
+          });
+        }
+      });
+    }
   }
 
   convertDate(dateObject: Date) : string{

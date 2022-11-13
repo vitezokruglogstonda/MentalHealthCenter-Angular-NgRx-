@@ -20,11 +20,13 @@ export class TherapistComponent implements OnInit {
   public patientList: (TherapistsPatientListItem | undefined)[];
   public selected = new FormControl(0);
   public selectedDate: Date | null;
+  public upcomingScheduleDate: Date;
 
   constructor(private store: Store<AppState>) { 
     this.therapistId = null;
     this.patientList = [];
     this.selectedDate = new Date();
+    this.upcomingScheduleDate = new Date();
   }
 
   ngOnInit(): void {
@@ -40,6 +42,56 @@ export class TherapistComponent implements OnInit {
     // this.calendar.selectedChange.subscribe(x => {
     //   console.log(x);
     // });
+    this.upcomingScheduleDate = this.getUpcomingSchaduleDate();
+    this.selectedDate = this.upcomingScheduleDate;
+  }
+
+  getUpcomingSchaduleDate(): Date{
+    let returnDate: Date = new Date();    
+    let dayIncrement;
+    if(this.selectedDate){
+      let rawStringDate: string = this.selectedDate?.toString();
+      let rawStringDate_decomposed: string[] = rawStringDate?.split(" ", 4);
+      switch (rawStringDate_decomposed[0]) {
+        case "Sat": {
+          dayIncrement = 2;
+          break;
+        }
+        case "Sun": {
+          dayIncrement = 1;
+          break;
+        }
+        default: {
+          dayIncrement = 0;
+          break;
+        }
+      }
+    }
+    returnDate.setDate(returnDate.getDate() + (dayIncrement as number));
+    return returnDate;
+  }
+
+  filterCalendar = (d: Date): boolean => {
+    let rawStringDate: string = d.toString();
+    let rawStringDate_decomposed: string[] = rawStringDate?.split(" ", 4);
+    let dayOfWeek: number;
+    switch (rawStringDate_decomposed[0]) {
+      case "Sat": {
+        dayOfWeek = 6;
+        break;
+      }
+      case "Sun": {
+        dayOfWeek = 7;
+        break;
+      }
+      default: {
+        dayOfWeek = 0;
+        break;
+      }
+    }
+    if(dayOfWeek === 6 || dayOfWeek === 7)
+      return false;
+    return true;
   }
 
   tabChange(index: number){
