@@ -82,7 +82,7 @@ import { ScheduleCardComponent } from './components/schedule-card/schedule-card.
     }),
     EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects, TherapistEffects]),
     StoreDevtoolsModule.instrument({
-      maxAge: 20, 
+      maxAge: 7, 
       autoPause: true
     }),
     AppRoutingModule,

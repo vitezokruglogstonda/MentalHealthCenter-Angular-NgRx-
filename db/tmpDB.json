@@ -149,9 +149,30 @@
     {
       "id": 1,
       "therapistId": 4,
-      "date": "06.11.2022.",
-      "appointmentNumber": 2,
+      "date": "13.11.2022.",
+      "appointmentNumber": 0,
       "patientId": 1
+    },
+    {
+      "id": 2,
+      "therapistId": 4,
+      "date": "13.11.2022.",
+      "appointmentNumber": 1,
+      "patientId": 2
+    },
+    {
+      "id": 3,
+      "therapistId": 4,
+      "date": "13.11.2022.",
+      "appointmentNumber": 3,
+      "patientId": 5
+    },
+    {
+      "id": 4,
+      "therapistId": 4,
+      "date": "14.11.2022.",
+      "appointmentNumber": 4,
+      "patientId": 5
     }
   ]
 }

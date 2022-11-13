@@ -6,29 +6,22 @@ export const selectTherapistsPatientList = createSelector(
     (therapistsPatientList) => therapistsPatientList.ids.map(id => therapistsPatientList.entities[id])
 ); 
 
-export const selectTherapistsPatient = (ids: number[]) => createSelector(
+export const selectTherapistsPatient = (patientId: number) => createSelector(
     selectTherapistsPatientList,
-    (therapistsPatientList) => therapistsPatientList.filter((patient) => {
+    (therapistsPatientList) => therapistsPatientList.find((patient) => {
         if(patient)
             if(patient.id)
-                return ids.includes(patient.id);
+                return patient.id === patientId;
         return null;
     })
 );
 
 export const selectTherapistsScheduleList = createSelector(
     (state: AppState) => state.therapistsScheduleList,
-    (therapistsScheduleList) => therapistsScheduleList
+    (therapistsScheduleList) => therapistsScheduleList.ids.map(id => therapistsScheduleList.entities[id])
 );
 
 export const selectTherapistsScheduleListByDate = (date: String) => createSelector(
     selectTherapistsScheduleList,
-    (therapistsScheduleList) => therapistsScheduleList.ids.map(id => {
-        if(therapistsScheduleList.entities[id]?.date===date){
-            return therapistsScheduleList.entities[id]
-        }else{
-            return null;
-        }
-    })
-    //ili da vrati niz ceo pa profiltriraj datum (da ne filtrira entity)?
+    (therapistsScheduleList) => therapistsScheduleList.filter( item => item?.date === date)
 );
