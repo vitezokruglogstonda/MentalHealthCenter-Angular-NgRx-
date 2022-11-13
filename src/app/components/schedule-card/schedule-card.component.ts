@@ -17,15 +17,17 @@ export class ScheduleCardComponent implements OnInit {
 
   @Input() therapistId: number | null;
   @Input() date: Date | null;
+  @Input() upcomingLabel: boolean;
   public customDate: CustomDate;
   public dateString: String;
   public appointmentsLabel: String[];
   public appointments: Array<[TherapistsScheduleListItem, TherapistsPatientListItem] | null>;
-  public dispatched: boolean;
+  public dispatched: boolean;  
 
   constructor(private store: Store<AppState>) {
     this.therapistId = null;
     this.date = null;
+    this.upcomingLabel = false;
     this.customDate = {
       year: 0,
       month: 0,
@@ -48,6 +50,15 @@ export class ScheduleCardComponent implements OnInit {
   ngOnChanges(){
     this.dispatched = false;
     this.fillSchedule();
+  }
+
+  headerText(): string{
+    let text: string = "";
+    if(this.upcomingLabel){
+      text += environment.upcomingLabelText;
+    }
+    text += this.dateString;
+    return text;
   }
 
   fillSchedule(){

@@ -28,13 +28,13 @@
         <mat-tab label="Schedule">
             <div class="schedule-container">
                 <div class="upcoming">
-                    <app-schedule-card [date]="upcomingScheduleDate" [therapistId]="therapistId"></app-schedule-card>
+                    <app-schedule-card [date]="upcomingScheduleDate" [therapistId]="therapistId" [upcomingLabel]="true"></app-schedule-card>
                 </div>
                 <div class="calendar-container">
                     <mat-card class="calendar-card">
-                        <mat-calendar class="calendar" [(selected)]="selectedDate" [dateFilter]="filterCalendar" [minDate]="selectedDate"></mat-calendar>
+                        <mat-calendar class="calendar" [(selected)]="selectedDate" [dateFilter]="filterCalendar" [minDate]="upcomingScheduleDate"></mat-calendar>
                         <mat-divider [vertical]="true"></mat-divider>
-                        <app-schedule-card [date]="selectedDate" [therapistId]="therapistId"></app-schedule-card>
+                        <app-schedule-card [date]="selectedDate" [therapistId]="therapistId" class="schedule-card-div"></app-schedule-card>
                     </mat-card>
                 </div>
             </div>

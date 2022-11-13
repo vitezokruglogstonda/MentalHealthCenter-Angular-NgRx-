@@ -1,13 +1,19 @@
 <mat-card class="schedule-card">
     <div class="header">
-        <h3>{{dateString}}</h3>
+        <h3>{{headerText()}}</h3>
     </div>
     <mat-divider class="devider-line"></mat-divider>
     <div class="schedule-list">
-        <div *ngFor="let appointment of appointmentsLabel; let i = index" class="appointment">
+        <div *ngFor="let appointment of appointmentsLabel; let i = index" class="appointment-list">
             <p>{{appointment}}</p>
-            <div *ngIf="appointments[i]">
-                {{appointments[i]}}
+            <!-- <div *ngIf="!appointments[i]" class="empty-div">&nbsp;</div> -->
+            <div *ngIf="appointments[i]" class="appointment">
+                <div class="image-container">
+                    <img class="patient-picture" src={{appointments[i]![1].profilePicturePath}} />
+                </div>
+                <div>
+                    <p>{{appointments[i]![1].firstName}} {{appointments[i]![1].lastName}}</p>
+                </div>
             </div>
         </div>
     </div>
