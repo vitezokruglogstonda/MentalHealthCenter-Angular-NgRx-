@@ -40,7 +40,8 @@ export class UserService {
                 profilePicturePath: environment.account_icon_basic_URL,
                 password: registerDto.password,
                 therapistID: null,
-                note: ""
+                note: "",
+                description: "",
             }
         }
         let registerQuerry: String = `users`;

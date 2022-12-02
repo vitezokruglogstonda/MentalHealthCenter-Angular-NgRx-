@@ -21,7 +21,8 @@ export const initialState: User = {
     profilePicturePath: "",
     password: "",
     therapistID: null,
-    note: ""
+    note: "",
+    description: "",
 };
 
 export const userReducer = createReducer(

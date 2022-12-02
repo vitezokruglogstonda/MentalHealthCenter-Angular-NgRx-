@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { OperatorDashboardComponent } from './components/operator-dashboard/operator-dashboard.component';
+import { PatientComponent } from './components/patient/patient.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TherapistComponent } from './components/therapist/therapist.component';
 
@@ -22,10 +23,14 @@ const routes: Routes = [
   {
     path: "therapist",
     component: TherapistComponent
+  },
+  {
+    path: "patient",
+    component: PatientComponent
   }
 ];
 
-export const routingComponents = [HomePageComponent, RegisterComponent, OperatorDashboardComponent, TherapistComponent];
+export const routingComponents = [HomePageComponent, RegisterComponent, OperatorDashboardComponent, TherapistComponent, PatientComponent];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

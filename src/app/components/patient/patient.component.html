@@ -1,0 +1,30 @@
+<div class="patient-container">
+    <h2>{{pageTitle}}</h2>
+    <mat-divider class="devider-line"></mat-divider>
+
+    <mat-accordion class="therapist-section">
+        <div *ngFor="let therapist of therapistList; let i = index" class="therapist-list">
+            <mat-expansion-panel *ngIf="therapist" class="therapist-list-item">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="image-container">
+                            <img class="therapist-picture" src={{therapist.profilePicturePath}} />
+                        </div>
+                        <p class="therapist-name">{{therapist.firstName}} {{therapist.lastName}}</p>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="therapist-info">
+                    <div class="therapist-detail">
+                        <p>E-mail: {{therapist.email}}</p>
+                        <p>Phone number: {{therapist.phoneNumber}}</p>
+                        <p>Gender: {{therapist.gender}}</p>
+                    </div>
+                    <div class="therapist-description">
+                        <p>{{therapist.description}}</p>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </div>
+    </mat-accordion>
+</div>
+<app-footer-component class="footer"></app-footer-component>

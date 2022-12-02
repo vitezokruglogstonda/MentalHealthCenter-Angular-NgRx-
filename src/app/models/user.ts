@@ -11,9 +11,12 @@ export interface User {
     phoneNumber: String;
     profilePicturePath: String;
     password: String;
+    //ovo izbrisi (imaju samo pacijenti, u posebnoj tabeli)
     therapistID: number | null;
-    //ovo izbrisi
+    //ovo isto izbrisi (imaju samo pacijenti, u posebnoj tabeli)
     note: String;
+    //i ovo izbrisi (imaju samo terapeuti, u posebnoj tabeli)
+    description: String;
 }
 
 export enum UserType {

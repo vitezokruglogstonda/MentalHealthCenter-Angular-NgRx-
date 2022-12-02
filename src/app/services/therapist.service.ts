@@ -62,7 +62,8 @@ export class TherapistService {
                     userType: users[0].userType,
                     profilePicturePath: users[0].profilePicturePath,
                     therapistID: users[0].therapistID,
-                    note: note
+                    note: note,
+                    description: users[0].description
                 };
                 return this.http.put<User[]>(environment.json_server_url + `users/${users[0].id}`, newVersion).pipe(
                     switchMap(() => {

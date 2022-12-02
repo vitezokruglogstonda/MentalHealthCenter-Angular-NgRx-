@@ -1,0 +1,90 @@
+.patient-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.patient-container h2{
+    margin-top: 5%;
+}
+
+.devider-line{
+    width: 70%;
+    margin-bottom: 2%;
+}
+
+.therapist-section{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.therapist-list{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.therapist-list-item{
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20x;
+}
+
+.therapist-name{
+    font-size: larger;
+    font-weight: 400;
+    padding-top: 10px;
+}
+
+.image-container{
+    border-radius: 50%;
+    background-color: #c6cad6;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.therapist-picture{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.therapist-info{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.therapist-detail{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.therapist-description{
+    border-radius: 10px;
+    width: 40%;
+    height: 100%;
+    border: 2px solid #c6cad6;
+}
+
+.therapist-description p{
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}

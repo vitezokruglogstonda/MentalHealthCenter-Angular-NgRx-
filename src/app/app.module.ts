@@ -52,6 +52,9 @@ import { TherapistComponent } from './components/therapist/therapist.component';
 import { therapistPatientListReducer, therapistScheduleListReducer } from './store/therapist/therapist.reducer';
 import { TherapistEffects } from './store/therapist/therapist.effects';
 import { ScheduleCardComponent } from './components/schedule-card/schedule-card.component';
+import { PatientComponent } from './components/patient/patient.component';
+import { patientsTherapistListReducer } from './store/patient/patient.reducer';
+import { PatientEffects } from './store/patient/patient.effects';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -68,6 +71,7 @@ import { ScheduleCardComponent } from './components/schedule-card/schedule-card.
     OperatorDashboardComponent,
     TherapistComponent,
     ScheduleCardComponent,
+    PatientComponent,
   ],
   entryComponents:[UploadPictureDialogComponent],
   imports: [
@@ -79,8 +83,9 @@ import { ScheduleCardComponent } from './components/schedule-card/schedule-card.
       helpCallRequestList: helpCallRequestsReducer,
       therapistsPatientList: therapistPatientListReducer,
       therapistsScheduleList: therapistScheduleListReducer,
+      patientsTherapistList: patientsTherapistListReducer,
     }),
-    EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects, TherapistEffects]),
+    EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects, TherapistEffects, PatientEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 7, 
       autoPause: true
