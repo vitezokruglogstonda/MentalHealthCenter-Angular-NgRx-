@@ -7,6 +7,8 @@ import { TherapistService } from "src/app/services/therapist.service";
 import { AppState } from "../app.state";
 import * as TherapistActions from "./therapist.action";
 
+
+
 @Injectable()
 export class TherapistEffects{
     constructor(private actions$: Actions, private therapistService: TherapistService, private store: Store<AppState>) { }
@@ -25,6 +27,21 @@ export class TherapistEffects{
             )
         )
     );
+
+    updateNote = createEffect(() =>
+        this.actions$.pipe(
+            ofType(TherapistActions.updateNote),
+            switchMap((action) => 
+                this.therapistService.updateNoteForPatient(action.patientId, action.note).pipe(
+                    switchMap((patient: TherapistsPatientListItem) => {
+                        return [
+                            TherapistActions.updateNoteSuccess({patient: patient})
+                        ];
+                    })
+                )
+            )
+        )
+    )
 
     loadScheduleForDate = createEffect(() => 
         this.actions$.pipe(

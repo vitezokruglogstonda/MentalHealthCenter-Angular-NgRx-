@@ -1,4 +1,4 @@
-import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
+import { createEntityAdapter, EntityAdapter, Update } from "@ngrx/entity";
 import { createReducer, on } from "@ngrx/store";
 import { TherapistsPatientListItem, TherapistsPatientListState, TherapistsScheduleListItem, TherapistsScheduleListState } from "src/app/models/therapist";
 import * as TherapistActions from "./therapist.action";
@@ -15,6 +15,12 @@ export const therapistPatientListReducer = createReducer(
     })),
     on(TherapistActions.loadTherapistsPatientsSuccess, (state, {items}) => {
         return therapistsPatientListAdapter.addMany(items, state);
+    }),
+    on(TherapistActions.updateNote, (state, {patientId, note}) => ({
+        ...state
+    })),
+    on(TherapistActions.updateNoteSuccess, (state, {patient}) => {
+        return therapistsPatientListAdapter.updateOne({id: (patient.id as number), changes: patient}, state);
     })
 );
 

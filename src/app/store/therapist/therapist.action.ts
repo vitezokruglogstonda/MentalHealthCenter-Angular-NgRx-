@@ -5,3 +5,5 @@ export const loadTherapistsPatients = createAction("Load Patient List For Therap
 export const loadTherapistsPatientsSuccess = createAction("Load Patient List For Therapist - Success", props<{items: TherapistsPatientListItem[]}>());
 export const loadTherapistsScheduleForDate = createAction("Load Schedule For Date", props<{therapistId: number, date: String}>());
 export const loadTherapistsScheduleForDateSuccess = createAction("Load Schedule For Date - Success", props<{appointmentList: TherapistsScheduleListItem[]}>());
+export const updateNote = createAction("Update Note For Patient", props<{patientId: number, note: String}>());
+export const updateNoteSuccess = createAction("Update Note For Patient - Success", props<{patient: TherapistsPatientListItem}>());

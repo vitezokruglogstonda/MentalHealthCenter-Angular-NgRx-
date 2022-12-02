@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { TherapistsPatientListItem } from 'src/app/models/therapist';
 import { CustomDate } from 'src/app/models/user';
 import { AppState } from 'src/app/store/app.state';
-import { loadTherapistsPatients } from 'src/app/store/therapist/therapist.action';
+import { loadTherapistsPatients, updateNote } from 'src/app/store/therapist/therapist.action';
 import { selectTherapistsPatientList } from 'src/app/store/therapist/therapist.selector';
 import { selectUserId } from 'src/app/store/user/user.selector';
 
@@ -21,12 +21,14 @@ export class TherapistComponent implements OnInit {
   public selected = new FormControl(0);
   public selectedDate: Date | null;
   public upcomingScheduleDate: Date;
+  public notes: String[];
 
   constructor(private store: Store<AppState>) { 
     this.therapistId = null;
     this.patientList = [];
     this.selectedDate = new Date();
     this.upcomingScheduleDate = new Date();
+    this.notes = [];
   }
 
   ngOnInit(): void {
@@ -35,8 +37,13 @@ export class TherapistComponent implements OnInit {
     })
     this.store.dispatch(loadTherapistsPatients({therapistId: (this.therapistId as number)}));
     this.store.select(selectTherapistsPatientList).subscribe((state) => {
+      if(this.patientList.length !== 0){
+        this.patientList = [];
+        this.notes = [];
+      }
       state.forEach((el: TherapistsPatientListItem | undefined) => {
         this.patientList.push(el);
+        this.notes.push(el?.note as String);
       })
     });
     // this.calendar.selectedChange.subscribe(x => {
@@ -117,6 +124,11 @@ export class TherapistComponent implements OnInit {
     return patientAge.toString();
   }
 
+  noteUpdate(ev: Event){
+    let index: number= Number((event?.srcElement as HTMLElement).id);
+    let patientId : number = Number(this.patientList[index]?.id);
+    this.store.dispatch(updateNote({patientId: patientId, note: this.notes[index]}));
+  }
 
 
 }

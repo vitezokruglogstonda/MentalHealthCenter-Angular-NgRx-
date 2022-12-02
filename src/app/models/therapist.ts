@@ -10,6 +10,7 @@ export interface TherapistsPatientListItem{
     gender: String;
     phoneNumber: String;
     profilePicturePath: String;
+    note: String;
 }
 
 export interface TherapistsPatientListState extends EntityState<TherapistsPatientListItem>{

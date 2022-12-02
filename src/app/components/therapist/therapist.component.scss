@@ -65,8 +65,20 @@
 
 .patient-info{
     display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.patient-detail{
+    display:flex;
     flex-direction: column;
     flex-wrap: wrap;
+}
+
+.patient-note-input{
+    height: 100%;
+    width: 40%;
 }
 
 .schedule-container{

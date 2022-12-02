@@ -38,7 +38,7 @@
       "id": 1,
       "guestName": "Lik 1",
       "guestPhoneNumber": "0649807810",
-      "processed": false
+      "processed": true
     },
     {
       "id": 2,
@@ -50,6 +50,12 @@
       "id": 3,
       "guestName": "Lik 3",
       "guestPhoneNumber": "0948513545",
+      "processed": false
+    },
+    {
+      "id": 4,
+      "guestName": "sdlkjfnos",
+      "guestPhoneNumber": "4444444444",
       "processed": false
     }
   ],
@@ -70,7 +76,8 @@
       "JWT": "",
       "userType": 2,
       "profilePicturePath": "/assets/UserData/user1.png",
-      "therapistID": 4
+      "therapistID": 4,
+      "note": "bla blaq bla"
     },
     {
       "id": 2,
@@ -88,7 +95,8 @@
       "JWT": "",
       "userType": 2,
       "profilePicturePath": "/assets/UserData/user1.png",
-      "therapistID": 4
+      "therapistID": 4,
+      "note": ""
     },
     {
       "id": 3,
@@ -106,7 +114,8 @@
       "userType": 2,
       "profilePicturePath": "/assets/UserData/user1.png",
       "password": "aaaaaa",
-      "therapistID": null
+      "therapistID": null,
+      "note": ""
     },
     {
       "id": 4,
@@ -124,7 +133,8 @@
       "userType": 1,
       "profilePicturePath": "/assets/UserData/user1.png",
       "password": "budala",
-      "therapistID": null
+      "therapistID": null,
+      "note": ""
     },
     {
       "id": 5,
@@ -142,35 +152,36 @@
       "userType": 2,
       "profilePicturePath": "/assets/Icons/account_icon.png",
       "password": "sadsad",
-      "therapistID": 4
+      "therapistID": 4,
+      "note": "nesto nesto nesto nesto nesto nesto nesto nesto nesto nesto nesto "
     }
   ],
-  "scadule": [
+  "schedule": [
     {
       "id": 1,
       "therapistId": 4,
-      "date": "15.11.2022.",
+      "date": "25.11.2022.",
       "appointmentNumber": 0,
       "patientId": 1
     },
     {
       "id": 2,
       "therapistId": 4,
-      "date": "15.11.2022.",
+      "date": "25.11.2022.",
       "appointmentNumber": 1,
       "patientId": 2
     },
     {
       "id": 3,
       "therapistId": 4,
-      "date": "15.11.2022.",
+      "date": "25.11.2022.",
       "appointmentNumber": 3,
       "patientId": 5
     },
     {
       "id": 4,
       "therapistId": 4,
-      "date": "14.11.2022.",
+      "date": "26.11.2022.",
       "appointmentNumber": 4,
       "patientId": 5
     }

@@ -12,6 +12,8 @@ export interface User {
     profilePicturePath: String;
     password: String;
     therapistID: number | null;
+    //ovo izbrisi
+    note: String;
 }
 
 export enum UserType {
