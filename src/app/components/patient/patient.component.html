@@ -2,9 +2,9 @@
     <h2>{{pageTitle}}</h2>
     <mat-divider class="devider-line"></mat-divider>
 
-    <mat-accordion class="therapist-section">
+    <mat-accordion *ngIf="showTherapistList" class="therapist-section" multi="true">
         <div *ngFor="let therapist of therapistList; let i = index" class="therapist-list">
-            <mat-expansion-panel *ngIf="therapist" class="therapist-list-item">
+            <mat-expansion-panel *ngIf="therapist" class="therapist-list-item" (opened)="expandItem()" (closed)="shrinkItem()">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <div class="image-container">
@@ -13,18 +13,36 @@
                         <p class="therapist-name">{{therapist.firstName}} {{therapist.lastName}}</p>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div class="therapist-info">
-                    <div class="therapist-detail">
-                        <p>E-mail: {{therapist.email}}</p>
-                        <p>Phone number: {{therapist.phoneNumber}}</p>
-                        <p>Gender: {{therapist.gender}}</p>
+                <div class="therapist-info-div">
+                    <div class="therapist-info">
+                        <div class="therapist-big-picture">
+                            <img src={{therapist.profilePicturePath}} />
+                        </div>
+                        <div class="therapist-detail">
+                            <p>E-mail: {{therapist.email}}</p>
+                            <p>Phone number: {{therapist.phoneNumber}}</p>
+                            <p>Gender: {{therapist.gender}}</p>
+                        </div>
+                        <div class="therapist-description">
+                            <p>{{therapist.description}}</p>
+                        </div>
                     </div>
-                    <div class="therapist-description">
-                        <p>{{therapist.description}}</p>
-                    </div>
+                    <button mat-raised-button class="choose-button" id="{{therapist.id}}" color="primary" (click)="chooseTherapist($event)">Choose this therapist</button>
                 </div>
             </mat-expansion-panel>
         </div>
     </mat-accordion>
+    <div *ngIf="showSchedule" class="schedule-section">
+        <mat-card class="calendar-card">
+            <mat-calendar class="calendar" [(selected)]="selectedDate" [dateFilter]="filterCalendar"
+                [minDate]="upcomingScheduleDate"></mat-calendar>
+        </mat-card>
+        <!-- <div class="calendar-container">
+            <mat-card class="calendar-card">
+                <mat-calendar class="calendar" [(selected)]="selectedDate" [dateFilter]="filterCalendar"
+                    [minDate]="upcomingScheduleDate"></mat-calendar>
+            </mat-card>
+        </div> -->
+    </div>
 </div>
-<app-footer-component class="footer"></app-footer-component>
+<app-footer-component class="footer1"></app-footer-component>

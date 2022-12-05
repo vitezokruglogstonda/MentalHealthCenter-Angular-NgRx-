@@ -36,4 +36,7 @@ export const userReducer = createReducer(
     })),
     on(Actions.register, (state, {registerDto}) => ({...state})),
     on(Actions.checkEmail, (state, {mail}) => ({...state})),
+    on(Actions.chooseTherapistSuccess, (state, {user}) => ({
+        ...user,
+    })),
 );

@@ -80,7 +80,7 @@ export const environment = {
   day_schadule: ["10 - 11 :", "11 - 12 :", "13 - 14 :", "14 - 15 :", "16 - 17 :", "17 - 18 :", "19 - 20 :"],
   upcomingLabelText: "Upcoming: ",
   patient_page:{
-    page_title_chose_therapist: "Chose your therapist",
-    page_title_schedule: "Your schedule",
+    page_title_chose_therapist: "Choose your therapist",
+    page_title_schedule: "Your therapy schedule",
   }
 };

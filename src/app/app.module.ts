@@ -53,7 +53,7 @@ import { therapistPatientListReducer, therapistScheduleListReducer } from './sto
 import { TherapistEffects } from './store/therapist/therapist.effects';
 import { ScheduleCardComponent } from './components/schedule-card/schedule-card.component';
 import { PatientComponent } from './components/patient/patient.component';
-import { patientsTherapistListReducer } from './store/patient/patient.reducer';
+import { patientReducer, patientsTherapistListReducer } from './store/patient/patient.reducer';
 import { PatientEffects } from './store/patient/patient.effects';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
@@ -84,6 +84,7 @@ import { PatientEffects } from './store/patient/patient.effects';
       therapistsPatientList: therapistPatientListReducer,
       therapistsScheduleList: therapistScheduleListReducer,
       patientsTherapistList: patientsTherapistListReducer,
+      patientsTherapist: patientReducer,
     }),
     EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects, TherapistEffects, PatientEffects]),
     StoreDevtoolsModule.instrument({

@@ -83,7 +83,7 @@
       "profilePicturePath": "/assets/UserData/user1.png",
       "therapistID": 4,
       "note": "bla blaq bla",
-      "description":""
+      "description": ""
     },
     {
       "id": 2,
@@ -101,9 +101,9 @@
       "JWT": "",
       "userType": 2,
       "profilePicturePath": "/assets/UserData/user1.png",
-      "therapistID": null,
+      "therapistID": 4,
       "note": "",
-      "description":""
+      "description": ""
     },
     {
       "id": 3,
@@ -123,13 +123,13 @@
       "password": "aaaaaa",
       "therapistID": null,
       "note": "",
-      "description":""
+      "description": ""
     },
     {
       "id": 4,
       "email": "rajko@r.com",
-      "firstName": "asdasd",
-      "lastName": "wae2e",
+      "firstName": "Rajko",
+      "lastName": "Specko",
       "birthDate": {
         "year": 2022,
         "month": 10,
@@ -163,35 +163,103 @@
       "password": "sadsad",
       "therapistID": 4,
       "note": "nesto nesto nesto nesto nesto nesto nesto nesto nesto nesto nesto ",
-      "description":""
+      "description": ""
+    },
+    {
+      "id": 6,
+      "email": "rajko@r.com",
+      "firstName": "Budaletina",
+      "lastName": "Kompletna",
+      "birthDate": {
+        "year": 2022,
+        "month": 10,
+        "day": 13
+      },
+      "gender": "Male",
+      "phoneNumber": "2132131241",
+      "JWT": "",
+      "userType": 1,
+      "profilePicturePath": "/assets/UserData/user1.png",
+      "password": "budala",
+      "therapistID": null,
+      "note": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tristique velit vitae magna pretium, vitae euismod libero maximus. Fusce sodales egestas erat. Cras hendrerit venenatis justo, vel ornare justo rhoncus vel. Quisque mauris metus, placerat ac eros at, facilisis viverra orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas tempor ullamcorper ante vitae congue. In aliquam eleifend finibus. In hac habitasse platea dictumst. Nunc vulputate, eros ut viverra eleifend, dolor mi blandit elit, molestie semper ipsum metus at lorem. Nunc faucibus tortor sed nisl aliquet imperdiet. Nullam bibendum eget turpis id rhoncus. Vivamus suscipit vel urna id vulputate. Aliquam sodales vestibulum augue vestibulum mollis."
+    },
+    {
+      "id": 7,
+      "email": "rajko@r.com",
+      "firstName": "Cisti",
+      "lastName": "Slepac",
+      "birthDate": {
+        "year": 2022,
+        "month": 10,
+        "day": 13
+      },
+      "gender": "Female",
+      "phoneNumber": "2132131241",
+      "JWT": "",
+      "userType": 1,
+      "profilePicturePath": "/assets/UserData/user1.png",
+      "password": "budala",
+      "therapistID": null,
+      "note": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tristique velit vitae magna pretium, vitae euismod libero maximus. Fusce sodales egestas erat. Cras hendrerit venenatis justo, vel ornare justo rhoncus vel. Quisque mauris metus, placerat ac eros at, facilisis viverra orci. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas tempor ullamcorper ante vitae congue. In aliquam eleifend finibus. In hac habitasse platea dictumst. Nunc vulputate, eros ut viverra eleifend, dolor mi blandit elit, molestie semper ipsum metus at lorem. Nunc faucibus tortor sed nisl aliquet imperdiet. Nullam bibendum eget turpis id rhoncus. Vivamus suscipit vel urna id vulputate. Aliquam sodales vestibulum augue vestibulum mollis."
     }
   ],
   "schedule": [
     {
       "id": 1,
       "therapistId": 4,
-      "date": "25.11.2022.",
+      "date": "6.12.2022.",
       "appointmentNumber": 0,
       "patientId": 1
     },
     {
       "id": 2,
       "therapistId": 4,
-      "date": "25.11.2022.",
+      "date": "6.12.2022.",
       "appointmentNumber": 1,
       "patientId": 2
     },
     {
       "id": 3,
       "therapistId": 4,
-      "date": "25.11.2022.",
-      "appointmentNumber": 3,
-      "patientId": 5
+      "date": "6.12.2022.",
+      "appointmentNumber": 2,
+      "patientId": 2
     },
     {
       "id": 4,
       "therapistId": 4,
-      "date": "26.11.2022.",
+      "date": "6.12.2022.",
+      "appointmentNumber": 3,
+      "patientId": 5
+    },
+    {
+      "id": 5,
+      "therapistId": 4,
+      "date": "6.12.2022.",
+      "appointmentNumber": 4,
+      "patientId": 5
+    },
+    {
+      "id": 6,
+      "therapistId": 4,
+      "date": "6.12.2022.",
+      "appointmentNumber": 5,
+      "patientId": 5
+    },
+    {
+      "id": 7,
+      "therapistId": 4,
+      "date": "6.12.2022.",
+      "appointmentNumber": 6,
+      "patientId": 5
+    },
+    {
+      "id": 8,
+      "therapistId": 4,
+      "date": "7.12.2022.",
       "appointmentNumber": 4,
       "patientId": 5
     }
