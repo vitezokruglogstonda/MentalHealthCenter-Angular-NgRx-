@@ -4,7 +4,8 @@
 
     <mat-accordion *ngIf="showTherapistList" class="therapist-section" multi="true">
         <div *ngFor="let therapist of therapistList; let i = index" class="therapist-list">
-            <mat-expansion-panel *ngIf="therapist" class="therapist-list-item" (opened)="expandItem()" (closed)="shrinkItem()">
+            <mat-expansion-panel *ngIf="therapist" class="therapist-list-item" (opened)="expandItem()"
+                (closed)="shrinkItem()">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <div class="image-container">
@@ -27,7 +28,8 @@
                             <p>{{therapist.description}}</p>
                         </div>
                     </div>
-                    <button mat-raised-button class="choose-button" id="{{therapist.id}}" color="primary" (click)="chooseTherapist($event)">Choose this therapist</button>
+                    <button mat-raised-button class="choose-button" id="{{therapist.id}}" color="primary"
+                        (click)="chooseTherapist($event)">Choose this therapist</button>
                 </div>
             </mat-expansion-panel>
         </div>
@@ -36,13 +38,9 @@
         <mat-card class="calendar-card">
             <mat-calendar class="calendar" [(selected)]="selectedDate" [dateFilter]="filterCalendar"
                 [minDate]="upcomingScheduleDate"></mat-calendar>
+            <mat-divider [vertical]="true"></mat-divider>
+            <app-patient-schedule-card [date]="selectedDate" class="schedule-card-div"></app-patient-schedule-card>
         </mat-card>
-        <!-- <div class="calendar-container">
-            <mat-card class="calendar-card">
-                <mat-calendar class="calendar" [(selected)]="selectedDate" [dateFilter]="filterCalendar"
-                    [minDate]="upcomingScheduleDate"></mat-calendar>
-            </mat-card>
-        </div> -->
     </div>
 </div>
 <app-footer-component class="footer1"></app-footer-component>

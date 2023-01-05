@@ -80,13 +80,14 @@ export class PatientComponent implements OnInit {
     this.store.dispatch(PatientActions.loadTherapist({ therapistId }));
     this.store.select(selectTherapistDto).subscribe((state) => {
       this.therapistDto = {...state};
+      console.log(this.therapistDto)
     })
   }
 
   filterCalendar = (d: Date): boolean => {
-    if(this.therapistDto?.schedule?.length !== 0){      
-      this.findOccupiedDates();
-    }
+    // if(this.therapistDto !== null && this.therapistDto?.schedule !== null && this.therapistDto?.schedule?.length !== 0 ){      
+    //   this.findOccupiedDates();
+    // }
     //let time: string = d.toUTCString();
     let fullSchedule: Date | undefined = this.occupiedDates.find(el => {
       console.log(el.getDay())

@@ -1,0 +1,16 @@
+<mat-card class="schedule-card">
+    <div class="header">
+        <h3>{{headerText()}}</h3>
+    </div>
+    <mat-divider class="devider-line"></mat-divider>
+    <div class="schedule-list">
+        <div *ngFor="let label of appointmentsLabel; let i = index" class="appointment-list">
+            <p>{{label}}</p>
+            <p *ngIf="appointments[i]" class = "occupied">unavailable</p>
+            <!-- <p *ngIf="!appointments[i]" class = "free">free</p>        -->
+            <mat-chip-listbox *ngIf="!appointments[i]">
+                <mat-chip-option  class = "free">free</mat-chip-option>     
+            </mat-chip-listbox>      
+        </div>
+    </div>
+</mat-card>

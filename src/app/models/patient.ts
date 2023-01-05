@@ -22,7 +22,7 @@ export interface TherapistDto{
 }
 
 export interface TherapistInfoDto{
-    id: Number,
+    id: number,
     email: String,
     firstName: String,
     lastName: String,

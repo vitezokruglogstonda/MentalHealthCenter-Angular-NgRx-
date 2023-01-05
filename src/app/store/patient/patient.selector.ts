@@ -10,3 +10,8 @@ export const selectTherapistDto = createSelector(
     (state: AppState) => state.patientsTherapist,
     (patientsTherapist) => patientsTherapist
 );
+
+export const selectScheduleByDate = (date: String) => createSelector(
+    selectTherapistDto,
+    (therapistDto) => therapistDto.schedule?.filter(day => day.date===date)
+);

@@ -31,6 +31,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatChipsModule} from '@angular/material/chips';
 
 import { AccountIconComponent } from './components/account-icon/account-icon.component';
 import { appReducer } from './store/app/app.reducer';
@@ -55,6 +56,7 @@ import { ScheduleCardComponent } from './components/schedule-card/schedule-card.
 import { PatientComponent } from './components/patient/patient.component';
 import { patientReducer, patientsTherapistListReducer } from './store/patient/patient.reducer';
 import { PatientEffects } from './store/patient/patient.effects';
+import { PatientScheduleCardComponent } from './components/patient-schedule-card/patient-schedule-card.component';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -72,6 +74,7 @@ import { PatientEffects } from './store/patient/patient.effects';
     TherapistComponent,
     ScheduleCardComponent,
     PatientComponent,
+    PatientScheduleCardComponent,
   ],
   entryComponents:[UploadPictureDialogComponent],
   imports: [
@@ -117,6 +120,7 @@ import { PatientEffects } from './store/patient/patient.effects';
     MatExpansionModule,
     MatTabsModule,
     MatMomentDateModule,
+    MatChipsModule,
     //MatNativeDateModule
   ],
   providers: [MatDatepickerModule],
