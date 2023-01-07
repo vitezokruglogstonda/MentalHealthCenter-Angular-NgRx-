@@ -7,7 +7,8 @@
         <div *ngFor="let label of appointmentsLabel; let i = index" class="appointment-list">
             <p>{{label}}</p>
             <p *ngIf="appointments[i][0] && !appointments[i][1]" class = "occupied">unavailable</p>
-            <button *ngIf="(!appointments[i][0] && !appointments[i][1]) || (appointments[i][0] && appointments[i][1]) " mat-raised-button color="primary" id="{{i}}" (click)="makeAnAppointment($event)">Free</button>            
+            <button *ngIf="!appointments[i][0] && !appointments[i][1]" mat-raised-button color="primary" id="{{i}}" (click)="makeAnAppointment($event)">Free</button>            
+            <button *ngIf="appointments[i][0] && appointments[i][1]" mat-raised-button color="primary" id="{{i}}" (click)="makeAnAppointment($event)">Scheduled</button>   
         </div>
     </div>
 </mat-card>

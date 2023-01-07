@@ -10,6 +10,7 @@ import { selectTherapistsPatient, selectTherapistsScheduleListByDate } from 'src
 import { selectUserInfo } from 'src/app/store/user/user.selector';
 import { environment } from 'src/environments/environment';
 import * as Actions from 'src/app/store/patient/patient.action';
+import { ScheduleDto } from 'src/app/models/patient';
 
 @Component({
   selector: 'app-patient-schedule-card',
@@ -39,7 +40,7 @@ export class PatientScheduleCardComponent implements OnInit {
   ngOnInit(): void {
     environment.day_schadule.forEach(label => {
       this.appointmentsLabel.push(label);
-      this.appointments.push([false, false]);
+      //this.appointments.push([false, false]);
     });
     //this.dateString = this.convertDate(this.date as Date);
     this.fillSchedule();
@@ -48,9 +49,9 @@ export class PatientScheduleCardComponent implements OnInit {
   ngOnChanges() {
     this.appointments.splice(0, this.appointments.length);
     this.appointments = [];
-    environment.day_schadule.forEach(label => {
-      this.appointments.push([false, false]);
-    });
+    // environment.day_schadule.forEach(label => {
+    //   this.appointments.push([false, false]);
+    // });
     this.fillSchedule();
   }
 
@@ -59,48 +60,19 @@ export class PatientScheduleCardComponent implements OnInit {
   }
 
   fillSchedule() {
-
     this.dateString = this.convertDate(this.date as Date);
-
-    //pozovi novi selektor od pacijenta, pribavi termine, i stavi bool-ove u listu (appointments) po njima
-    //na osnovu te liste checkboxovi ce da budu omoguceni ili onemoguceni
-    //mozda ne checkboxovi, nego dugmad
-
-    //lista appointments da bude tuple [boolean,boolean] da bi mogao da razlikuje sopstvena zakazivanja od tudjih
-    //da u parent komponenti pribavlja listu sa sopstvenim vec zakazanim terminima, koju prosledjuje child komponenti
-    //ili da ovo pamti u store-u
-    //zakazivanje i otkazivanje termina preko chips-a
-
-    //u patient.ts interface ScheduleDto mozda da ima property user: boolean, koji ce da kaze da l se radi o ovom pacijentu
-      //pa ce po tom propery-ju u html da crta dugme ili jok
-
-    this.store.select(selectScheduleByDate(this.dateString)).subscribe((state) => {
-      let usersAppointments$: number[] = [];
-      state?.forEach(schedule => {
-        //ako appointment postoji znaci da je zakazan, inace su svi elementi [false,false]
-        //ako je [0] true znaci da je zakazan
-        //ako je [1] true znaci da je zakazan od strane usera (ne postoji [false, true])
-        //this.appointments[schedule.appointmentNumber] = [true, schedule.usersAppointment];
-        this.appointments[schedule.appointmentNumber][0] = true;
-        this.appointments[schedule.appointmentNumber][1] = schedule.usersAppointment;
-        if(schedule.usersAppointment){
-          usersAppointments$.push(schedule.appointmentNumber);
-        }
-      })
-      this.refreshButtons(usersAppointments$);
-    });
-  }
-
-  refreshButtons(usersAppointments: number[]){
-    let tmp_button: HTMLElement;
-    environment.day_schadule.forEach((el, buttonId) => {
-      tmp_button = document.getElementById(`${buttonId}`) as HTMLElement;
-      if(usersAppointments.includes(buttonId)){
-        tmp_button.innerHTML = "Scheduled";
-      }else{
-        tmp_button.innerHTML = "Free";
+    this.store.select(selectScheduleByDate(this.dateString)).subscribe((state) => {  
+      if(state){
+        environment.day_schadule.forEach((el, i) => {
+          let tmpAppointment = state.find(el => el.appointmentNumber===i);
+          if(tmpAppointment !== undefined){
+            this.appointments.push([true, tmpAppointment.usersAppointment]);
+          }else{
+            this.appointments.push([false,false]);
+          }
+        });
       }
-    })
+    });
   }
 
   convertDate(dateObject: Date): string {
