@@ -8,6 +8,7 @@ import { PatientService } from "src/app/services/patient.service";
 import { AppState } from "../app.state";
 import * as PatientActions from "./patient.action";
 import * as UserActions from "../user/user.action";
+import { TherapistsScheduleListItem } from "src/app/models/therapist";
 
 @Injectable()
 export class PatientEffects{
@@ -47,10 +48,25 @@ export class PatientEffects{
         this.actions$.pipe(
             ofType(PatientActions.loadTherapist),
             switchMap((action) =>
-                this.patientService.loadTherapist(action.therapistId).pipe(
+                this.patientService.loadTherapist(action.patientId, action.therapistId).pipe(
                     switchMap((therapist: TherapistDto) => {
                         return [
                             PatientActions.loadTherapistSuccess({ therapist: therapist })
+                        ];
+                    })
+                )
+            )
+        )
+    );
+
+    makeAnAppointment = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PatientActions.makeAnAppointment),
+            switchMap((action) =>
+                this.patientService.makeAnAppointment(action.patientId, action.therapistId, action.date, action.appointmentNumber).pipe(
+                    switchMap((schedule: TherapistsScheduleListItem) => {
+                        return [
+                            PatientActions.makeAnAppointmentSuccess({patientId: schedule.patientId, therapistId: schedule.therapistID, date: schedule.date as string, appointmentNumber: schedule.appointmentNumber, usersAppointment: true})
                         ];
                     })
                 )

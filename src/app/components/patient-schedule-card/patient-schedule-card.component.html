@@ -6,11 +6,8 @@
     <div class="schedule-list">
         <div *ngFor="let label of appointmentsLabel; let i = index" class="appointment-list">
             <p>{{label}}</p>
-            <p *ngIf="appointments[i]" class = "occupied">unavailable</p>
-            <!-- <p *ngIf="!appointments[i]" class = "free">free</p>        -->
-            <mat-chip-listbox *ngIf="!appointments[i]">
-                <mat-chip-option  class = "free">free</mat-chip-option>     
-            </mat-chip-listbox>      
+            <p *ngIf="appointments[i][0] && !appointments[i][1]" class = "occupied">unavailable</p>
+            <button *ngIf="(!appointments[i][0] && !appointments[i][1]) || (appointments[i][0] && appointments[i][1]) " mat-raised-button color="primary" id="{{i}}" (click)="makeAnAppointment($event)">Free</button>            
         </div>
     </div>
 </mat-card>

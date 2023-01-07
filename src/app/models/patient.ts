@@ -33,5 +33,6 @@ export interface TherapistInfoDto{
 
 export interface ScheduleDto{
     date: String,
-    appointmentNumber: number
+    appointmentNumber: number,
+    usersAppointment: boolean
 }

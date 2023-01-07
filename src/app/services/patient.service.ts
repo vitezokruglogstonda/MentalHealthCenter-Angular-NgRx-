@@ -66,12 +66,9 @@ export class PatientService {
                 );
             })
         )
-
-
-
     }
 
-    loadTherapist(therapistId: number): Observable<TherapistDto> {
+    loadTherapist(patientId: number, therapistId: number): Observable<TherapistDto> {
 
         //server treba da proverava da li datum nije prosao (ako je prosao onda ga ne salje)
 
@@ -95,9 +92,14 @@ export class PatientService {
                     switchMap((schedules: TherapistsScheduleListItem[]) => {
                         schedule = [];
                         schedules.forEach((el: TherapistsScheduleListItem) => {
+                            let usersApp: boolean = false;
+                            if(el.patientId === patientId){
+                                usersApp = true;
+                            }
                             schedule.push({
                                 date: el.date,
-                                appointmentNumber: el.appointmentNumber
+                                appointmentNumber: el.appointmentNumber,
+                                usersAppointment: usersApp
                             })
                         });
                         resultDto = {
@@ -109,6 +111,22 @@ export class PatientService {
                 )
             })
         )
+    }
+
+    makeAnAppointment(patientId: number, therapistId: number, date: string, appointmentNumber: number): Observable<TherapistsScheduleListItem> {
+        let querry: String = `schedule`;
+        let scheduleObject: TherapistsScheduleListItem = {
+            id: null,
+            therapistID: therapistId,
+            date: date,
+            appointmentNumber: appointmentNumber,
+            patientId: patientId
+        };
+        return this.http.post(environment.json_server_url + querry, scheduleObject).pipe( 
+            switchMap(()=>
+               {return of(scheduleObject);}
+            )
+        );
     }
 
 }

@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
 import { createReducer, on } from "@ngrx/store";
-import { TherapistDto, TherapistListItem, TherapistListState } from "src/app/models/patient";
+import { ScheduleDto, TherapistDto, TherapistListItem, TherapistListState } from "src/app/models/patient";
 import * as PatientActions from "./patient.action";
 
 export const initialPatientState: TherapistDto = {
@@ -18,20 +18,28 @@ export const patientsTherapistListReducer = createReducer(
     on(PatientActions.loadTherapistList, (state) => ({
         ...state
     })),
-    on(PatientActions.loadTherapistListSuccess, (state, {items}) => {
+    on(PatientActions.loadTherapistListSuccess, (state, { items }) => {
         return patientsTherapistListAdapter.addMany(items, state);
     }),
-    on(PatientActions.chooseTherapist, (state, {patientId, therapistId}) => ({
+    on(PatientActions.chooseTherapist, (state, { patientId, therapistId }) => ({
         ...state
-    }))    
+    }))
 );
 
 export const patientReducer = createReducer(
     initialPatientState,
-    on(PatientActions.loadTherapist, (state, {therapistId}) => ({
+    on(PatientActions.loadTherapist, (state, { patientId, therapistId }) => ({
         ...state
     })),
-    on(PatientActions.loadTherapistSuccess, (state, {therapist}) => ({
+    on(PatientActions.loadTherapistSuccess, (state, { therapist }) => ({
         ...therapist
     })),
+    on(PatientActions.makeAnAppointment, (state, { patientId, therapistId, date, appointmentNumber }) => ({
+        ...state
+    })),
+    on(PatientActions.makeAnAppointmentSuccess, (state, { patientId, therapistId, date, appointmentNumber, usersAppointment }) => ({
+        ...state,
+        schedule: [...(state.schedule as ScheduleDto[]), ({date, appointmentNumber, usersAppointment} as ScheduleDto) ],
+    })),
+
 );

@@ -36,8 +36,13 @@
     </mat-accordion>
     <div *ngIf="showSchedule" class="schedule-section">
         <mat-card class="calendar-card">
-            <mat-calendar class="calendar" [(selected)]="selectedDate" [dateFilter]="filterCalendar"
-                [minDate]="upcomingScheduleDate"></mat-calendar>
+            <!-- <mat-calendar class="calendar" [(selected)]="selectedDate" [dateFilter]="filterCalendar"
+                [minDate]="upcomingScheduleDate"></mat-calendar> 
+                
+                ovo je sa filterom (izbrisi donji)
+            
+            -->
+            <mat-calendar class="calendar" [(selected)]="selectedDate"></mat-calendar>
             <mat-divider [vertical]="true"></mat-divider>
             <app-patient-schedule-card [date]="selectedDate" class="schedule-card-div"></app-patient-schedule-card>
         </mat-card>

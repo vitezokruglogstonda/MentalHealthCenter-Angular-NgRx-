@@ -18,7 +18,7 @@ export interface TherapistsPatientListState extends EntityState<TherapistsPatien
 }
 
 export interface TherapistsScheduleListItem{
-    id: number;
+    id: number | null;
     therapistID: number,
     date: String,
     appointmentNumber: number,

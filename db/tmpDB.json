@@ -210,57 +210,64 @@
     {
       "id": 1,
       "therapistId": 4,
-      "date": "5.1.2023.",
+      "date": "9.1.2023.",
       "appointmentNumber": 0,
       "patientId": 1
     },
     {
       "id": 2,
       "therapistId": 4,
-      "date": "5.1.2023.",
+      "date": "9.1.2023.",
       "appointmentNumber": 1,
       "patientId": 2
     },
     {
       "id": 3,
       "therapistId": 4,
-      "date": "5.1.2023.",
+      "date": "9.1.2023.",
       "appointmentNumber": 2,
       "patientId": 2
     },
     {
       "id": 4,
       "therapistId": 4,
-      "date": "5.1.2023.",
+      "date": "9.1.2023.",
       "appointmentNumber": 3,
       "patientId": 5
     },
     {
       "id": 5,
       "therapistId": 4,
-      "date": "5.1.2023.",
+      "date": "9.1.2023.",
       "appointmentNumber": 4,
       "patientId": 5
     },
     {
       "id": 6,
       "therapistId": 4,
-      "date": "5.1.2023.",
+      "date": "9.1.2023.",
       "appointmentNumber": 5,
       "patientId": 5
     },
     {
       "id": 7,
       "therapistId": 4,
-      "date": "5.1.2023.",
+      "date": "9.1.2023.",
       "appointmentNumber": 6,
       "patientId": 5
     },
     {
       "id": 8,
       "therapistId": 4,
-      "date": "6.1.2023.",
+      "date": "7.1.2023.",
       "appointmentNumber": 4,
+      "patientId": 2
+    },
+    {
+      "id": 9,
+      "therapistId": 4,
+      "date": "7.1.2023.",
+      "appointmentNumber": 5,
       "patientId": 5
     }
   ]

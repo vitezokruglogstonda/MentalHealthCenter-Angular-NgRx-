@@ -48,7 +48,7 @@ export class PatientComponent implements OnInit {
         this.patientId = state.id;
         if (state.userType === UserType.Patient) {
           if (state.therapistID !== null) {
-            this.displaySchedule(state.therapistID);
+            this.displaySchedule(state.id, state.therapistID);
           } else {
             this.displayTherapistList();
           }
@@ -71,16 +71,16 @@ export class PatientComponent implements OnInit {
     });
   }
 
-  displaySchedule(therapistId: number) {
+  displaySchedule(patientId: number, therapistId: number) {
     this.pageTitle = environment.patient_page.page_title_schedule;
     this.showTherapistList = false;
     this.showSchedule = true;
     let footer = document.querySelector(".footer1");
     footer?.classList.add("footer2");
-    this.store.dispatch(PatientActions.loadTherapist({ therapistId }));
+    this.store.dispatch(PatientActions.loadTherapist({ patientId, therapistId }));
     this.store.select(selectTherapistDto).subscribe((state) => {
       this.therapistDto = {...state};
-      console.log(this.therapistDto)
+      //console.log(this.therapistDto)
     })
   }
 
