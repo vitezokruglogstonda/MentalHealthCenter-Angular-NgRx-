@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { TherapistDto, TherapistListItem } from 'src/app/models/patient';
+import { ScheduleDto, TherapistListItem } from 'src/app/models/patient';
 import { UserType } from 'src/app/models/user';
 import { AppState } from 'src/app/store/app.state';
 import { chooseTherapist, loadTherapistList } from 'src/app/store/patient/patient.action';
-import { selectTherapistDto, selectTherapistList } from 'src/app/store/patient/patient.selector';
+import { selectTherapistList, selectTherapistSchedule } from 'src/app/store/patient/patient.selector';
 import { selectUserId, selectUserInfo } from 'src/app/store/user/user.selector';
 import { environment } from 'src/environments/environment';
 
@@ -24,7 +24,7 @@ export class PatientComponent implements OnInit {
   public showSchedule: boolean;
   public therapistList: (TherapistListItem | undefined)[];
   public itemExpanded: number;
-  public therapistDto: TherapistDto | null;
+  public therapistSchedule: (ScheduleDto | undefined)[];
   public selectedDate: Date | null;
   public upcomingScheduleDate: Date;
   public occupiedDates: Date[];
@@ -36,7 +36,7 @@ export class PatientComponent implements OnInit {
     this.showTherapistList = false;
     this.therapistList = [];
     this.itemExpanded = 0;
-    this.therapistDto = null;
+    this.therapistSchedule = [];
     this.selectedDate = new Date();
     this.upcomingScheduleDate = new Date();
     this.occupiedDates = [];
@@ -77,11 +77,13 @@ export class PatientComponent implements OnInit {
     this.showSchedule = true;
     let footer = document.querySelector(".footer1");
     footer?.classList.add("footer2");
-    this.store.dispatch(PatientActions.loadTherapist({ patientId, therapistId }));
-    this.store.select(selectTherapistDto).subscribe((state) => {
-      this.therapistDto = {...state};
-      //console.log(this.therapistDto)
+    this.store.dispatch(PatientActions.loadTherapistSchedule({ patientId, therapistId }));
+    this.store.select(selectTherapistSchedule).subscribe((state) => {
+      state.forEach(el => {
+        this.therapistSchedule.push(el)
+      })
     })
+    
   }
 
   filterCalendar = (d: Date): boolean => {
@@ -124,25 +126,28 @@ export class PatientComponent implements OnInit {
   }
 
   findOccupiedDates(){
-    console.log("EO ME", this.therapistDto)
     this.occupiedDates.splice(0, this.occupiedDates.length);
     let scheduleCounter: [String, number][] = [];
     let tmp: [String, number] | undefined;
-    this.therapistDto?.schedule?.forEach(sch => {
-      tmp = scheduleCounter.find(el => el[0] === sch.date);
-      if(tmp){
-        let index = scheduleCounter.indexOf(tmp);
-        if(scheduleCounter[index][1] < environment.day_schadule.length){
-          scheduleCounter[index][1]++;
-        }
-      }else{
-        scheduleCounter.push([sch.date, 1]);
-      }
-    })
-    scheduleCounter.filter(el => el[1] === environment.day_schadule.length).forEach(el => {
-      let splited: string[] = el[0].split(".", 3);
-      this.occupiedDates.push(new Date(`${splited[1]}/${splited[0]}/${splited[2]}`));
-    })
+    this.store.select(selectTherapistSchedule).subscribe((state)=>{
+      state.forEach(sch => {
+        if(sch){
+          tmp = scheduleCounter.find(el => el[0] === sch.date);
+          if(tmp){
+            let index = scheduleCounter.indexOf(tmp);
+            if(scheduleCounter[index][1] < environment.day_schadule.length){
+              scheduleCounter[index][1]++;
+            }
+          }else{
+            scheduleCounter.push([sch.date, 1]);
+          }
+        }        
+      })
+      scheduleCounter.filter(el => el[1] === environment.day_schadule.length).forEach(el => {
+        let splited: string[] = el[0].split(".", 3);
+        this.occupiedDates.push(new Date(`${splited[1]}/${splited[0]}/${splited[2]}`));
+      })
+    })    
   }
 
   getUpcomingSchaduleDate(): Date {

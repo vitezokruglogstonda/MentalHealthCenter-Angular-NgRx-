@@ -4,7 +4,7 @@ import { take } from 'rxjs';
 import { TherapistsPatientListItem, TherapistsScheduleListItem } from 'src/app/models/therapist';
 import { CustomDate } from 'src/app/models/user';
 import { AppState } from 'src/app/store/app.state';
-import { selectScheduleByDate, selectTherapistDto } from 'src/app/store/patient/patient.selector';
+import { selectScheduleByDate, selectScheduleDto } from 'src/app/store/patient/patient.selector';
 import { loadTherapistsScheduleForDate } from 'src/app/store/therapist/therapist.action';
 import { selectTherapistsPatient, selectTherapistsScheduleListByDate } from 'src/app/store/therapist/therapist.selector';
 import { selectUserInfo } from 'src/app/store/user/user.selector';
@@ -61,14 +61,18 @@ export class PatientScheduleCardComponent implements OnInit {
 
   fillSchedule() {
     this.dateString = this.convertDate(this.date as Date);
-    this.store.select(selectScheduleByDate(this.dateString)).subscribe((state) => {  
-      if(state){
+    this.store.select(selectScheduleByDate(this.dateString)).subscribe((state) => {
+      if (state) {
         environment.day_schadule.forEach((el, i) => {
-          let tmpAppointment = state.find(el => el.appointmentNumber===i);
-          if(tmpAppointment !== undefined){
+          let tmpAppointment = state.find(el => {
+            if (el)
+              return el.appointmentNumber === i;
+            return false;
+          });
+          if (tmpAppointment !== undefined) {
             this.appointments.push([true, tmpAppointment.usersAppointment]);
-          }else{
-            this.appointments.push([false,false]);
+          } else {
+            this.appointments.push([false, false]);
           }
         });
       }
@@ -143,37 +147,30 @@ export class PatientScheduleCardComponent implements OnInit {
     return `${this.customDate.day}.${this.customDate.month}.${this.customDate.year}.`
   }
 
-  makeAnAppointment(ev: any) {
-    //datum pored app-number, zajedno sa id-em terapeuta i pacijenta
-    //menja sadrzaj dugmeta u otkazi (i menja boju)
-
-    //console.log((ev.target as HTMLElement).parentNode);
-
+  makeAnAppointment(tmpAppointmentNumber: number) {
     let userId: number;
     let therapistID: number;
     let appointmentButton: HTMLElement;
-    let tmpAppointmentNumber: Number;
     this.store.select(selectUserInfo).pipe(take(1)).subscribe((state) => {
       userId = state.id as number;
-      this.store.select(selectTherapistDto).pipe(take(1)).subscribe((state) => {
-        therapistID = state.therapistInfo?.id as number;
-        appointmentButton = (ev.srcElement as HTMLElement);
-        tmpAppointmentNumber = Number(appointmentButton.id);
-        if (appointmentButton.innerHTML === "Free") {
-          appointmentButton.innerHTML = "scheduled";
-          appointmentButton.classList.add("scheduledButton");
-          //zakazivanje
-          this.store.dispatch(Actions.makeAnAppointment({ patientId: userId, therapistId: therapistID, date: this.dateString as string, appointmentNumber: tmpAppointmentNumber as number}))
-        } else {
-          appointmentButton.innerHTML = "Free";
-          appointmentButton.classList.remove("scheduledButton");
-          //otkazivanje
+      therapistID = state.therapistID as number;
+      this.store.dispatch(Actions.makeAnAppointment({ patientId: userId, therapistId: therapistID, date: this.dateString as string, appointmentNumber: tmpAppointmentNumber as number }))
+      this.store.select(selectScheduleDto(this.dateString, tmpAppointmentNumber)).subscribe((state)=>{
+        if(state){
+          this.appointments[tmpAppointmentNumber] = [true,true];
         }
-      }).unsubscribe();
-    }).unsubscribe();
+      })
+    });
+  }
 
-
-
+  cancelAppointment(tmpAppointmentNumber: number) {
+    this.store.select(selectScheduleDto(this.dateString, tmpAppointmentNumber)).subscribe((state)=>{
+      if(state){
+        this.store.dispatch(Actions.cancelAppointment({scheduleId: state?.id as number}));
+      }else{
+        this.appointments[tmpAppointmentNumber] = [false,false];
+      }
+    });
   }
 
 }

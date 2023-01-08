@@ -1,16 +1,18 @@
 import { createEntityAdapter, EntityAdapter } from "@ngrx/entity";
 import { createReducer, on } from "@ngrx/store";
-import { ScheduleDto, TherapistDto, TherapistListItem, TherapistListState } from "src/app/models/patient";
+import { ScheduleDto, ScheduleDtoState, TherapistListItem, TherapistListState } from "src/app/models/patient";
 import * as PatientActions from "./patient.action";
 
-export const initialPatientState: TherapistDto = {
-    therapistInfo: null,
-    schedule: null
-}
+
 
 export const patientsTherapistListAdapter: EntityAdapter<TherapistListItem> = createEntityAdapter<TherapistListItem>();
 
 export const initialPatientListState: TherapistListState = patientsTherapistListAdapter.getInitialState({
+});
+
+export const scheduleAdapter: EntityAdapter<ScheduleDto> = createEntityAdapter<ScheduleDto>();
+
+export const initialScheduleListState: ScheduleDtoState = scheduleAdapter.getInitialState({
 });
 
 export const patientsTherapistListReducer = createReducer(
@@ -24,22 +26,28 @@ export const patientsTherapistListReducer = createReducer(
     on(PatientActions.chooseTherapist, (state, { patientId, therapistId }) => ({
         ...state
     }))
+    //akcija chooseTherapistSuccess ?
 );
 
 export const patientReducer = createReducer(
-    initialPatientState,
-    on(PatientActions.loadTherapist, (state, { patientId, therapistId }) => ({
+    initialScheduleListState,
+    on(PatientActions.loadTherapistSchedule, (state, { patientId, therapistId }) => ({
         ...state
     })),
-    on(PatientActions.loadTherapistSuccess, (state, { therapist }) => ({
-        ...therapist
-    })),
+    on(PatientActions.loadTherapistScheduleSuccess, (state, { schedule }) => {
+        return scheduleAdapter.addMany(schedule, state);
+    }),
     on(PatientActions.makeAnAppointment, (state, { patientId, therapistId, date, appointmentNumber }) => ({
         ...state
     })),
-    on(PatientActions.makeAnAppointmentSuccess, (state, { patientId, therapistId, date, appointmentNumber, usersAppointment }) => ({
-        ...state,
-        schedule: [...(state.schedule as ScheduleDto[]), ({date, appointmentNumber, usersAppointment} as ScheduleDto) ],
+    on(PatientActions.makeAnAppointmentSuccess, (state, { scheduleDto }) => {
+        return scheduleAdapter.addOne(scheduleDto, state);
+    }),
+    on(PatientActions.cancelAppointment, (state, { scheduleId }) => ({
+        ...state
     })),
-
+    on(PatientActions.cancelAppointmentSuccess, (state, { scheduleId }) => {
+        return scheduleAdapter.removeOne(scheduleId, state);
+    }),
 );
+

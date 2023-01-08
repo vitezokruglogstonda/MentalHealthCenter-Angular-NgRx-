@@ -87,7 +87,8 @@ import { PatientScheduleCardComponent } from './components/patient-schedule-card
       therapistsPatientList: therapistPatientListReducer,
       therapistsScheduleList: therapistScheduleListReducer,
       patientsTherapistList: patientsTherapistListReducer,
-      patientsTherapist: patientReducer,
+      //patientsTherapistInfo: patientReducer,
+      patientsTherapistSchedule: patientReducer,
     }),
     EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects, TherapistEffects, PatientEffects]),
     StoreDevtoolsModule.instrument({

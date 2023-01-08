@@ -259,14 +259,14 @@
     {
       "id": 8,
       "therapistId": 4,
-      "date": "7.1.2023.",
+      "date": "8.1.2023.",
       "appointmentNumber": 4,
       "patientId": 2
     },
     {
       "id": 9,
       "therapistId": 4,
-      "date": "7.1.2023.",
+      "date": "8.1.2023.",
       "appointmentNumber": 5,
       "patientId": 5
     }

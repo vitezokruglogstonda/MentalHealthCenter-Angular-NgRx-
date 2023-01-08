@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { act, Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { switchMap } from "rxjs";
-import { TherapistDto, TherapistListItem } from "src/app/models/patient";
+import { ScheduleDto, TherapistListItem } from "src/app/models/patient";
 import { User } from "src/app/models/user";
 import { PatientService } from "src/app/services/patient.service";
 import { AppState } from "../app.state";
@@ -46,12 +46,12 @@ export class PatientEffects{
 
     loadTherapist = createEffect(() =>
         this.actions$.pipe(
-            ofType(PatientActions.loadTherapist),
+            ofType(PatientActions.loadTherapistSchedule),
             switchMap((action) =>
-                this.patientService.loadTherapist(action.patientId, action.therapistId).pipe(
-                    switchMap((therapist: TherapistDto) => {
+                this.patientService.loadTherapistSchedule(action.patientId, action.therapistId).pipe(
+                    switchMap((schedules: ScheduleDto[]) => {
                         return [
-                            PatientActions.loadTherapistSuccess({ therapist: therapist })
+                            PatientActions.loadTherapistScheduleSuccess({ schedule: schedules })
                         ];
                     })
                 )
@@ -64,9 +64,24 @@ export class PatientEffects{
             ofType(PatientActions.makeAnAppointment),
             switchMap((action) =>
                 this.patientService.makeAnAppointment(action.patientId, action.therapistId, action.date, action.appointmentNumber).pipe(
-                    switchMap((schedule: TherapistsScheduleListItem) => {
+                    switchMap((schedule: ScheduleDto) => {
                         return [
-                            PatientActions.makeAnAppointmentSuccess({patientId: schedule.patientId, therapistId: schedule.therapistID, date: schedule.date as string, appointmentNumber: schedule.appointmentNumber, usersAppointment: true})
+                            PatientActions.makeAnAppointmentSuccess({scheduleDto: schedule})
+                        ];
+                    })
+                )
+            )
+        )
+    );
+
+    cancelAnAppointment = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PatientActions.cancelAppointment),
+            switchMap((action) =>
+                this.patientService.cancelAnAppointment(action.scheduleId).pipe(
+                    switchMap((scheduleId: number) => {
+                        return [
+                            PatientActions.cancelAppointmentSuccess({scheduleId: scheduleId})
                         ];
                     })
                 )
