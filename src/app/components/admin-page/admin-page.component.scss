@@ -1,0 +1,95 @@
+.admin-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-container h2{
+    margin-top: 5%;
+}
+
+.devider-line{
+    width: 70%;
+    margin-bottom: 2%;
+}
+
+.tabs{
+    width: 70%;
+}
+
+.user-section{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
+    //padding-top: 5%;
+}
+
+.user-list{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-list-item{
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20x;
+}
+
+.user-name{
+    font-size: larger;
+    font-weight: 400;
+    padding-top: 10px;
+}
+
+.image-container{
+    border-radius: 50%;
+    background-color: #c6cad6;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.user-picture{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.user-info{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.user-detail{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.therapist-description{
+    border-radius: 10px;
+    width: 30%;
+    height: 150px;
+    border: 2px solid #c6cad6;
+    overflow-y: auto;
+}
+
+.footer1{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.footer2{
+    position: relative;
+}

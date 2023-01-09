@@ -82,5 +82,6 @@ export const environment = {
   patient_page:{
     page_title_chose_therapist: "Choose your therapist",
     page_title_schedule: "Your therapy schedule",
-  }
+  },
+  admin_page_title: "Admin page",
 };

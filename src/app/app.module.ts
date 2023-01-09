@@ -57,6 +57,9 @@ import { PatientComponent } from './components/patient/patient.component';
 import { patientReducer, patientsTherapistListReducer } from './store/patient/patient.reducer';
 import { PatientEffects } from './store/patient/patient.effects';
 import { PatientScheduleCardComponent } from './components/patient-schedule-card/patient-schedule-card.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { adminReducer } from './store/admin/admin.reducer';
+import { AdminEffects } from './store/admin/admin.effects';
 //import { RegisterComponent } from './components/register/register.component';
 //import { HomePageComponent } from './components/home-page/home-page.component';
 
@@ -75,6 +78,7 @@ import { PatientScheduleCardComponent } from './components/patient-schedule-card
     ScheduleCardComponent,
     PatientComponent,
     PatientScheduleCardComponent,
+    AdminPageComponent,
   ],
   entryComponents:[UploadPictureDialogComponent],
   imports: [
@@ -89,8 +93,9 @@ import { PatientScheduleCardComponent } from './components/patient-schedule-card
       patientsTherapistList: patientsTherapistListReducer,
       //patientsTherapistInfo: patientReducer,
       patientsTherapistSchedule: patientReducer,
+      adminUserList: adminReducer,
     }),
-    EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects, TherapistEffects, PatientEffects]),
+    EffectsModule.forRoot([UserEffects, SidenavEffects, AppEffects, OperatorEffects, TherapistEffects, PatientEffects, AdminEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 7, 
       autoPause: true

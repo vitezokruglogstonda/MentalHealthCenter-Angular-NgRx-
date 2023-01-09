@@ -1,4 +1,5 @@
 import { TherapistComponent } from "../components/therapist/therapist.component";
+import { AdminUserListState } from "../models/admin";
 import { AppInfo } from "../models/app-info";
 import { HelpCallListState } from "../models/help-call-dto";
 import { ScheduleDtoState, TherapistListState } from "../models/patient";
@@ -17,5 +18,6 @@ export interface AppState {
     patientsTherapistList: TherapistListState;
     //patientsTherapistInfo: TherapistInfoDto;
     patientsTherapistSchedule: ScheduleDtoState;
+    adminUserList: AdminUserListState;
 }
 

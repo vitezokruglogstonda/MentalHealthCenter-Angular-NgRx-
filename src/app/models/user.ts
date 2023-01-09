@@ -16,7 +16,7 @@ export interface User {
     //ovo isto izbrisi (imaju samo pacijenti, u posebnoj tabeli)
     note: String;
     //i ovo izbrisi (imaju samo terapeuti, u posebnoj tabeli)
-    description: String;
+    description: String | null;
 }
 
 export enum UserType {

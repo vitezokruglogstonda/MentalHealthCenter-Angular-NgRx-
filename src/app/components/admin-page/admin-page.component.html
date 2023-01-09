@@ -1,0 +1,92 @@
+<div class="admin-container">
+    <h2>{{pageTitle}}</h2>
+    <mat-divider class="devider-line"></mat-divider>
+
+<!-- 
+
+    -2 taba:
+        -1. za sve usere (listu)
+        -2. za dodavanje novih terapeuta i operatera
+
+    -u 1. tabu, na vrhu je select (kao filter za listu)
+        -all
+        -patients
+        -therapists
+        -operators
+    -ista je lista kao i kod terapeuta (prikazuje podatke o korisnicima)
+        -moguce brisanje usera (kao kod operatera sto se brisu call-ovi)
+
+    ====================================
+
+    brisanje user-a (dugme za to, i akcija..)
+
+    dodaj select koji ce da selektuje userType, i azurira listu  (inicijalno je all)
+        (pri promeni u selektu, cisti se this.userList, i zove selektor koji filtrira usere iz store-a i puni niz ponovo)
+        
+    search po imenu (pored select-a)
+    
+    promeni boju u listi user-a, da po tipu usera list items imaju drugaciju boju (klasa elementa da se dobija iz userType)?
+
+    ====================================
+
+    forma za dodavanje user-a u 2. tabu (slicno kao registracija)
+
+ -->
+
+    <mat-tab-group mat-align-tabs="center" class="tabs" [selectedIndex]="selectedTab.value"
+        (selectedIndexChange)="tabChange($event)">
+        <mat-tab label="Users">
+            <mat-accordion class="user-section">
+                <div *ngFor="let user of userList; let i = index" class="user-list">
+                    <mat-expansion-panel *ngIf="user" class="user-list-item">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <div class="image-container">
+                                    <img class="user-picture" src={{user.profilePicturePath}} />
+                                </div>
+                                <p class="user-name">{{user.firstName}} {{user.lastName}}</p>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="user-info">
+                            <div class="user-detail">
+                                <p>User type: {{getUserType(user.userType)}}</p>
+                                <p>Email: {{user.email}}</p>
+                                <p>Age: {{calculateAge(user.birthDate)}}</p>
+                                <p>Phone number: {{user.phoneNumber}}</p>
+                                <p>Gender: {{user.gender}}</p>                                
+                            </div>
+                            <div *ngIf="user.therapistID != null">
+                                <p>Therapist:</p>
+                                <div class="image-container">
+                                    <img class="user-picture" src={{findUserById(user.therapistID).profilePicturePath}} />
+                                </div>
+                                <p class="user-name">{{findUserById(user.therapistID).firstName}} {{findUserById(user.therapistID).lastName}}</p>
+                            </div>
+                            <div *ngIf="user.description" class="therapist-description">
+                                <p>{{user.description}}</p>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </div>
+            </mat-accordion>
+        </mat-tab>
+        <mat-tab label="Add new user">
+            <!-- <div class="schedule-container">
+                <div class="upcoming">
+                    <app-schedule-card [date]="upcomingScheduleDate" [therapistId]="therapistId" [upcomingLabel]="true">
+                    </app-schedule-card>
+                </div>
+                <div class="calendar-container">
+                    <mat-card class="calendar-card">
+                        <mat-calendar class="calendar" [(selected)]="selectedDate" [dateFilter]="filterCalendar"
+                            [minDate]="upcomingScheduleDate"></mat-calendar>
+                        <mat-divider [vertical]="true"></mat-divider>
+                        <app-schedule-card [date]="selectedDate" [therapistId]="therapistId" class="schedule-card-div">
+                        </app-schedule-card>
+                    </mat-card>
+                </div>
+            </div> -->
+        </mat-tab>
+    </mat-tab-group>
+</div>
+<app-footer-component class="footer1"></app-footer-component>

@@ -9,7 +9,7 @@ export interface TherapistListItem{
     gender: String;
     phoneNumber: String;
     profilePicturePath: String;
-    description: String;
+    description: String | null;
 }
 
 export interface TherapistListState extends EntityState<TherapistListItem>{
