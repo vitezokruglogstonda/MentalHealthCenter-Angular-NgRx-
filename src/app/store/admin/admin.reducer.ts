@@ -15,5 +15,11 @@ export const adminReducer = createReducer(
     })),
     on(AdminActions.loadUserListSuccess, (state, {users}) => {
         return adminUserListAdapter.addMany(users, state);
+    }),
+    on(AdminActions.deleteUser, (state, {userId}) => ({
+        ...state
+    })),
+    on(AdminActions.deleteUserSuccess, (state, {userId}) => {
+        return adminUserListAdapter.removeOne(userId, state);
     })
 );

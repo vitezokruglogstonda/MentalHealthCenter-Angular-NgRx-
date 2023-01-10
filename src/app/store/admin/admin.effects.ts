@@ -8,7 +8,7 @@ import { AppState } from "../app.state";
 import * as AdminActions from "./admin.action";
 
 @Injectable()
-export class AdminEffects{
+export class AdminEffects {
     constructor(private actions$: Actions, private adminService: AdminService, private store: Store<AppState>) { }
 
     loadUserList = createEffect(() =>
@@ -25,4 +25,21 @@ export class AdminEffects{
             )
         )
     );
+
+    deleteUser = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AdminActions.deleteUser),
+            switchMap((action) =>
+                this.adminService.deleteUser(action.userId).pipe(
+                    switchMap((userId: number) => {
+                        return [
+                            AdminActions.deleteUserSuccess({ userId: userId })
+                        ];
+                    })
+                )
+            )
+        )
+    );
+
+
 }

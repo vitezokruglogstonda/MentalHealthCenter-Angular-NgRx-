@@ -2,7 +2,7 @@
     <h2>{{pageTitle}}</h2>
     <mat-divider class="devider-line"></mat-divider>
 
-<!-- 
+    <!-- 
 
     -2 taba:
         -1. za sve usere (listu)
@@ -18,18 +18,9 @@
 
     ====================================
 
-    brisanje user-a (dugme za to, i akcija..)
-
-    dodaj select koji ce da selektuje userType, i azurira listu  (inicijalno je all)
-        (pri promeni u selektu, cisti se this.userList, i zove selektor koji filtrira usere iz store-a i puni niz ponovo)
-        
-    search po imenu (pored select-a)
-    
-    promeni boju u listi user-a, da po tipu usera list items imaju drugaciju boju (klasa elementa da se dobija iz userType)?
-
-    ====================================
-
     forma za dodavanje user-a u 2. tabu (slicno kao registracija)
+        -osvezavanje liste user-a nakon dodavanja
+
 
  -->
 
@@ -37,8 +28,23 @@
         (selectedIndexChange)="tabChange($event)">
         <mat-tab label="Users">
             <mat-accordion class="user-section">
+                <div class="filter-options">
+                    <mat-form-field appearance="fill" class="filter-select">
+                        <mat-label>User type</mat-label>
+                        <mat-select [(value)]="selectedUserType" (selectionChange)="typeChange()">
+                            <mat-option *ngFor="let type of userTypes" [value]="type">
+                                {{type}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="filter-form-field" appearance="fill">
+                        <mat-label>Search</mat-label>
+                        <input matInput [(ngModel)]="userSearchString" (input)="findUser()">
+                        <!-- <mat-error *ngIf="emailError">{{fieldError}}</mat-error> -->
+                    </mat-form-field>
+                </div>
                 <div *ngFor="let user of userList; let i = index" class="user-list">
-                    <mat-expansion-panel *ngIf="user" class="user-list-item">
+                    <mat-expansion-panel *ngIf="user && listItems[i]" class="user-list-item {{getUserType(user.userType)}}-item" @item-fade-out>
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 <div class="image-container">
@@ -53,18 +59,24 @@
                                 <p>Email: {{user.email}}</p>
                                 <p>Age: {{calculateAge(user.birthDate)}}</p>
                                 <p>Phone number: {{user.phoneNumber}}</p>
-                                <p>Gender: {{user.gender}}</p>                                
+                                <p>Gender: {{user.gender}}</p>
                             </div>
                             <div *ngIf="user.therapistID != null">
                                 <p>Therapist:</p>
                                 <div class="image-container">
-                                    <img class="user-picture" src={{findUserById(user.therapistID).profilePicturePath}} />
+                                    <img class="user-picture"
+                                        src={{findUserById(user.therapistID).profilePicturePath}} />
                                 </div>
-                                <p class="user-name">{{findUserById(user.therapistID).firstName}} {{findUserById(user.therapistID).lastName}}</p>
+                                <p class="user-name">{{findUserById(user.therapistID).firstName}}
+                                    {{findUserById(user.therapistID).lastName}}</p>
                             </div>
                             <div *ngIf="user.description" class="therapist-description">
                                 <p>{{user.description}}</p>
                             </div>
+                            <button mat-icon-button class="delete-user-button" color="primary" value={{user.id}}
+                                (click)="deleteUser($event)">
+                                <mat-icon>close</mat-icon>
+                            </button>
                         </div>
                     </mat-expansion-panel>
                 </div>

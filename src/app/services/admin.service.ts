@@ -40,4 +40,15 @@ export class AdminService {
             })
         )
     }
+
+    deleteUser(userId: number): Observable<number>{
+        let querry: String = `users/${userId}`;
+        //console.log(querry)
+        return this.http.delete(environment.json_server_url+querry).pipe(
+            switchMap(()=> {
+                return of(userId)}
+            )
+        );
+    }
+
 }

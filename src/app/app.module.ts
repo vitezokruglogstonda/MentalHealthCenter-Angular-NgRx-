@@ -31,7 +31,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
-import {MatChipsModule} from '@angular/material/chips';
 
 import { AccountIconComponent } from './components/account-icon/account-icon.component';
 import { appReducer } from './store/app/app.reducer';
@@ -126,7 +125,6 @@ import { AdminEffects } from './store/admin/admin.effects';
     MatExpansionModule,
     MatTabsModule,
     MatMomentDateModule,
-    MatChipsModule,
     //MatNativeDateModule
   ],
   providers: [MatDatepickerModule],
